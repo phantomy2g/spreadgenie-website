@@ -3,1015 +3,1080 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpreadGenie Pro - Beat Vegas with Advanced Analytics</title>
-    <meta name="description" content="Advanced sports betting analytics with 71.4% accuracy. Get winning picks powered by data, not guesswork.">
-    
+    <title>SpreadGenie - Advanced Sports Betting Analytics</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        :root {
-            --primary: #7e22ce;
-            --secondary: #2a5298;
-            --accent: #f59e0b;
-            --success: #10b981;
-            --danger: #ef4444;
-            --dark: #1e293b;
-            --light: #f8fafc;
-        }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
             min-height: 100vh;
-            color: #333;
         }
-        
-        /* NAVIGATION */
-        nav {
-            background: rgba(30, 41, 59, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-        
-        .cta-button {
-            background: var(--accent);
-            color: white;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
-        }
-        
-        /* HERO SECTION */
+
+        /* Hero Section */
         .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            padding: 80px 20px 60px;
             text-align: center;
-            padding: 4rem 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-        
+
         .hero h1 {
-            font-size: 3.5em;
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            line-height: 1.2;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .hero .subtitle {
-            font-size: 1.5em;
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
             color: #e0e7ff;
-            margin-bottom: 2rem;
             font-weight: 300;
         }
-        
-        .stats-bar {
+
+        .stats-row {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin: 2rem 0;
+            gap: 60px;
+            margin: 40px 0;
             flex-wrap: wrap;
         }
-        
-        .stat-item {
-            text-align: center;
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
-        
+
         .stat-number {
-            font-size: 3em;
-            font-weight: bold;
-            color: var(--accent);
+            font-size: 3rem;
+            font-weight: 800;
+            color: #22d3ee;
             display: block;
         }
-        
+
         .stat-label {
-            color: white;
-            font-size: 1.1em;
-            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #e0e7ff;
+            margin-top: 8px;
         }
-        
-        .hero-cta {
-            margin-top: 2rem;
-        }
-        
-        .hero-cta .cta-button {
-            font-size: 1.3em;
-            padding: 1rem 3rem;
+
+        .cta-button {
             display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 18px 48px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 20px;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
         }
-        
-        /* CONTAINER */
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: #1e293b;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tab-buttons {
+            display: inline-flex;
+            gap: 12px;
+            background: #0f172a;
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .tab-button {
+            padding: 12px 32px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .tab-button:hover:not(.active) {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        /* Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 40px 20px;
         }
-        
-        /* SECTION HEADERS */
-        .section-header {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(to right, #22d3ee, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .section-header h2 {
-            font-size: 2.5em;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
+
+        .section-subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
         }
-        
-        .section-header p {
-            font-size: 1.2em;
-            color: #64748b;
-        }
-        
-        /* GAME CARDS */
+
+        /* Games Grid */
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
         }
-        
+
         .game-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #334155;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            border-color: #3b82f6;
         }
-        
-        .card-header {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            padding: 1.5rem;
-            color: white;
-        }
-        
-        .sport-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
-            margin-bottom: 0.8rem;
-        }
-        
-        .sport-nfl { background: #013369; }
-        .sport-cfb { background: #d50032; }
-        
-        .matchup {
-            font-size: 1.4em;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .game-time {
-            opacity: 0.8;
-            font-size: 0.95em;
-        }
-        
-        /* COLLAPSED VIEW (DEFAULT) */
-        .card-preview {
-            padding: 1.5rem;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        
-        .preview-pick {
+
+        .game-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #475569;
         }
-        
-        .pick-text {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: var(--dark);
-        }
-        
-        .confidence-badge {
-            background: var(--accent);
+
+        .sport-badge {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1.1em;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
         }
-        
-        .tier-badge {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            color: white;
+
+        .game-time {
+            color: #94a3b8;
+            font-size: 0.9rem;
         }
-        
-        .tier-strong { background: #dc2626; }
-        .tier-solid { background: #ea580c; }
-        .tier-lean { background: #f59e0b; }
-        .tier-pass { background: #6b7280; }
-        
-        .view-analysis-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
+
+        .teams {
+            margin-bottom: 20px;
         }
-        
-        .view-analysis-btn:hover {
-            background: #6b21a8;
-        }
-        
-        /* EXPANDED VIEW (HIDDEN BY DEFAULT) */
-        .card-expanded {
-            display: none;
-            padding: 1.5rem;
-        }
-        
-        .card-expanded.active {
-            display: block;
-        }
-        
-        .analysis-section {
-            margin-bottom: 1.5rem;
-        }
-        
-        .section-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: var(--dark);
-            margin-bottom: 1rem;
+
+        .team-row {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
+            padding: 10px 0;
         }
-        
-        .bet-option {
-            background: #f8fafc;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-bottom: 0.8rem;
-            border-left: 4px solid #cbd5e1;
+
+        .team-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #e2e8f0;
         }
-        
-        .bet-option.recommended {
-            background: #fef3c7;
-            border-left-color: var(--accent);
-        }
-        
-        .bet-type {
-            font-size: 0.85em;
+
+        .vs-divider {
+            text-align: center;
             color: #64748b;
             font-weight: 600;
+            margin: 8px 0;
+        }
+
+        .best-bet-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .best-bet-label {
+            color: #6ee7b7;
+            font-size: 0.85rem;
+            font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 0.3rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
         }
-        
-        .bet-pick {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
+
+        .pick-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
-        
-        .bet-confidence {
-            color: #64748b;
-            font-size: 0.95em;
+
+        .pick-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
         }
-        
-        .reasoning-text {
-            background: #f1f5f9;
-            padding: 1rem;
-            border-radius: 10px;
-            line-height: 1.6;
-            color: #475569;
+
+        .confidence-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        
-        /* TEAM NEWS SECTION */
-        .team-news {
-            background: #eff6ff;
-            padding: 1rem;
-            border-radius: 10px;
-            border-left: 4px solid #3b82f6;
+
+        .confidence-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #22d3ee;
         }
-        
-        .news-team {
-            margin-bottom: 1rem;
+
+        .tier-badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
-        
-        .news-team:last-child {
-            margin-bottom: 0;
-        }
-        
-        .team-name {
-            font-weight: bold;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        
-        .news-link {
-            display: block;
-            color: #3b82f6;
-            text-decoration: none;
-            padding: 0.5rem;
-            margin-bottom: 0.3rem;
-            border-radius: 5px;
-            transition: background 0.2s;
-        }
-        
-        .news-link:hover {
-            background: #dbeafe;
-        }
-        
-        .news-source {
-            color: #64748b;
-            font-size: 0.85em;
-        }
-        
-        /* PRICING SECTION */
-        .pricing-section {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-        }
-        
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .pricing-header h2 {
-            font-size: 2.5em;
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .pricing-card {
-            border: 2px solid #e2e8f0;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .pricing-card.featured {
-            border-color: var(--accent);
-            border-width: 3px;
-            transform: scale(1.05);
-        }
-        
-        .pricing-badge {
-            background: var(--accent);
+
+        .tier-STRONG {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
         }
-        
-        .pricing-badge.coming-soon {
-            background: #6b7280;
+
+        .tier-SOLID {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
         }
-        
-        .pricing-name {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: var(--dark);
-            margin-bottom: 1rem;
+
+        .tier-LEAN {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
         }
-        
-        .pricing-price {
-            font-size: 3em;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+
+        .tier-PASS {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: white;
         }
-        
-        .pricing-period {
-            color: #64748b;
-            margin-bottom: 1.5rem;
-        }
-        
-        .pricing-features {
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-        
-        .pricing-feature {
-            padding: 0.5rem 0;
-            color: #475569;
-        }
-        
-        .pricing-feature::before {
-            content: "✓ ";
-            color: var(--success);
-            font-weight: bold;
-        }
-        
-        .pricing-cta {
+
+        .view-analysis-btn {
             width: 100%;
-            padding: 1rem;
-            background: var(--primary);
+            padding: 12px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: bold;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
-        
-        .pricing-cta:hover {
-            background: #6b21a8;
+
+        .view-analysis-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
-        
-        .pricing-cta:disabled {
-            background: #cbd5e1;
-            cursor: not-allowed;
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
         }
-        
-        /* HOW IT WORKS */
-        .how-it-works {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
+
+        .modal-overlay.active {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
-        
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2.5em;
-            color: var(--dark);
-            margin-bottom: 2rem;
+
+        .modal-content {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            border: 1px solid #475569;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            margin: auto;
         }
-        
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #475569;
+            border: none;
             color: white;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5em;
-            font-weight: bold;
-            margin: 0 auto 1rem;
+            transition: all 0.3s ease;
         }
-        
-        .step h3 {
-            font-size: 1.3em;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
+
+        .modal-close:hover {
+            background: #64748b;
+            transform: rotate(90deg);
         }
-        
-        .step p {
-            color: #64748b;
-            line-height: 1.6;
+
+        .modal-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #475569;
         }
-        
-        /* LOADING & ERROR */
+
+        .modal-teams {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .modal-game-info {
+            display: flex;
+            gap: 20px;
+            color: #94a3b8;
+        }
+
+        .modal-best-bet {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%);
+            border: 2px solid #10b981;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .modal-bet-header {
+            color: #6ee7b7;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .modal-pick {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .modal-confidence-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .modal-confidence {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #22d3ee;
+        }
+
+        .modal-tier {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .edge-section {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3b82f6;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .edge-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .edge-text {
+            color: #e2e8f0;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .all-bets-section {
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .all-bets-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .bet-option {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #475569;
+        }
+
+        .bet-option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .bet-type-label {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .bet-pick {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .bet-details {
+            display: flex;
+            gap: 16px;
+        }
+
+        .bet-confidence {
+            color: #22d3ee;
+            font-weight: 600;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Loading */
         .loading {
             text-align: center;
-            color: white;
-            font-size: 1.5em;
-            padding: 3rem;
+            padding: 60px 20px;
         }
-        
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 1.5rem;
-            border-radius: 10px;
+
+        .spinner {
+            border: 4px solid #334155;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 80px 20px;
+            margin-top: 60px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid #475569;
             text-align: center;
-            margin: 2rem 0;
+            transition: all 0.3s ease;
         }
-        
-        /* FOOTER */
-        footer {
-            background: rgba(30, 41, 59, 0.95);
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: #10b981;
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.3);
+        }
+
+        .plan-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            padding: 2rem;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .plan-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #22d3ee;
+            margin-bottom: 8px;
+        }
+
+        .plan-period {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 12px 0;
+            color: #e2e8f0;
+            border-bottom: 1px solid #334155;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            padding: 40px 20px;
             text-align: center;
-            margin-top: 4rem;
+            color: #64748b;
+            border-top: 1px solid #1e293b;
         }
-        
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        
-        /* RESPONSIVE */
+
+        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2em;
+                font-size: 2.5rem;
             }
-            
-            .hero .subtitle {
-                font-size: 1.2em;
+
+            .hero-tagline {
+                font-size: 1.2rem;
             }
-            
-            .stats-bar {
-                gap: 1.5rem;
+
+            .stats-row {
+                gap: 30px;
             }
-            
+
             .stat-number {
-                font-size: 2em;
+                font-size: 2rem;
             }
-            
+
             .games-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .nav-links {
-                display: none;
+
+            .tab-buttons {
+                flex-direction: column;
+                width: 100%;
             }
-            
-            .pricing-grid {
-                grid-template-columns: 1fr;
+
+            .modal-content {
+                padding: 30px 20px;
             }
-            
-            .pricing-card.featured {
-                transform: scale(1);
+
+            .modal-pick {
+                font-size: 1.5rem;
             }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                🎯 SpreadGenie Pro
-            </div>
-            <div class="nav-links">
-                <a href="#picks">Today's Picks</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#pricing" class="cta-button">Join Beta - $19.99</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
+    <!-- Hero Section -->
     <div class="hero">
-        <h1>Advanced Analytics.<br>Winning Picks.<br>No Guesswork.</h1>
-        <p class="subtitle">Beat Vegas with data-driven betting intelligence</p>
-        
-        <div class="stats-bar">
-            <div class="stat-item">
-                <span class="stat-number">71.4%</span>
-                <span class="stat-label">Overall Accuracy</span>
+        <div class="hero-content">
+            <h1>SpreadGenie</h1>
+            <p class="hero-tagline">Advanced Analytics. Winning Picks. No Guesswork.</p>
+            
+            <div class="stats-row">
+                <div class="stat-box">
+                    <span class="stat-number">71.4%</span>
+                    <div class="stat-label">Win Rate</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">92%</span>
+                    <div class="stat-label">User Satisfaction</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">$19.99</span>
+                    <div class="stat-label">Beta Pricing</div>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">92%</span>
-                <span class="stat-label">Trap Game Success</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">$19.99</span>
-                <span class="stat-label">Beta Pricing</span>
-            </div>
-        </div>
-        
-        <div class="hero-cta">
-            <a href="#pricing" class="cta-button">Join First 50 Members</a>
+            
+            <a href="#pricing" class="cta-button">Join Beta Now</a>
         </div>
     </div>
 
-    <!-- TODAY'S PICKS SECTION -->
-    <div class="container" id="picks">
-        <div class="section-header">
-            <h2>🏈 Today's Picks</h2>
-            <p>Advanced analytics identifying the best betting opportunities</p>
-        </div>
-        
-        <div class="loading" id="loading">
-            Loading today's picks...
-        </div>
-        
-        <div class="error" id="error-message" style="display: none;"></div>
-        
-        <div class="games-grid" id="games-container">
-            <!-- Games loaded dynamically -->
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="featured">Featured Picks</button>
+            <button class="tab-button" data-tab="nfl">All NFL Games</button>
+            <button class="tab-button" data-tab="cfb">All CFB Games</button>
         </div>
     </div>
 
-    <!-- PRICING SECTION -->
-    <div class="container" id="pricing">
-        <div class="pricing-section">
-            <div class="pricing-header">
-                <h2>💰 Simple, Transparent Pricing</h2>
-                <p>Lock in your price. No price increases. Cancel anytime.</p>
-            </div>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading today's picks...</p>
+        </div>
+
+        <!-- Featured Picks Tab -->
+        <div id="featured-tab" class="tab-content active">
+            <h2 class="section-title">🔥 Today's Featured Picks</h2>
+            <p class="section-subtitle">Our highest confidence plays across NFL & CFB</p>
+            <div id="featured-games" class="games-grid"></div>
+        </div>
+
+        <!-- NFL Tab -->
+        <div id="nfl-tab" class="tab-content">
+            <h2 class="section-title">🏈 All NFL Games</h2>
+            <div id="nfl-games" class="games-grid"></div>
+        </div>
+
+        <!-- CFB Tab -->
+        <div id="cfb-tab" class="tab-content">
+            <h2 class="section-title">🏟️ All College Football Games</h2>
+            <div id="cfb-games" class="games-grid"></div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Plan</h2>
+            <p class="section-subtitle">Lock in your price - it never increases</p>
             
             <div class="pricing-grid">
-                <!-- BETA PRICING -->
                 <div class="pricing-card featured">
-                    <span class="pricing-badge">🔥 AVAILABLE NOW</span>
-                    <div class="pricing-name">Beta Pricing</div>
-                    <div class="pricing-price">$19.99</div>
-                    <div class="pricing-period">per month</div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">Lifetime price lock</div>
-                        <div class="pricing-feature">All features unlocked</div>
-                        <div class="pricing-feature">Help shape the product</div>
-                        <div class="pricing-feature">CFB + NFL picks daily</div>
-                        <div class="pricing-feature">First 50 members only</div>
-                        <div class="pricing-feature">Priority support</div>
-                    </div>
-                    <button class="pricing-cta">Join Beta - First 50</button>
+                    <div class="plan-badge">BEST VALUE</div>
+                    <h3 class="plan-name">Beta</h3>
+                    <div class="plan-price">$19.99</div>
+                    <p class="plan-period">per month, locked forever</p>
+                    <ul class="plan-features">
+                        <li>✅ All NFL & CFB picks daily</li>
+                        <li>✅ Advanced analytics</li>
+                        <li>✅ 🎯 The Edge analysis</li>
+                        <li>✅ First 50 members only</li>
+                        <li>✅ Price locked for life</li>
+                    </ul>
+                    <a href="#" class="cta-button">Claim Beta Access</a>
                 </div>
-                
-                <!-- FOUNDER'S PRICING -->
+
                 <div class="pricing-card">
-                    <span class="pricing-badge coming-soon">COMING SOON</span>
-                    <div class="pricing-name">Founder's Pricing</div>
-                    <div class="pricing-price">$29.99</div>
-                    <div class="pricing-period">per month</div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">Lifetime price lock</div>
-                        <div class="pricing-feature">All features unlocked</div>
-                        <div class="pricing-feature">Priority support</div>
-                        <div class="pricing-feature">Members 51-250 only</div>
-                        <div class="pricing-feature">Private community access</div>
-                        <div class="pricing-feature">Early feature access</div>
-                    </div>
-                    <button class="pricing-cta" disabled>Opens After Beta</button>
+                    <h3 class="plan-name">Founder's</h3>
+                    <div class="plan-price">$29.99</div>
+                    <p class="plan-period">per month, locked forever</p>
+                    <ul class="plan-features">
+                        <li>✅ All NFL & CFB picks daily</li>
+                        <li>✅ Advanced analytics</li>
+                        <li>✅ 🎯 The Edge analysis</li>
+                        <li>✅ Next 200 members</li>
+                        <li>✅ Price locked for life</li>
+                    </ul>
+                    <a href="#" class="cta-button">Join Founder's</a>
                 </div>
-                
-                <!-- STANDARD PRICING -->
+
                 <div class="pricing-card">
-                    <span class="pricing-badge coming-soon">FUTURE</span>
-                    <div class="pricing-name">Standard Pro</div>
-                    <div class="pricing-price">$44.99</div>
-                    <div class="pricing-period">per month</div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">All daily picks</div>
-                        <div class="pricing-feature">Full analysis</div>
-                        <div class="pricing-feature">CFB + NFL coverage</div>
-                        <div class="pricing-feature">Live betting scenarios</div>
-                        <div class="pricing-feature">Priority support</div>
-                        <div class="pricing-feature">After 250 members</div>
-                    </div>
-                    <button class="pricing-cta" disabled>Future Release</button>
+                    <h3 class="plan-name">Standard Pro</h3>
+                    <div class="plan-price">$44.99</div>
+                    <p class="plan-period">per month</p>
+                    <ul class="plan-features">
+                        <li>✅ All NFL & CFB picks daily</li>
+                        <li>✅ Advanced analytics</li>
+                        <li>✅ 🎯 The Edge analysis</li>
+                        <li>✅ After 250 members</li>
+                        <li>✅ Standard access</li>
+                    </ul>
+                    <a href="#" class="cta-button">Get Started</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- HOW IT WORKS -->
-    <div class="container" id="how-it-works">
-        <div class="how-it-works">
-            <h2>⚙️ How It Works</h2>
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Advanced Analysis</h3>
-                    <p>Our system analyzes hundreds of data points including team performance, matchups, and betting trends</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Smart Picks</h3>
-                    <p>Get daily betting recommendations with confidence ratings and clear reasoning</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Win More</h3>
-                    <p>Make informed decisions backed by data. Just 2 extra wins per month pays for itself</p>
-                </div>
-            </div>
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 SpreadGenie. All rights reserved.</p>
+        <p style="margin-top: 10px;">Advanced sports betting analytics powered by machine learning.</p>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modal-body"></div>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2025 SpreadGenie Pro. All rights reserved.</p>
-        <p>Gambling problem? Call 1-800-GAMBLER</p>
-    </footer>
-
-    <!-- JAVASCRIPT -->
     <script>
+        // Global state
+        let allGames = [];
+        let currentTab = 'featured';
+
+        // API Configuration
         const API_URL = 'https://spreadgenie-api.onrender.com/predictions';
-        
-        const TIER_CLASSES = {
-            'STRONG': 'tier-strong',
-            'SOLID': 'tier-solid',
-            'LEAN': 'tier-lean',
-            'PASS': 'tier-pass'
-        };
-        
-        const TIER_EMOJIS = {
-            'STRONG': '🔥',
-            'SOLID': '💎',
-            'LEAN': '📊',
-            'PASS': '⚠️'
-        };
-        
-        // Load predictions
-        async function loadPredictions() {
-            const loadingEl = document.getElementById('loading');
-            const errorEl = document.getElementById('error-message');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupTabs();
+            loadPredictions();
+        });
+
+        // Setup tab switching
+        function setupTabs() {
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tab = this.dataset.tab;
+                    switchTab(tab);
+                });
+            });
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
             
+            // Update buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tab);
+            });
+            
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.toggle('active', content.id === `${tab}-tab`);
+            });
+        }
+
+        // Load predictions from API
+        async function loadPredictions() {
             try {
                 const response = await fetch(API_URL);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                
                 const data = await response.json();
                 
-                loadingEl.style.display = 'none';
-                
-                if (!data.games || data.games.length === 0) {
-                    showError('No predictions available yet. Check back soon!');
-                    return;
+                if (data.games && data.games.length > 0) {
+                    allGames = data.games;
+                    renderAllGames();
+                    document.getElementById('loading').style.display = 'none';
+                } else {
+                    showEmptyState();
                 }
-                
-                displayGames(data.games);
-                
             } catch (error) {
-                console.error('Error:', error);
-                loadingEl.style.display = 'none';
-                showError('Failed to load predictions. Please try again later.');
+                console.error('Error loading predictions:', error);
+                showError();
             }
         }
-        
-        function displayGames(games) {
-            const container = document.getElementById('games-container');
-            container.innerHTML = '';
+
+        function renderAllGames() {
+            // Filter games by sport
+            const nflGames = allGames.filter(g => g.sport === 'NFL');
+            const cfbGames = allGames.filter(g => g.sport === 'CFB');
             
-            games.forEach(game => {
-                const card = createGameCard(game);
-                container.appendChild(card);
-            });
+            // Get featured picks (top 15 by confidence)
+            const featured = [...allGames]
+                .sort((a, b) => b.best_bet.confidence - a.best_bet.confidence)
+                .slice(0, 15);
+            
+            // Render each section
+            renderGames(featured, 'featured-games');
+            renderGames(nflGames, 'nfl-games');
+            renderGames(cfbGames, 'cfb-games');
         }
-        
+
+        function renderGames(games, containerId) {
+            const container = document.getElementById(containerId);
+            
+            if (games.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📊</div><p>No games available at this time</p></div>';
+                return;
+            }
+            
+            container.innerHTML = games.map(game => createGameCard(game)).join('');
+        }
+
         function createGameCard(game) {
-            const card = document.createElement('div');
-            card.className = 'game-card';
-            
-            const sportClass = game.sport === 'NFL' ? 'sport-nfl' : 'sport-cfb';
-            const gameTime = game.commence_time ? 
-                new Date(game.commence_time).toLocaleString('en-US', {
-                    weekday: 'short',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: '2-digit'
-                }) : 'TBD';
-            
-            const bestBet = game.best_bet || {};
-            const tierClass = TIER_CLASSES[bestBet.tier] || 'tier-pass';
-            const tierEmoji = TIER_EMOJIS[bestBet.tier] || '';
-            
-            // Collapsed view (default)
-            card.innerHTML = `
-                <div class="card-header">
-                    <div class="sport-badge ${sportClass}">
-                        🏈 ${game.sport}
+            const gameTime = new Date(game.commence_time).toLocaleString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit'
+            });
+
+            return `
+                <div class="game-card" onclick='openGameModal(${JSON.stringify(game).replace(/'/g, "&#39;")})'>
+                    <div class="game-header">
+                        <span class="sport-badge">${game.sport}</span>
+                        <span class="game-time">${gameTime}</span>
                     </div>
-                    <div class="matchup">
-                        ${game.away_team} @ ${game.home_team}
+                    
+                    <div class="teams">
+                        <div class="team-row">
+                            <span class="team-name">${game.away_team}</span>
+                        </div>
+                        <div class="vs-divider">@</div>
+                        <div class="team-row">
+                            <span class="team-name">${game.home_team}</span>
+                        </div>
                     </div>
-                    <div class="game-time">🕒 ${gameTime}</div>
-                </div>
-                
-                <div class="card-preview">
-                    <div class="preview-pick">
-                        <div class="pick-text">🎯 ${bestBet.pick || 'No pick available'}</div>
-                        <div class="confidence-badge">${bestBet.confidence || 0}%</div>
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <span class="tier-badge ${tierClass}">${tierEmoji} ${bestBet.tier || 'PASS'}</span>
-                    </div>
-                    <button class="view-analysis-btn" onclick="toggleAnalysis(this)">
-                        View Full Analysis ▼
-                    </button>
-                </div>
-                
-                <div class="card-expanded">
-                    ${createAllBetsSection(game)}
-                    ${createReasoningSection(bestBet)}
-                    ${createTeamNewsSection(game)}
-                    <button class="view-analysis-btn" onclick="toggleAnalysis(this)" style="margin-top: 1rem;">
-                        Hide Analysis ▲
-                    </button>
-                </div>
-            `;
-            
-            return card;
-        }
-        
-        function toggleAnalysis(button) {
-            const card = button.closest('.game-card');
-            const expanded = card.querySelector('.card-expanded');
-            const preview = card.querySelector('.card-preview');
-            
-            if (expanded.classList.contains('active')) {
-                expanded.classList.remove('active');
-                preview.style.display = 'block';
-            } else {
-                expanded.classList.add('active');
-                preview.style.display = 'none';
-            }
-        }
-        
-        function createAllBetsSection(game) {
-            const bets = [
-                { type: 'Spread', data: game.spread, isBest: game.best_bet?.type === 'spread' },
-                { type: 'Total', data: game.total, isBest: game.best_bet?.type === 'total' },
-                { type: 'Moneyline', data: game.moneyline, isBest: game.best_bet?.type === 'moneyline' }
-            ];
-            
-            let html = '<div class="analysis-section"><div class="section-title">📊 All Betting Options</div>';
-            
-            bets.forEach(bet => {
-                if (bet.data && bet.data.pick) {
-                    const tierClass = TIER_CLASSES[bet.data.tier] || 'tier-pass';
-                    html += `
-                        <div class="bet-option ${bet.isBest ? 'recommended' : ''}">
-                            <div class="bet-type">${bet.type}${bet.isBest ? ' (RECOMMENDED)' : ''}</div>
-                            <div class="bet-pick">${bet.data.pick}</div>
-                            <div class="bet-confidence">
-                                ${bet.data.confidence}% confidence • 
-                                <span class="tier-badge ${tierClass}" style="display: inline; padding: 0.2rem 0.6rem; font-size: 0.8em;">
-                                    ${bet.data.tier}
-                                </span>
+                    
+                    <div class="best-bet-section">
+                        <div class="best-bet-label">⭐ Best Bet</div>
+                        <div class="pick-display">
+                            <span class="pick-text">${game.best_bet.pick}</span>
+                            <div class="confidence-badge">
+                                <span class="confidence-number">${game.best_bet.confidence}%</span>
+                                <span class="tier-badge tier-${game.best_bet.tier}">${game.best_bet.tier}</span>
                             </div>
                         </div>
-                    `;
-                }
-            });
-            
-            html += '</div>';
-            return html;
-        }
-        
-        function createReasoningSection(bestBet) {
-            if (!bestBet || !bestBet.reasoning) return '';
-            
-            return `
-                <div class="analysis-section">
-                    <div class="section-title">💡 Why This Pick?</div>
-                    <div class="reasoning-text">
-                        ${bestBet.reasoning || 'Analysis based on current matchup dynamics and betting trends.'}
                     </div>
+                    
+                    <button class="view-analysis-btn" onclick="event.stopPropagation(); openGameModal(${JSON.stringify(game).replace(/'/g, "&#39;")})">
+                        View Full Analysis
+                    </button>
                 </div>
             `;
         }
-        
-        function createTeamNewsSection(game) {
-            if (!game.team_news || 
-                (!game.team_news.away_team?.length && !game.team_news.home_team?.length)) {
-                return '';
-            }
+
+        function openGameModal(game) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
             
-            let html = '<div class="analysis-section"><div class="section-title">📰 Latest Team News</div><div class="team-news">';
-            
-            if (game.team_news.away_team && game.team_news.away_team.length > 0) {
-                html += `<div class="news-team">
-                    <span class="team-name">${game.away_team}:</span>`;
-                game.team_news.away_team.forEach(news => {
-                    html += `
-                        <a href="${news.url}" target="_blank" rel="noopener" class="news-link">
-                            📰 ${news.headline} <span class="news-source">(${news.source})</span>
-                        </a>
-                    `;
-                });
-                html += '</div>';
-            }
-            
-            if (game.team_news.home_team && game.team_news.home_team.length > 0) {
-                html += `<div class="news-team">
-                    <span class="team-name">${game.home_team}:</span>`;
-                game.team_news.home_team.forEach(news => {
-                    html += `
-                        <a href="${news.url}" target="_blank" rel="noopener" class="news-link">
-                            📰 ${news.headline} <span class="news-source">(${news.source})</span>
-                        </a>
-                    `;
-                });
-                html += '</div>';
-            }
-            
-            html += '</div></div>';
-            return html;
-        }
-        
-        function showError(message) {
-            const errorEl = document.getElementById('error-message');
-            errorEl.textContent = message;
-            errorEl.style.display = 'block';
-        }
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', loadPredictions);
-        
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+            const gameTime = new Date(game.commence_time).toLocaleString('en-US', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit'
             });
+
+            modalBody.innerHTML = `
+                <div class="modal-header">
+                    <div class="modal-teams">${game.away_team} @ ${game.home_team}</div>
+                    <div class="modal-game-info">
+                        <span class="sport-badge">${game.sport}</span>
+                        <span>${gameTime}</span>
+                    </div>
+                </div>
+
+                <div class="modal-best-bet">
+                    <div class="modal-bet-header">⭐ BEST BET</div>
+                    <div class="modal-pick">${game.best_bet.pick}</div>
+                    <div class="modal-confidence-row">
+                        <span class="modal-confidence">${game.best_bet.confidence}%</span>
+                        <span class="modal-tier tier-${game.best_bet.tier}">${game.best_bet.tier}</span>
+                    </div>
+                </div>
+
+                <div class="edge-section">
+                    <div class="edge-title">🎯 The Edge</div>
+                    <div class="edge-text">${game.best_bet.reasoning}</div>
+                </div>
+
+                <div class="all-bets-section">
+                    <div class="all-bets-title">All Betting Options</div>
+                    
+                    <div class="bet-option">
+                        <div class="bet-option-header">
+                            <span class="bet-type-label">Point Spread</span>
+                            <span class="tier-badge tier-${game.spread.tier}">${game.spread.tier}</span>
+                        </div>
+                        <div class="bet-pick">${game.spread.pick}</div>
+                        <div class="bet-details">
+                            <span class="bet-confidence">Confidence: ${game.spread.confidence}%</span>
+                        </div>
+                    </div>
+
+                    <div class="bet-option">
+                        <div class="bet-option-header">
+                            <span class="bet-type-label">Over/Under</span>
+                            <span class="tier-badge tier-${game.total.tier}">${game.total.tier}</span>
+                        </div>
+                        <div class="bet-pick">${game.total.pick}</div>
+                        <div class="bet-details">
+                            <span class="bet-confidence">Confidence: ${game.total.confidence}%</span>
+                        </div>
+                    </div>
+
+                    <div class="bet-option">
+                        <div class="bet-option-header">
+                            <span class="bet-type-label">Moneyline</span>
+                            <span class="tier-badge tier-${game.moneyline.tier}">${game.moneyline.tier}</span>
+                        </div>
+                        <div class="bet-pick">${game.moneyline.pick}</div>
+                        <div class="bet-details">
+                            <span class="bet-confidence">Confidence: ${game.moneyline.confidence}%</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        function showEmptyState() {
+            document.getElementById('loading').innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">📊</div>
+                    <p>No games available at this time. Check back soon!</p>
+                </div>
+            `;
+        }
+
+        function showError() {
+            document.getElementById('loading').innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">⚠️</div>
+                    <p>Unable to load predictions. Please try again later.</p>
+                </div>
+            `;
+        }
     </script>
+
 </body>
 </html>
