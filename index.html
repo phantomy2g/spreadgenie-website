@@ -944,6 +944,20 @@
                 }
             ]
         };
+        // API endpoint
+const API_URL = 'https://spreadgenie-api.onrender.com';
+
+async function loadGamesFromAPI() {
+    try {
+        const response = await fetch(`${API_URL}/api/games?sport=${currentSport}&date=${currentDate}`);
+        if (!response.ok) throw new Error('API error');
+        const games = await response.json();
+        return games;
+    } catch (error) {
+        console.log('Using sample data (API not ready):', error);
+        return sampleGames[currentSport].filter(g => g.date === currentDate);
+    }
+}
 
         let currentSport = 'nfl';
         let currentDate = 'today';
