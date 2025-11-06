@@ -873,7 +873,44 @@
                     throw new Error('Invalid API response format');
                 }
                 
-                allPredictions = data.predictions;
+                // Transform API format to website format
+                allPredictions = data.predictions.map(pred => {
+                    // Extract picks
+                    const spreadPick = pred.picks.find(p => p.type === 'spread') || {};
+                    const mlPick = pred.picks.find(p => p.type === 'moneyline') || {};
+                    
+                    // Format spread pick
+                    const spreadTeam = spreadPick.team || pred.predicted_winner;
+                    const spreadLine = spreadPick.line || pred.spread_line || 0;
+                    const spreadDisplay = `${spreadTeam} ${spreadLine > 0 ? '+' : ''}${spreadLine}`;
+                    
+                    // Format moneyline pick
+                    const mlOdds = mlPick.odds || 0;
+                    const mlDisplay = (!mlPick.team || Math.abs(mlOdds) > 150) 
+                        ? 'PASS - ML too steep' 
+                        : `${mlPick.team} ${mlOdds > 0 ? '+' : ''}${mlOdds}`;
+                    
+                    return {
+                        id: pred.id,
+                        sport: pred.sport,
+                        away_team: pred.away_team,
+                        home_team: pred.home_team,
+                        kickoff: new Date(pred.game_time).toLocaleString('en-US', { 
+                            weekday: 'short', 
+                            month: 'short', 
+                            day: 'numeric', 
+                            hour: 'numeric', 
+                            minute: '2-digit'
+                        }),
+                        confidence: pred.confidence,
+                        spread: spreadDisplay,
+                        spread_odds: spreadPick.odds || -110,
+                        moneyline: mlDisplay,
+                        moneyline_odds: mlOdds,
+                        the_edge: pred.analysis || 'Analysis unavailable',
+                        vegas_trap: pred.vegas_trap_detected
+                    };
+                });
                 console.log('Loaded predictions:', allPredictions.length);
                 
                 loadGames();
