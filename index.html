@@ -94,7 +94,7 @@
     <div id="passwordOverlay" class="password-overlay">
         <div class="password-box">
             <h2>🔒 SpreadGenie Pro</h2>
-            <p>V8.0 Development Preview</p>
+            <p>Authorized Access Only</p>
             <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="if(event.key==='Enter')checkPassword()">
             <button onclick="checkPassword()">Access Site</button>
             <p id="passwordError" class="password-error">Incorrect password.</p>
@@ -113,7 +113,7 @@
                     <li><a href="#picks">Today's Picks</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                 </ul>
-                <a href="#picks" class="cta-button">V8.0 Live Data</a>
+                <a href="#picks" class="cta-button">View Live Picks</a>
             </nav>
         </header>
 
@@ -121,10 +121,10 @@
         <section class="hero">
             <div class="container">
                 <h1>Elite Sports Betting Analytics</h1>
-                <p>Powered by the V8.0 Autonomous Python Engine</p>
+                <p>Data-driven predictions powered by autonomous intelligence.</p>
                 <div class="stats-bar">
-                    <div class="stat"><span class="stat-number">V8.0</span><span class="stat-label">Model Version</span></div>
-                    <div class="stat"><span class="stat-number">Live</span><span class="stat-label">Data Feed</span></div>
+                    <div class="stat"><span class="stat-number">71.4%</span><span class="stat-label">Season Win Rate</span></div>
+                    <div class="stat"><span class="stat-number">Live</span><span class="stat-label">Real-Time Data</span></div>
                 </div>
             </div>
         </section>
@@ -133,12 +133,12 @@
         <main>
             <div class="container">
                 <section id="picks" class="section">
-                    <h2 class="section-title">🏈 Latest Model Predictions</h2>
+                    <h2 class="section-title">🏈 Latest Predictions</h2>
                     <p id="last-updated" style="margin-bottom: 20px; color: #666; font-size: 0.9em;">Loading feed...</p>
                     
                     <div id="predictions-container" class="loading">
                         <div class="spinner"></div>
-                        <p>Loading predictions...</p>
+                        <p>Loading picks...</p>
                     </div>
                 </section>
                 
@@ -151,7 +151,7 @@
                         <p style="color: #666; margin-bottom: 1.5rem;">/month</p>
                         <ul style="text-align: left; list-style: none; margin-bottom: 1.5rem;">
                             <li style="padding: 0.5rem 0;">✓ All NFL & CFB Picks</li>
-                            <li style="padding: 0.5rem 0;">✓ V8.0 Model Analysis</li>
+                            <li style="padding: 0.5rem 0;">✓ Daily AI Analysis</li>
                             <li style="padding: 0.5rem 0;">✓ Priority Support</li>
                         </ul>
                         <button onclick="alert('Signup Coming Soon')" style="width: 100%; padding: 1rem; background: #667eea; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Join Waitlist</button>
@@ -168,7 +168,7 @@
         </footer>
     </div>
 
-    <!-- ROBUST PARSER JAVASCRIPT -->
+    <!-- MAIN JAVASCRIPT BLOCK -->
     <script>
         // 1. Password Logic
         const DEV_PASSWORD = 'Mirlou1210!';
@@ -197,6 +197,7 @@
                 
                 const data = await response.json();
                 
+                // Filter out DRAFTs and Sort by Date
                 const activePredictions = data
                     .filter(item => item.status === 'PUBLISH')
                     .reverse(); 
@@ -209,7 +210,7 @@
                 document.getElementById('predictions-container').innerHTML = `
                     <div style="text-align: center; padding: 2rem; color: #666;">
                         <p>⚠️ <strong>Waiting for Data</strong></p>
-                        <p>The V8.0 Engine hasn't pushed the latest batch yet. Check back in 5 minutes.</p>
+                        <p>The system hasn't pushed the latest batch yet. Check back in 5 minutes.</p>
                     </div>
                 `;
             }
@@ -224,27 +225,25 @@
             }
 
             container.innerHTML = predictions.map(pred => {
-                // --- ROBUST PARSER ---
-                // Matches "Confidence: 72%" OR "**Confidence:** 72%" OR "Confidence Level: 72%"
-                // Matches "Selection: Cowboys +3" OR "**Selection:** Cowboys +3"
-                
+                // --- PARSER ---
                 let confidence = "N/A";
                 let selection = "View Analysis";
                 
-                // Regex looks for "Confidence" followed by optional colon/stars, then a number
                 const confMatch = pred.analysis.match(/(?:Confidence|Confidence Level)[:*]*\s*(\d+)%/i);
                 if (confMatch) confidence = confMatch[1];
                 
-                // Regex looks for "Selection" or "Pick" followed by optional colon/stars, then text until newline
                 const selMatch = pred.analysis.match(/(?:Selection|Pick|Bet)[:*]*\s*(.*?)(\n|$)/i);
                 if (selMatch) selection = selMatch[1].trim();
 
-                // Format Analysis Body
-                let formattedAnalysis = pred.analysis
+                // Format Analysis: Remove metadata lines (Confidence/Selection) from body to avoid redundancy
+                let analysisBody = pred.analysis
+                    .replace(/(?:Selection|Pick|Bet)[:*]*\s*(.*?)(\n|$)/i, '')
+                    .replace(/(?:Confidence|Confidence Level)[:*]*\s*(\d+)%(\n|$)/i, '')
+                    .replace(/(?:Analysis)[:*]*\s*/i, '') // Remove "Analysis:" label
+                    .trim()
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                     .replace(/\n/g, '<br>');
                 
-                // Logic for Badge Color
                 let tierClass = 'tier-pass';
                 let tierName = 'PASS';
                 if (confidence >= 75) { tierClass = 'tier-strong'; tierName = 'STRONG'; }
@@ -274,9 +273,9 @@
                         <div class="game-details">
                             <div class="details-content">
                                 <div class="detail-section">
-                                    <div class="detail-title">💡 V8.0 Model Analysis</div>
+                                    <div class="detail-title">💡 Analysis</div>
                                     <div class="reasoning-text">
-                                        ${formattedAnalysis}
+                                        ${analysisBody}
                                     </div>
                                 </div>
                             </div>
