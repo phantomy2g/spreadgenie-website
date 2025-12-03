@@ -221,26 +221,6 @@
             font-size: 0.9rem;
         }
         
-        .tier-strong {
-            background: #10b981;
-            color: white;
-        }
-        
-        .tier-solid {
-            background: #3b82f6;
-            color: white;
-        }
-        
-        .tier-lean {
-            background: #f59e0b;
-            color: white;
-        }
-        
-        .tier-pass {
-            background: #6b7280;
-            color: white;
-        }
-        
         .expand-icon {
             font-size: 1.5rem;
             color: #667eea;
@@ -267,408 +247,23 @@
             border-top: 2px solid #e1e8ed;
         }
         
-        .detail-section {
-            margin-bottom: 1.5rem;
-        }
-        
-        .detail-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .detail-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .picks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        
-        .pick-card {
+        .analysis-box {
             background: #f8f9fa;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            padding: 1rem;
-        }
-        
-        .pick-type {
-            font-size: 0.85rem;
-            color: #666;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .pick-value {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        .pick-confidence {
-            font-size: 0.9rem;
-            color: #333;
-        }
-        
-        .reasoning-text {
-            line-height: 1.8;
-            color: #555;
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
             border-left: 4px solid #667eea;
-        }
-        
-        .outlook-text {
-            line-height: 1.8;
-            color: #555;
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #764ba2;
-        }
-        
-        /* Team News Section */
-        .news-section {
-            background: #fffbeb;
-            border: 2px solid #fbbf24;
-            border-radius: 8px;
-            padding: 1rem;
-        }
-        
-        .team-news {
-            margin-bottom: 1rem;
-        }
-        
-        .team-news:last-child {
-            margin-bottom: 0;
-        }
-        
-        .team-name {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        
-        .news-link {
-            display: block;
-            color: #667eea;
-            text-decoration: none;
-            padding: 0.5rem 0;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 1rem;
             font-size: 0.95rem;
-            transition: color 0.3s;
+            color: #4a5568;
+            white-space: pre-wrap; /* Keeps paragraphs from the markdown */
         }
-        
-        .news-link:hover {
-            color: #764ba2;
-            text-decoration: underline;
+
+        .analysis-box strong {
+            color: #2d3748;
+            font-weight: 700;
         }
-        
-        .news-icon {
-            margin-right: 6px;
-        }
-        
-        /* Pricing Section */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .price-card {
-            background: white;
-            border: 2px solid #e1e8ed;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .price-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-color: #667eea;
-        }
-        
-        .price-card.featured {
-            border-color: #667eea;
-            border-width: 3px;
-        }
-        
-        .featured-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.25rem 1rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .tier-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tier-subtitle {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        
-        .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        .price-period {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .price-lock {
-            background: #10b981;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-        
-        .features-list {
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-item {
-            padding: 0.5rem 0;
-            color: #555;
-        }
-        
-        .feature-item::before {
-            content: "✓";
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        
-        .sign-up-button {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .sign-up-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        /* How It Works */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 1rem;
-        }
-        
-        .step h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: #333;
-        }
-        
-        .step p {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* FAQ */
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #e1e8ed;
-            padding-bottom: 1.5rem;
-        }
-        
-        .faq-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .faq-question {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.75rem;
-        }
-        
-        .faq-answer {
-            color: #666;
-            line-height: 1.7;
-        }
-        
-        /* Footer */
-        footer {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 3rem 0;
-            margin-top: 3rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-links a {
-            color: #666;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #667eea;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e1e8ed;
-            color: #666;
-        }
-        
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            color: #666;
-        }
-        
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .stats-bar {
-                gap: 1.5rem;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .game-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .picks-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Utility Classes */
-        .hidden {
-            display: none !important;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        .mt-1 { margin-top: 0.5rem; }
-        .mt-2 { margin-top: 1rem; }
-        .mt-3 { margin-top: 1.5rem; }
-        
-        .mb-1 { margin-bottom: 0.5rem; }
-        .mb-2 { margin-bottom: 1rem; }
-        .mb-3 { margin-bottom: 1.5rem; }
-    </style>
-</head>
-<body>
-    <!-- PASSWORD PROTECTION -->
-    <style>
+
+        /* Password Overlay */
         .password-overlay {
             position: fixed;
             top: 0;
@@ -691,29 +286,12 @@
             max-width: 400px;
             width: 90%;
         }
-        .password-box h2 {
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .password-box p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
         .password-box input {
             width: 100%;
             padding: 1rem;
             border: 2px solid #e1e8ed;
             border-radius: 8px;
-            font-size: 1rem;
             margin-bottom: 1rem;
-            transition: border-color 0.3s;
-        }
-        .password-box input:focus {
-            outline: none;
-            border-color: #667eea;
         }
         .password-box button {
             width: 100%;
@@ -722,598 +300,185 @@
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .password-box button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-        .password-error {
-            color: #e74c3c;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            display: none;
         }
         .main-content { display: none; }
         .main-content.visible { display: block; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
     </style>
+</head>
+<body>
     
+    <!-- PASSWORD PROTECTION (Kept from your file) -->
     <div id="passwordOverlay" class="password-overlay">
         <div class="password-box">
             <h2>🔒 SpreadGenie Pro</h2>
-            <p>Development Preview - Authorized Access Only</p>
-            <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="if(event.key==='Enter')checkPassword()">
+            <p>V8.0 Development Preview</p>
+            <input type="password" id="passwordInput" placeholder="Enter password">
             <button onclick="checkPassword()">Access Site</button>
-            <p id="passwordError" class="password-error">Incorrect password. Try again.</p>
+            <p id="passwordError" style="color: red; display: none; margin-top: 10px;">Incorrect password.</p>
         </div>
     </div>
     
     <script>
-        // ⚠️ CHANGE THIS PASSWORD - then push to GitHub
         const DEV_PASSWORD = 'Mirlou1210!';
-        
         function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
-            if (input === DEV_PASSWORD) {
-                document.cookie = 'sg_auth=true; max-age=' + (7*24*60*60) + '; path=/';
+            if (document.getElementById('passwordInput').value === DEV_PASSWORD) {
+                document.cookie = 'sg_auth=true; max-age=' + (7*24*60*60);
                 document.getElementById('passwordOverlay').classList.add('hidden');
                 document.getElementById('mainContent').classList.add('visible');
             } else {
                 document.getElementById('passwordError').style.display = 'block';
-                document.getElementById('passwordInput').value = '';
-                document.getElementById('passwordInput').focus();
             }
         }
-        
-        // Check if already authenticated
         if (document.cookie.includes('sg_auth=true')) {
             document.getElementById('passwordOverlay').classList.add('hidden');
             document.getElementById('mainContent').classList.add('visible');
         }
     </script>
-    <!-- END PASSWORD PROTECTION -->
-    
+
     <div id="mainContent" class="main-content">
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <img src="spreadgenie_logo.png" alt="SpreadGenie Pro Logo">
-                <span>SpreadGenie Pro</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#picks">Today's Picks</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <a href="#pricing" class="cta-button">Start Beta Access</a>
-        </nav>
-    </header>
+        <!-- Header -->
+        <header>
+            <nav class="container">
+                <div class="logo">
+                    <img src="spreadgenie_logo.png" alt="SpreadGenie" onerror="this.style.display='none'">
+                    <span>SpreadGenie Pro</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#picks">Today's Picks</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+                <a href="#picks" class="cta-button">V8.0 Live Data</a>
+            </nav>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Elite Sports Betting Analytics</h1>
-            <p>Data-driven predictions powered by advanced analytics</p>
-            
-            <div class="stats-bar">
-                <div class="stat">
-                    <span class="stat-number">71.4%</span>
-                    <span class="stat-label">Overall Win Rate</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">92%</span>
-                    <span class="stat-label">Trap Game Success</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">$19.99</span>
-                    <span class="stat-label">Beta Access</span>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Elite Sports Betting Analytics</h1>
+                <p>Powered by the V8.0 Autonomous Python Engine</p>
+                <div class="stats-bar">
+                    <div class="stat"><span class="stat-number">V8.0</span><span class="stat-label">Model Version</span></div>
+                    <div class="stat"><span class="stat-number">Live</span><span class="stat-label">Data Feed</span></div>
                 </div>
             </div>
-            
-            <a href="#pricing" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem;">Join Beta Now</a>
-        </div>
-    </section>
+        </section>
 
-    <!-- Main Content -->
-    <main>
-        <div class="container">
-            <!-- Today's Picks -->
-            <section id="picks" class="section">
-                <h2 class="section-title">🏈 Today's Picks</h2>
-                
-                <div id="predictions-container" class="loading">
-                    <div class="spinner"></div>
-                    <p>Loading predictions...</p>
-                </div>
-            </section>
-
-            <!-- How It Works -->
-            <section id="how-it-works" class="section">
-                <h2 class="section-title">How It Works</h2>
-                
-                <div class="steps-grid">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Subscribe</h3>
-                        <p>Choose your tier and lock in your lifetime price during beta</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Get Picks</h3>
-                        <p>Receive daily picks with confidence ratings and detailed analysis</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>Win More</h3>
-                        <p>Follow our data-driven insights and track your success</p>
-                    </div>
-                </div>
-                
-                <div class="mt-3">
-                    <h3 style="margin-bottom: 1rem;">What You Get:</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                        <div class="pick-card">
-                            <div class="detail-title">📊 Daily Picks</div>
-                            <p>NFL and college football picks with confidence ratings</p>
-                        </div>
-                        <div class="pick-card">
-                            <div class="detail-title">🎯 Confidence Ratings</div>
-                            <p>Clear tier system: STRONG, SOLID, LEAN, PASS</p>
-                        </div>
-                        <div class="pick-card">
-                            <div class="detail-title">📰 Team News</div>
-                            <p>Latest injuries, lineup changes, and key updates</p>
-                        </div>
-                        <div class="pick-card">
-                            <div class="detail-title">💡 Analysis</div>
-                            <p>Brief reasoning and game outlook for each pick</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Pricing -->
-            <section id="pricing" class="section">
-                <h2 class="section-title">💰 Pricing</h2>
-                
-                <div class="pricing-grid">
-                    <div class="price-card">
-                        <div class="tier-name">Beta Access</div>
-                        <div class="tier-subtitle">First 50 Members</div>
-                        <div class="price">$19.99</div>
-                        <div class="price-period">/month</div>
-                        <div class="price-lock">🔒 Lifetime Price Lock</div>
-                        
-                        <div class="features-list">
-                            <div class="feature-item">All NFL picks</div>
-                            <div class="feature-item">All college football picks</div>
-                            <div class="feature-item">Confidence ratings</div>
-                            <div class="feature-item">Team news & updates</div>
-                            <div class="feature-item">Daily analysis</div>
-                            <div class="feature-item">Founder status</div>
-                        </div>
-                        
-                        <button class="sign-up-button" onclick="alert('Beta signup launching soon! Email support@spreadgenie.com to reserve your spot.')">Reserve Spot</button>
-                    </div>
+        <!-- Main Content -->
+        <main>
+            <div class="container">
+                <section id="picks" class="section">
+                    <h2 class="section-title">🏈 Latest Model Predictions</h2>
+                    <p id="last-updated" style="margin-bottom: 20px; color: #666; font-size: 0.9em;">Loading feed...</p>
                     
-                    <div class="price-card featured">
-                        <div class="featured-badge">MOST POPULAR</div>
-                        <div class="tier-name">Founder's Tier</div>
-                        <div class="tier-subtitle">Next 200 Members</div>
-                        <div class="price">$29.99</div>
-                        <div class="price-period">/month</div>
-                        <div class="price-lock">🔒 Lifetime Price Lock</div>
-                        
-                        <div class="features-list">
-                            <div class="feature-item">Everything in Beta</div>
-                            <div class="feature-item">Priority support</div>
-                            <div class="feature-item">Early access to new sports</div>
-                            <div class="feature-item">Founder badge</div>
-                            <div class="feature-item">Community access</div>
-                            <div class="feature-item">Input on features</div>
-                        </div>
-                        
-                        <button class="sign-up-button" onclick="alert('Beta signup launching soon! Email support@spreadgenie.com to reserve your spot.')">Reserve Spot</button>
+                    <div id="predictions-container">
+                        <!-- Cards injected here -->
+                        <div style="text-align:center; padding: 40px;">Loading live data...</div>
                     </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container" style="text-align: center; padding-bottom: 20px; color: #666;">
+                <p>&copy; 2025 SpreadGenie. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- NEW JAVASCRIPT LOGIC -->
+        <script>
+            // Points to the file your Python script pushes to GitHub
+            const DATA_URL = './data/predictions.json';
+
+            async function fetchPredictions() {
+                try {
+                    // Add timestamp to prevent browser caching
+                    const response = await fetch(`${DATA_URL}?t=${new Date().getTime()}`);
                     
-                    <div class="price-card">
-                        <div class="tier-name">Standard Pro</div>
-                        <div class="tier-subtitle">After First 250</div>
-                        <div class="price">$44.99</div>
-                        <div class="price-period">/month</div>
-                        <div style="height: 36px;"></div>
-                        
-                        <div class="features-list">
-                            <div class="feature-item">All NFL picks</div>
-                            <div class="feature-item">All college football picks</div>
-                            <div class="feature-item">Confidence ratings</div>
-                            <div class="feature-item">Team news & updates</div>
-                            <div class="feature-item">Daily analysis</div>
-                            <div class="feature-item">Standard support</div>
+                    if (!response.ok) throw new Error("Data file not found");
+                    
+                    const data = await response.json();
+                    
+                    // Filter out DRAFTs and Sort by Date
+                    const activePredictions = data
+                        .filter(item => item.status === 'PUBLISH')
+                        .reverse(); // Newest first
+
+                    displayPredictions(activePredictions);
+                    document.getElementById('last-updated').innerText = `Last Updated: ${new Date().toLocaleString()}`;
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    document.getElementById('predictions-container').innerHTML = `
+                        <div style="text-align: center; padding: 2rem;">
+                            <p>⚠️ <strong>Waiting for Data</strong></p>
+                            <p>The V8.0 Engine hasn't pushed the latest batch yet. Check back in 5 minutes.</p>
                         </div>
-                        
-                        <button class="sign-up-button" onclick="alert('Beta signup launching soon! Email support@spreadgenie.com to reserve your spot.')">Join Waitlist</button>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-3">
-                    <p style="color: #666; font-size: 0.95rem;">
-                        <strong>Beta Advantage:</strong> Early members lock in their price forever. 
-                        When we expand to NBA, MLB, NHL, and soccer, your price stays the same!
-                    </p>
-                </div>
-            </section>
-
-            <!-- FAQ -->
-            <section id="faq" class="section">
-                <h2 class="section-title">❓ Frequently Asked Questions</h2>
-                
-                <div class="faq-item">
-                    <div class="faq-question">What makes SpreadGenie different?</div>
-                    <div class="faq-answer">
-                        We combine advanced data analytics with systematic analysis to identify betting edges. 
-                        Our 71.4% overall win rate and 92% trap game success rate speak for themselves.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">What's a "trap game"?</div>
-                    <div class="faq-answer">
-                        Trap games are scenarios where the betting public heavily favors one side, but our analysis 
-                        indicates the opposite outcome is more likely. These are our highest confidence picks.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">How do confidence ratings work?</div>
-                    <div class="faq-answer">
-                        We rate each pick on a clear tier system:
-                        <br>• <strong>STRONG</strong> (75-88%): Highest confidence plays
-                        <br>• <strong>SOLID</strong> (65-74%): Good value plays
-                        <br>• <strong>LEAN</strong> (55-64%): Slight edge plays
-                        <br>• <strong>PASS</strong>: No betting edge identified
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">What sports do you cover?</div>
-                    <div class="faq-answer">
-                        Currently NFL and college football. Coming soon: NBA, MLB, NHL, and soccer. 
-                        Beta members get lifetime pricing regardless of how many sports we add!
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Can I cancel anytime?</div>
-                    <div class="faq-answer">
-                        Yes! Cancel anytime with no penalties. But remember: if you cancel and rejoin later, 
-                        you'll pay current pricing (not your locked-in beta price).
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Do you guarantee wins?</div>
-                    <div class="faq-answer">
-                        No one can guarantee wins in sports betting. We provide data-driven analysis to give you 
-                        an edge, but betting always involves risk. Bet responsibly and within your means.
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>SpreadGenie Pro</h3>
-                    <p>Elite sports betting analytics powered by advanced data science.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#picks">Today's Picks</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Responsible Gambling</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="63101613130c11172310131106020704060d0a064d000c0e">[email&#160;protected]</a></p>
-                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
-                        21+ only. Gamble responsibly.<br>
-                        If you have a gambling problem, call 1-800-GAMBLER.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 SpreadGenie Pro. All rights reserved.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.85rem;">
-                    SpreadGenie is for informational and entertainment purposes only. 
-                    We are not a gambling operator and do not accept wagers.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // API Configuration
-        const API_URL = 'https://spreadgenie-api.onrender.com/api/predictions';
-        
-        // Fetch predictions on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchPredictions();
-        });
-        
-        // Fetch predictions from API
-        async function fetchPredictions() {
-            try {
-                const response = await fetch(API_URL);
-                
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.status}`);
+                    `;
                 }
+            }
+
+            function displayPredictions(predictions) {
+                const container = document.getElementById('predictions-container');
                 
-                const data = await response.json();
-                displayPredictions(data.predictions || []);
-            } catch (error) {
-                console.error('Error fetching predictions:', error);
-                document.getElementById('predictions-container').innerHTML = `
-                    <div class="text-center" style="padding: 3rem; color: #666;">
-                        <p style="font-size: 1.1rem; margin-bottom: 1rem;">⚠️ Unable to load predictions</p>
-                        <p style="font-size: 0.95rem;">Please try again later or contact support if the issue persists.</p>
-                    </div>
-                `;
-            }
-        }
-        
-        // Display predictions
-        function displayPredictions(predictions) {
-            const container = document.getElementById('predictions-container');
-            
-            if (!predictions || predictions.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center" style="padding: 3rem; color: #666;">
-                        <p style="font-size: 1.1rem; margin-bottom: 1rem;">📭 No predictions available</p>
-                        <p style="font-size: 0.95rem;">Check back later for today's picks!</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            // Sort predictions: NFL first, then CFB
-            predictions.sort((a, b) => {
-                if (a.sport === 'NFL' && b.sport !== 'NFL') return -1;
-                if (a.sport !== 'NFL' && b.sport === 'NFL') return 1;
-                return 0;
-            });
-            
-            container.innerHTML = predictions.map(pred => generateGameCard(pred)).join('');
-            
-            // Add click handlers for expand/collapse
-            document.querySelectorAll('.game-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    const card = this.closest('.game-card');
-                    card.classList.toggle('expanded');
-                });
-            });
-        }
-        
-        // Generate game card HTML
-        function generateGameCard(pred) {
-            const tierClass = getTierClass(pred.confidence);
-            const tierName = getTierName(pred.confidence);
-            const bestPick = getBestPick(pred);
-            const teamNews = generateTeamNews(pred.away_team, pred.home_team);
-            
-            return `
-                <div class="game-card">
-                    <div class="game-header">
-                        <div class="game-info">
-                            <div class="matchup">
-                                ${pred.away_team} @ ${pred.home_team}
-                            </div>
-                            <div class="game-time">
-                                🕒 ${formatGameTime(pred.commence_time)}
-                            </div>
-                            <div style="margin-top: 0.75rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-                                <span class="quick-pick">
-                                    🎯 Best Bet: ${bestPick}
-                                </span>
-                                <span class="confidence-badge ${tierClass}">
-                                    ${pred.confidence}% ${tierName}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="expand-icon">⌄</div>
-                    </div>
-                    
-                    <div class="game-details">
-                        <div class="details-content">
-                            <!-- All Picks -->
-                            <div class="detail-section">
-                                <div class="detail-title">📊 All Picks</div>
-                                <div class="picks-grid">
-                                    ${generatePicksCards(pred)}
+                if (predictions.length === 0) {
+                    container.innerHTML = `<div style="text-align: center; padding: 2rem;">No active picks right now.</div>`;
+                    return;
+                }
+
+                container.innerHTML = predictions.map(pred => {
+                    // Simple formatting for the Analysis text
+                    // Convert **Bold** markdown to HTML bold
+                    let formattedAnalysis = pred.analysis
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\n/g, '<br>');
+
+                    return `
+                        <div class="game-card">
+                            <div class="game-header">
+                                <div class="game-info">
+                                    <div class="matchup">${pred.game}</div>
+                                    <div class="game-time">${pred.date}</div>
+                                    <div style="margin-top: 5px;">
+                                        <span class="confidence-badge" style="background:#10b981; color:white;">
+                                            V8 Model Analysis
+                                        </span>
+                                    </div>
                                 </div>
+                                <div class="expand-icon">+</div>
                             </div>
                             
-                            <!-- Team News -->
-                            ${teamNews}
-                            
-                            <!-- Analysis -->
-                            <div class="detail-section">
-                                <div class="detail-title">💡 Why This Pick?</div>
-                                <div class="reasoning-text">
-                                    ${pred.analysis || 'Analysis based on current form, matchup dynamics, and situational factors.'}
-                                </div>
-                            </div>
-                            
-                            <!-- Outlook -->
-                            <div class="detail-section">
-                                <div class="detail-title">🔮 Game Outlook</div>
-                                <div class="outlook-text">
-                                    ${pred.game_outlook || 'Competitive matchup with key factors to monitor.'}
+                            <div class="game-details">
+                                <div class="details-content">
+                                    <div class="analysis-box">
+                                        ${formattedAnalysis}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Generate picks cards
-        function generatePicksCards(pred) {
-            let cards = '';
-            
-            // Spread pick
-            if (pred.picks && pred.picks.length > 0) {
-                const spreadPick = pred.picks[0];
-                cards += `
-                    <div class="pick-card">
-                        <div class="pick-type">Spread</div>
-                        <div class="pick-value">${spreadPick.team} ${spreadPick.line > 0 ? '+' : ''}${spreadPick.line}</div>
-                        <div class="pick-confidence">Odds: ${spreadPick.odds > 0 ? '+' : ''}${spreadPick.odds}</div>
-                    </div>
-                `;
-            }
-            
-            // Total pick
-            if (pred.total_pick) {
-                cards += `
-                    <div class="pick-card">
-                        <div class="pick-type">Total</div>
-                        <div class="pick-value">${pred.total_pick} ${pred.total_line}</div>
-                        <div class="pick-confidence">Confidence: ${pred.total_confidence}%</div>
-                    </div>
-                `;
-            }
-            
-            // Moneyline pick
-            if (pred.moneyline_pick && pred.moneyline_pick !== 'PASS') {
-                cards += `
-                    <div class="pick-card">
-                        <div class="pick-type">Moneyline</div>
-                        <div class="pick-value">${pred.moneyline_pick}</div>
-                        <div class="pick-confidence">Odds: ${pred.moneyline_odds > 0 ? '+' : ''}${pred.moneyline_odds}</div>
-                    </div>
-                `;
-            }
-            
-            return cards || '<p style="color: #666;">No picks available for this game.</p>';
-        }
-        
-        // Get best pick for quick display
-        function getBestPick(pred) {
-            if (pred.picks && pred.picks.length > 0) {
-                const spreadPick = pred.picks[0];
-                return `${spreadPick.team} ${spreadPick.line > 0 ? '+' : ''}${spreadPick.line}`;
-            }
-            return 'See details';
-        }
-        
-        // Get tier class
-        function getTierClass(confidence) {
-            if (confidence >= 75) return 'tier-strong';
-            if (confidence >= 65) return 'tier-solid';
-            if (confidence >= 55) return 'tier-lean';
-            return 'tier-pass';
-        }
-        
-        // Get tier name
-        function getTierName(confidence) {
-            if (confidence >= 75) return 'STRONG';
-            if (confidence >= 65) return 'SOLID';
-            if (confidence >= 55) return 'LEAN';
-            return 'PASS';
-        }
-        
-        // Format game time
-        function formatGameTime(timestamp) {
-            const date = new Date(timestamp);
-            const options = {
-                weekday: 'long',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: '2-digit',
-                timeZoneName: 'short'
-            };
-            return date.toLocaleString('en-US', options);
-        }
-        
-        // Generate team news section
-        function generateTeamNews(awayTeam, homeTeam) {
-            // Generate ESPN team news links
-            const awayTeamSlug = teamNameToSlug(awayTeam);
-            const homeTeamSlug = teamNameToSlug(homeTeam);
-            
-            return `
-                <div class="detail-section">
-                    <div class="detail-title">📰 Latest Team News</div>
-                    <div class="news-section">
-                        <div class="team-news">
-                            <div class="team-name">${awayTeam}</div>
-                            <a href="https://www.espn.com/${awayTeamSlug}/team/_/name/${awayTeamSlug}" 
-                               target="_blank" 
-                               class="news-link">
-                                <span class="news-icon">📰</span>Latest ${awayTeam} news and updates (ESPN)
-                            </a>
-                        </div>
-                        <div class="team-news">
-                            <div class="team-name">${homeTeam}</div>
-                            <a href="https://www.espn.com/${homeTeamSlug}/team/_/name/${homeTeamSlug}" 
-                               target="_blank" 
-                               class="news-link">
-                                <span class="news-icon">📰</span>Latest ${homeTeam} news and updates (ESPN)
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Convert team name to ESPN slug
-        function teamNameToSlug(teamName) {
-            // Simple slugification - can be enhanced
-            return teamName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        }
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
+                    `;
+                }).join('');
+
+                // Add Click Listeners for Accordion effect
+                document.querySelectorAll('.game-header').forEach(header => {
+                    header.addEventListener('click', function() {
+                        const card = this.closest('.game-card');
+                        card.classList.toggle('expanded');
+                        const icon = this.querySelector('.expand-icon');
+                        icon.textContent = card.classList.contains('expanded') ? '−' : '+';
                     });
-                }
-            });
-        });
-        
-        // Load predictions on page load
-        loadPredictions();
-    </script>
-    </div><!-- END mainContent wrapper -->
+                });
+            }
+
+            // Run on Load
+            document.addEventListener('DOMContentLoaded', fetchPredictions);
+        </script>
+    </div>
 </body>
 </html>
