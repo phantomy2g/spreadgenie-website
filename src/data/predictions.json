@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "dallas_cowboys_vs_detroit_lions",
+    "game": "Dallas Cowboys vs Detroit Lions",
+    "date": "2025-12-03",
+    "analysis": "1. V8.0 DATA VERIFICATION\n\nWeather DOME (CALM)\nQB Status DAL Dak Prescott (150+ Starts) vs DET Jared Goff (100+ Starts)\nSharp Data VERIFIED (Public % on spread: DAL 40%, DET 60%. Money % on spread: DAL 35%, DET 65%. Pinnacle N/A.)\n\n2. DISQUALIFIER CHECK\n\n[ ] Wind >= 20mph\n[ ] 2nd Career Start\n[ ] Injury Rust\nStatus LOCK ELIGIBLE\n\n3. PROJECTION\n\nDAL Proj 23.5 (Factors: Road Game -2.5, Short Week -1.5)\nDET Proj 25.5 (Factors: Home Field (Dome) +3.0, Short Week -1.5, vs Top 10 Defense -2.0)\nModel Line DET by 2.0\nVegas Line DET by 3.0\nEdge 1.0 points (towards DAL +3.0)\n\n4. FINAL PICK\n\nSelection Dallas Cowboys +3.0\nConfidence 72% (MEDIUM)\nLogic The V8.0 Model projects the Detroit Lions to win by 2.0 points, which is 1.0 point less than the Vegas spread of Lions -3.0. This difference indicates an edge towards the Dallas Cowboys +3.0. The projection for Dallas incorporates a -2.5 adjustment for playing on the road and a -1.5 adjustment for a short week. For Detroit, a +3.0 home-field advantage (dome) is applied, but this is partially offset by a -1.5 for the short week and a -2.0 adjustment for facing a Top 10 defense (Dallas). No sharp override triggers were met, and the Trap Score was 0.",
+    "status": "PUBLISH",
+    "confidence": "See Analysis"
+  }
+]
