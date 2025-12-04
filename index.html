@@ -265,46 +265,24 @@
             let selection = "See Details";
             let bodyLines = [];
 
-            if (!text) return { confidence, selection, analysisBody: "No analysis available." };
-
-            const lines = text.split('\n');
-
-            lines.forEach(line => {
+            text.split('\n').forEach(line => {
                 const clean = line.replace(/\*\*/g, '').trim();
-                if (!clean) return;
                 
-                // 1. Extract Confidence
                 if (clean.match(/^(Confidence)/i)) {
                     const m = clean.match(/(\d+)%/);
                     if (m) confidence = m[1];
-                } 
-                // 2. Extract Selection
-                else if (clean.match(/^(Selection|Pick)/i)) {
+                } else if (clean.match(/^(Selection|Pick)/i)) {
                     selection = clean.replace(/^(Selection|Pick)[:\s-]*/i, '').trim();
-                } 
-                // 3. Extract Body
-                else {
-                    // Remove the "Analysis:" label if it exists at the start of the line
-                    // but KEEP the text following it.
-                    let content = line;
-                    if (clean.match(/^Analysis[:\s]/i)) {
-                        content = clean.replace(/^Analysis[:\s]*/i, '').trim();
-                    }
-                    
-                    // Only add if there is content left (prevents adding empty "Analysis:" headers)
-                    if (content.length > 0) {
-                        bodyLines.push(content);
-                    }
+                } else if (clean) {
+                    // Skip metadata lines in body
+                    if (!clean.includes("Analysis:")) bodyLines.push(line);
                 }
             });
 
-            // Fallback: If bodyLines is empty (parser failed), use the raw text
-            // This prevents "Missing Analysis" if the format was unexpected
-            let finalBody = bodyLines.length > 0 
-                ? bodyLines.join('<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                : text.replace(/\n/g, '<br>');
+            // Convert body to HTML
+            let analysisBody = bodyLines.join('<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             
-            return { confidence, selection, analysisBody: finalBody };
+            return { confidence, selection, analysisBody };
         }
 
         function toggleAnalysis(btn) {
