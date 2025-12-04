@@ -178,7 +178,6 @@
                 if (!res.ok) throw new Error("Feed offline");
                 
                 const data = await res.json();
-                
                 allPredictions = data
                     .filter(p => p.status === "PUBLISH")
                     .reverse(); 
@@ -251,7 +250,7 @@
             });
         }
 
-        // --- FIXED PARSER ---
+        // --- SAFE PARSER (FIXED) ---
         function parseAnalysis(text) {
             let confidence = "50";
             let selection = "See Details";
@@ -274,22 +273,18 @@
                 else if (clean.match(/^(Selection|Pick)/i)) {
                     selection = clean.replace(/^(Selection|Pick)[:\s-]*/i, '').trim();
                 } 
-                // 3. Extract Body (THE FIX: Check for "Analysis:" label but KEEP the text)
+                // 3. Extract Body (THE FIX)
                 else {
                     let content = line;
-                    // If line starts with "Analysis:", strip the label but keep the rest
+                    // Just clean the label, don't drop the line
                     if (clean.match(/^Analysis[:\s]/i)) {
                         content = clean.replace(/^Analysis[:\s]*/i, '').trim();
                     }
-                    
-                    if (content.length > 0) {
-                        bodyLines.push(content);
-                    }
+                    if (content) bodyLines.push(content);
                 }
             });
 
             // Convert body to HTML
-            // Fallback: if bodyLines is empty, use raw text to avoid "Missing Analysis"
             let finalBody = bodyLines.length > 0 
                 ? bodyLines.join('<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 : text.replace(/\n/g, '<br>');
