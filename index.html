@@ -143,6 +143,10 @@
             <div id="loading" style="text-align:center; padding:4rem; color:white;">
                 <p>Loading V8.0 Engine...</p>
             </div>
+            
+            <div id="noData" class="loading-state hidden" style="text-align:center; color:white; padding:2rem;">
+                <p>No active predictions found for this filter.</p>
+            </div>
         </main>
     </div>
 
@@ -252,25 +256,25 @@
             });
         }
 
-        // --- ROBUST PARSER (Guaranteed Text Display) ---
+        // --- SAFE PARSER ---
         function parseAnalysis(text) {
             let confidence = "50";
             let selection = "See Details";
             
-            // 1. Extract Confidence & Selection safely
-            if (text) {
-                const confMatch = text.match(/(?:Confidence|Confidence Level)[:*]*\s*(\d+)%/i);
-                if (confMatch) confidence = confMatch[1];
+            if (!text) return { confidence, selection, analysisBody: "No analysis available." };
 
-                const selMatch = text.match(/(?:Selection|Pick|Bet)[:*]*\s*(.*?)(\n|$)/i);
-                if (selMatch) selection = selMatch[1].trim();
-            }
+            // 1. Extract Metadata
+            const confMatch = text.match(/(?:Confidence|Confidence Level)[:*]*\s*(\d+)%/i);
+            if (confMatch) confidence = confMatch[1];
 
-            // 2. Prepare Body: Just use the raw text formatted as HTML.
-            // We do NOT strip lines anymore to prevent accidental deletion.
-            let analysisBody = text 
-                ? text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')
-                : "Analysis pending...";
+            const selMatch = text.match(/(?:Selection|Pick|Bet)[:*]*\s*(.*?)(\n|$)/i);
+            if (selMatch) selection = selMatch[1].trim();
+
+            // 2. Prepare Body: Just use raw text formatted as HTML
+            // We do NOT strip lines anymore to prevent accidental deletion
+            let analysisBody = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
 
             return { confidence, selection, analysisBody };
         }
