@@ -11,287 +11,349 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             line-height: 1.6;
+            padding-bottom: 4rem;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
-        /* Header */
-        header { background: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-        .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .logo img { height: 40px; width: 40px; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: #667eea; }
-        .cta-button { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.75rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s; }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+        /* HEADER & NAV */
+        header { background: rgba(255, 255, 255, 0.98); box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; }
+        .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo img { height: 32px; width: 32px; }
         
-        /* Hero */
-        .hero { text-align: center; padding: 4rem 0; color: white; }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
-        .hero p { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95; }
-        .stats-bar { display: flex; justify-content: center; gap: 3rem; margin: 2rem 0; flex-wrap: wrap; }
-        .stat { text-align: center; }
-        .stat-number { font-size: 2.5rem; font-weight: bold; display: block; }
-        .stat-label { font-size: 0.9rem; opacity: 0.9; }
-        
-        /* Main */
-        main { background: #f5f7fa; min-height: 100vh; padding: 3rem 0; }
-        .section { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .section-title { font-size: 1.75rem; margin-bottom: 1.5rem; color: #333; display: flex; align-items: center; gap: 10px; }
-        
-        /* Cards */
-        .game-card { background: white; border: 2px solid #e1e8ed; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; transition: all 0.3s; }
-        .game-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #667eea; }
-        .game-header { padding: 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f5f7fa 0%, #f8f9fb 100%); }
-        .game-header:hover { background: linear-gradient(135deg, #e8ebf2 0%, #eef0f5 100%); }
-        .game-info { flex: 1; }
-        .matchup { font-size: 1.25rem; font-weight: 600; color: #333; margin-bottom: 0.5rem; }
-        .game-time { font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; }
-        .quick-pick { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; }
-        
-        /* Confidence Badges */
-        .confidence-badge { display: inline-flex; align-items: center; gap: 8px; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; }
-        .tier-strong { background: #10b981; color: white; }
-        .tier-solid { background: #3b82f6; color: white; }
-        .tier-lean { background: #f59e0b; color: white; }
-        .tier-pass { background: #6b7280; color: white; }
-        
-        .expand-icon { font-size: 1.5rem; color: #667eea; transition: transform 0.3s; }
-        .game-card.expanded .expand-icon { transform: rotate(180deg); }
-        
-        /* Details */
-        .game-details { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .game-card.expanded .game-details { max-height: 2000px; }
-        .details-content { padding: 1.5rem; border-top: 2px solid #e1e8ed; }
-        .detail-section { margin-bottom: 1.5rem; }
-        .detail-title { font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
-        
-        .analysis-box { background: #f8f9fa; border-left: 4px solid #667eea; padding: 1.5rem; border-radius: 4px; margin-top: 1rem; font-size: 0.95rem; color: #4a5568; white-space: pre-wrap; }
-        .analysis-box strong { color: #2d3748; font-weight: 700; }
+        /* LEAGUE MENU (NEW) */
+        .league-menu { display: flex; gap: 1rem; overflow-x: auto; padding: 1rem 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .league-menu::-webkit-scrollbar { display: none; }
+        .league-btn { 
+            background: #f3f4f6; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; 
+            font-weight: 600; color: #6b7280; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+        }
+        .league-btn:hover { background: #e5e7eb; color: #374151; }
+        .league-btn.active { background: #667eea; color: white; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
 
-        /* Password */
-        .password-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; justify-content: center; align-items: center; z-index: 9999; }
-        .password-overlay.hidden { display: none; }
-        .password-box { background: white; padding: 3rem; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: center; max-width: 400px; width: 90%; }
-        .password-box input { width: 100%; padding: 1rem; border: 2px solid #e1e8ed; border-radius: 8px; margin-bottom: 1rem; }
-        .password-box button { width: 100%; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; }
-        .password-error { color: #e74c3c; display: none; margin-top: 10px; }
+        /* SEARCH BAR (NEW) */
+        .search-container { position: relative; margin-left: auto; }
+        .search-input { 
+            padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 20px; border: 1px solid #e5e7eb; 
+            background: #f9fafb; outline: none; transition: border-color 0.2s; width: 200px;
+        }
+        .search-input:focus { border-color: #667eea; background: white; }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 0.9rem; }
+
+        /* MAIN LAYOUT */
+        .hero { text-align: center; padding: 3rem 0 2rem; color: white; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .hero p { opacity: 0.9; font-size: 1.1rem; }
+
+        /* CARDS GRID */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .game-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #f0f0f0; }
+        .game-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); border-color: #667eea; }
+        
+        .card-header { padding: 1.25rem; background: #fff; border-bottom: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: flex-start; }
+        .matchup-title { font-weight: 700; font-size: 1.1rem; color: #111827; line-height: 1.3; margin-bottom: 0.25rem; }
+        .game-meta { font-size: 0.85rem; color: #6b7280; display: flex; gap: 8px; align-items: center; }
+        .sport-tag { background: #eff6ff; color: #3b82f6; padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; }
+        
+        .card-body { padding: 1.25rem; }
+        .pick-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .pick-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: #9ca3af; font-weight: 600; }
+        .pick-value { font-weight: 700; color: #111827; font-size: 1.1rem; }
+        
+        /* CONFIDENCE BADGES */
+        .confidence-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; display: inline-block; }
+        .conf-strong { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .conf-solid { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .conf-lean { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .conf-pass { background: #9ca3af; }
+
+        /* ANALYSIS BOX */
+        .analysis-preview { font-size: 0.95rem; color: #4b5563; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .analysis-full { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f3f4f6; font-size: 0.95rem; color: #374151; }
+        .read-more { color: #667eea; font-size: 0.9rem; font-weight: 600; margin-top: 0.5rem; cursor: pointer; display: block; }
+        
+        /* PASSWORD SCREEN */
+        .password-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 9999; }
+        .password-box { background: white; padding: 2.5rem; border-radius: 16px; text-align: center; width: 90%; max-width: 360px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .password-input { width: 100%; padding: 0.8rem; border: 1px solid #e5e7eb; border-radius: 8px; margin: 1rem 0; font-size: 1rem; text-align: center; }
+        .unlock-btn { background: #667eea; color: white; border: none; padding: 0.8rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .unlock-btn:hover { background: #5a67d8; }
+        .hidden { display: none !important; }
         .main-content { display: none; }
         .main-content.visible { display: block; }
-        
-        /* Mobile */
-        @media (max-width: 768px) { .nav-links { display: none; } }
-        
-        /* Loading */
-        .loading { text-align: center; padding: 3rem; color: #666; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* LOADING */
+        .loading-state { text-align: center; padding: 4rem; color: rgba(255,255,255,0.8); }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-right { display: none; }
+            .grid-container { grid-template-columns: 1fr; }
+            .search-input { width: 150px; }
+        }
     </style>
 </head>
 <body>
-    
+
     <!-- PASSWORD PROTECTION -->
     <div id="passwordOverlay" class="password-overlay">
         <div class="password-box">
-            <h2>🔒 SpreadGenie Pro</h2>
-            <p>Authorized Access Only</p>
-            <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="if(event.key==='Enter')checkPassword()">
-            <button onclick="checkPassword()">Access Site</button>
-            <p id="passwordError" class="password-error">Incorrect password.</p>
+            <h2 style="margin-bottom: 0.5rem; color: #111827;">SpreadGenie Pro</h2>
+            <p style="color: #6b7280; font-size: 0.9rem;">Client Access Portal</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Enter Access Code">
+            <button onclick="checkPassword()" class="unlock-btn">Unlock Analytics</button>
+            <p id="passwordError" style="color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem; display: none;">Invalid Code</p>
         </div>
     </div>
 
     <div id="mainContent" class="main-content">
-        <!-- Header -->
+        <!-- HEADER -->
         <header>
-            <nav class="container">
-                <div class="logo">
-                    <img src="spreadgenie_logo.png" alt="SpreadGenie" onerror="this.style.display='none'">
-                    <span>SpreadGenie Pro</span>
+            <div class="container">
+                <!-- Top Bar -->
+                <nav>
+                    <div class="logo">
+                        <img src="spreadgenie_logo.png" alt="Icon" onerror="this.style.display='none'">
+                        <span>SpreadGenie</span>
+                    </div>
+                    
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search teams..." onkeyup="filterPredictions()">
+                    </div>
+                </nav>
+
+                <!-- League Menu -->
+                <div class="league-menu" id="leagueMenu">
+                    <button class="league-btn active" onclick="filterLeague('ALL')">All Sports</button>
+                    <button class="league-btn" onclick="filterLeague('NFL')">NFL</button>
+                    <button class="league-btn" onclick="filterLeague('CFB')">CFB</button>
+                    <button class="league-btn" onclick="filterLeague('NBA')">NBA</button>
+                    <button class="league-btn" onclick="filterLeague('CBB')">CBB</button>
+                    <button class="league-btn" onclick="filterLeague('NHL')">NHL</button>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="#picks">Today's Picks</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                </ul>
-                <a href="#picks" class="cta-button">View Live Picks</a>
-            </nav>
+            </div>
         </header>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <h1>Elite Sports Betting Analytics</h1>
-                <p>Data-driven predictions powered by autonomous intelligence.</p>
-                <div class="stats-bar">
-                    <div class="stat"><span class="stat-number">71.4%</span><span class="stat-label">Season Win Rate</span></div>
-                    <div class="stat"><span class="stat-number">Live</span><span class="stat-label">Real-Time Data</span></div>
-                </div>
+        <!-- DASHBOARD -->
+        <main class="container">
+            <div class="hero">
+                <h1>Live Betting Intelligence</h1>
+                <p id="lastUpdated">Updating feed...</p>
             </div>
-        </section>
 
-        <!-- Main Content -->
-        <main>
-            <div class="container">
-                <section id="picks" class="section">
-                    <h2 class="section-title">🏈 Latest Predictions</h2>
-                    <p id="last-updated" style="margin-bottom: 20px; color: #666; font-size: 0.9em;">Loading feed...</p>
-                    
-                    <div id="predictions-container" class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading picks...</p>
-                    </div>
-                </section>
-                
-                <!-- Pricing -->
-                <section id="pricing" class="section">
-                    <h2 class="section-title">💰 Pricing</h2>
-                    <div style="background: white; border: 2px solid #667eea; border-radius: 12px; padding: 2rem; text-align: center; max-width: 400px; margin: 0 auto;">
-                        <h3 style="font-size: 1.5rem; color: #333;">Founder's Tier</h3>
-                        <div style="font-size: 2.5rem; font-weight: bold; color: #667eea;">$29.99</div>
-                        <p style="color: #666; margin-bottom: 1.5rem;">/month</p>
-                        <ul style="text-align: left; list-style: none; margin-bottom: 1.5rem;">
-                            <li style="padding: 0.5rem 0;">✓ All NFL & CFB Picks</li>
-                            <li style="padding: 0.5rem 0;">✓ Daily AI Analysis</li>
-                            <li style="padding: 0.5rem 0;">✓ Priority Support</li>
-                        </ul>
-                        <button onclick="alert('Signup Coming Soon')" style="width: 100%; padding: 1rem; background: #667eea; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Join Waitlist</button>
-                    </div>
-                </section>
+            <div id="predictionsContainer" class="grid-container">
+                <!-- Javascript will inject cards here -->
+            </div>
+            
+            <div id="loading" class="loading-state">
+                <div class="spinner"></div>
+                <p>Syncing with V8.0 Engine...</p>
+            </div>
+            
+            <div id="noData" class="loading-state hidden">
+                <p>No active predictions found for this filter.</p>
             </div>
         </main>
-
-        <!-- Footer -->
-        <footer>
-            <div class="container" style="text-align: center; padding-bottom: 20px; color: #666;">
-                <p>&copy; 2025 SpreadGenie. All rights reserved.</p>
-            </div>
-        </footer>
     </div>
 
-    <!-- MAIN JAVASCRIPT BLOCK -->
     <script>
-        // 1. Password Logic
-        const DEV_PASSWORD = 'Mirlou1210!';
+        // --- CONFIG ---
+        const PASSWORD = "Mirlou1210!";
+        const DATA_URL = "./data/predictions.json";
+        let allPredictions = [];
+        let currentLeague = "ALL";
+
+        // --- AUTH LOGIC ---
         function checkPassword() {
-            if (document.getElementById('passwordInput').value === DEV_PASSWORD) {
-                document.cookie = 'sg_auth=true; max-age=' + (7*24*60*60);
-                showContent();
+            if (document.getElementById('passwordInput').value === PASSWORD) {
+                document.cookie = "sg_auth=true; max-age=604800; path=/"; // 7 days
+                initApp();
             } else {
                 document.getElementById('passwordError').style.display = 'block';
             }
         }
-        function showContent() {
+
+        function initApp() {
             document.getElementById('passwordOverlay').classList.add('hidden');
             document.getElementById('mainContent').classList.add('visible');
-            fetchPredictions(); 
+            fetchData();
         }
-        if (document.cookie.includes('sg_auth=true')) { showContent(); }
 
-        // 2. Data Logic
-        const DATA_URL = './data/predictions.json';
+        // Auto-login check
+        if (document.cookie.includes("sg_auth=true")) initApp();
 
-        async function fetchPredictions() {
+        // --- CORE LOGIC ---
+        async function fetchData() {
             try {
-                const response = await fetch(`${DATA_URL}?t=${new Date().getTime()}`);
-                if (!response.ok) throw new Error("Data file not found");
+                const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
+                if (!res.ok) throw new Error("Feed offline");
                 
-                const data = await response.json();
+                const data = await res.json();
                 
-                // Filter out DRAFTs and Sort by Date
-                const activePredictions = data
-                    .filter(item => item.status === 'PUBLISH')
-                    .reverse(); 
+                // Filter DRAFTs and Sort
+                allPredictions = data
+                    .filter(p => p.status === "PUBLISH")
+                    .reverse(); // Newest first
+                
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('lastUpdated').innerText = `Last Sync: ${new Date().toLocaleTimeString()}`;
+                
+                renderCards(allPredictions);
 
-                displayPredictions(activePredictions);
-                document.getElementById('last-updated').innerText = `Last Updated: ${new Date().toLocaleString()}`;
-
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('predictions-container').innerHTML = `
-                    <div style="text-align: center; padding: 2rem; color: #666;">
-                        <p>⚠️ <strong>Waiting for Data</strong></p>
-                        <p>The system hasn't pushed the latest batch yet. Check back in 5 minutes.</p>
-                    </div>
-                `;
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loading').innerHTML = `<p>⚠️ System Offline. Check back later.</p>`;
             }
         }
 
-        function displayPredictions(predictions) {
-            const container = document.getElementById('predictions-container');
+        function renderCards(items) {
+            const container = document.getElementById('predictionsContainer');
+            container.innerHTML = "";
             
-            if (predictions.length === 0) {
-                container.innerHTML = `<div style="text-align: center; padding: 3rem; color: #666;">No active picks right now. Check back later!</div>`;
+            if (items.length === 0) {
+                document.getElementById('noData').classList.remove('hidden');
                 return;
             }
+            document.getElementById('noData').classList.add('hidden');
 
-            container.innerHTML = predictions.map(pred => {
-                // --- PARSER ---
-                let confidence = "N/A";
-                let selection = "View Analysis";
+            items.forEach(pred => {
+                // Parse AI Text
+                const { confidence, selection, analysisBody } = parseAnalysis(pred.analysis);
                 
-                const confMatch = pred.analysis.match(/(?:Confidence|Confidence Level)[:*]*\s*(\d+)%/i);
-                if (confMatch) confidence = confMatch[1];
+                // Determine Tier Color
+                let tierClass = "conf-pass";
+                let tierLabel = "PASS";
+                const confVal = parseInt(confidence);
                 
-                const selMatch = pred.analysis.match(/(?:Selection|Pick|Bet)[:*]*\s*(.*?)(\n|$)/i);
-                if (selMatch) selection = selMatch[1].trim();
+                if (confVal >= 80) { tierClass = "conf-strong"; tierLabel = "LOCK"; }
+                else if (confVal >= 70) { tierClass = "conf-solid"; tierLabel = "STRONG"; }
+                else if (confVal >= 60) { tierClass = "conf-lean"; tierLabel = "LEAN"; }
 
-                // Format Analysis: Remove metadata lines (Confidence/Selection) from body to avoid redundancy
-                let analysisBody = pred.analysis
-                    .replace(/(?:Selection|Pick|Bet)[:*]*\s*(.*?)(\n|$)/i, '')
-                    .replace(/(?:Confidence|Confidence Level)[:*]*\s*(\d+)%(\n|$)/i, '')
-                    .replace(/(?:Analysis)[:*]*\s*/i, '') // Remove "Analysis:" label
-                    .trim()
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\n/g, '<br>');
-                
-                let tierClass = 'tier-pass';
-                let tierName = 'PASS';
-                if (confidence >= 75) { tierClass = 'tier-strong'; tierName = 'STRONG'; }
-                else if (confidence >= 65) { tierClass = 'tier-solid'; tierName = 'SOLID'; }
-                else if (confidence >= 55) { tierClass = 'tier-lean'; tierName = 'LEAN'; }
+                // Determine Sport (Simple keyword check if not in JSON)
+                // Default to NFL if unknown for now
+                const sport = pred.sport || detectSport(pred.game) || "NFL";
 
-                return `
-                    <div class="game-card">
-                        <div class="game-header">
-                            <div class="game-info">
-                                <div class="matchup">${pred.game}</div>
-                                <div class="game-time" style="color: #666; font-size: 0.9rem;">
-                                    🕒 ${pred.date}
-                                </div>
-                                <div style="margin-top: 0.75rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-                                    <span class="quick-pick">
-                                        🎯 ${selection}
-                                    </span>
-                                    <span class="confidence-badge ${tierClass}">
-                                        ${confidence}% ${tierName}
-                                    </span>
-                                </div>
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div>
+                            <div class="game-meta">
+                                <span class="sport-tag">${sport}</span>
+                                <span>${formatDate(pred.date)}</span>
                             </div>
-                            <div class="expand-icon" style="font-size: 1.5rem; color: #667eea;">+</div>
+                            <div class="matchup-title">${pred.game}</div>
+                        </div>
+                        <span class="confidence-badge ${tierClass}">${confVal}% ${tierLabel}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="pick-row">
+                            <span class="pick-label">Target</span>
+                            <span class="pick-value" style="color:#667eea">${selection}</span>
                         </div>
                         
-                        <div class="game-details">
-                            <div class="details-content">
-                                <div class="detail-section">
-                                    <div class="detail-title">💡 Analysis</div>
-                                    <div class="reasoning-text">
-                                        ${analysisBody}
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="analysis-preview">
+                            ${analysisBody}
                         </div>
+                        <div class="analysis-full">
+                            ${analysisBody}
+                        </div>
+                        <span class="read-more" onclick="toggleAnalysis(this)">Read Analysis ↓</span>
                     </div>
                 `;
-            }).join('');
-
-            document.querySelectorAll('.game-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    const card = this.closest('.game-card');
-                    card.classList.toggle('expanded');
-                    const icon = this.querySelector('.expand-icon');
-                    icon.textContent = card.classList.contains('expanded') ? '−' : '+';
-                });
+                container.appendChild(card);
             });
+        }
+
+        // --- HELPERS ---
+        function parseAnalysis(text) {
+            let confidence = "50";
+            let selection = "See Analysis";
+            let bodyLines = [];
+
+            text.split('\n').forEach(line => {
+                const clean = line.replace(/\*\*/g, '').trim();
+                
+                if (clean.match(/^(Confidence)/i)) {
+                    const m = clean.match(/(\d+)%/);
+                    if (m) confidence = m[1];
+                } else if (clean.match(/^(Selection|Pick)/i)) {
+                    selection = clean.replace(/^(Selection|Pick)[:\s-]*/i, '').trim();
+                } else if (clean) {
+                    // Skip metadata lines in body
+                    if (!clean.includes("Analysis:")) bodyLines.push(line);
+                }
+            });
+
+            // Convert body to HTML
+            let analysisBody = bodyLines.join('<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            
+            return { confidence, selection, analysisBody };
+        }
+
+        function toggleAnalysis(btn) {
+            const card = btn.closest('.card-body');
+            const full = card.querySelector('.analysis-full');
+            const preview = card.querySelector('.analysis-preview');
+            
+            if (full.style.display === 'block') {
+                full.style.display = 'none';
+                preview.style.display = '-webkit-box';
+                btn.innerText = 'Read Analysis ↓';
+            } else {
+                full.style.display = 'block';
+                preview.style.display = 'none';
+                btn.innerText = 'Hide Analysis ↑';
+            }
+        }
+
+        function formatDate(dateStr) {
+            try {
+                // If it's just YYYY-MM-DD
+                if (dateStr.length === 10) return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                // If it includes time
+                return dateStr;
+            } catch { return dateStr; }
+        }
+
+        function detectSport(gameTitle) {
+            // Simple keyword matching for now
+            if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
+            if (gameTitle.includes("Lakers") || gameTitle.includes("Celtics")) return "NBA";
+            return "NFL"; // Default
+        }
+
+        // --- FILTERING ---
+        function filterLeague(league) {
+            currentLeague = league;
+            
+            // Update Buttons
+            document.querySelectorAll('.league-btn').forEach(btn => {
+                if (btn.innerText === (league === "ALL" ? "All Sports" : league)) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            applyFilters();
+        }
+
+        function filterPredictions() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = allPredictions.filter(p => {
+                const sport = detectSport(p.game) || "NFL";
+                const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
+                const matchesSearch = p.game.toLowerCase().includes(search);
+                return matchesLeague && matchesSearch;
+            });
+            
+            renderCards(filtered);
         }
     </script>
 </body>
