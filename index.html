@@ -178,6 +178,8 @@
                 if (!res.ok) throw new Error("Feed offline");
                 
                 const data = await res.json();
+                
+                // Filter DRAFTs and Sort
                 allPredictions = data
                     .filter(p => p.status === "PUBLISH")
                     .reverse(); 
@@ -250,46 +252,27 @@
             });
         }
 
-        // --- SAFE PARSER (FIXED) ---
+        // --- ROBUST PARSER (Guaranteed Text Display) ---
         function parseAnalysis(text) {
             let confidence = "50";
             let selection = "See Details";
-            let bodyLines = [];
-
-            if (!text) return { confidence, selection, analysisBody: "No analysis available." };
-
-            const lines = text.split('\n');
-
-            lines.forEach(line => {
-                const clean = line.replace(/\*\*/g, '').trim();
-                if (!clean) return;
-                
-                // 1. Extract Confidence
-                if (clean.match(/^(Confidence|Confidence Level)/i)) {
-                    const m = clean.match(/(\d+)%/);
-                    if (m) confidence = m[1];
-                } 
-                // 2. Extract Selection
-                else if (clean.match(/^(Selection|Pick)/i)) {
-                    selection = clean.replace(/^(Selection|Pick)[:\s-]*/i, '').trim();
-                } 
-                // 3. Extract Body (THE FIX)
-                else {
-                    let content = line;
-                    // Just clean the label, don't drop the line
-                    if (clean.match(/^Analysis[:\s]/i)) {
-                        content = clean.replace(/^Analysis[:\s]*/i, '').trim();
-                    }
-                    if (content) bodyLines.push(content);
-                }
-            });
-
-            // Convert body to HTML
-            let finalBody = bodyLines.length > 0 
-                ? bodyLines.join('<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                : text.replace(/\n/g, '<br>');
             
-            return { confidence, selection, analysisBody: finalBody };
+            // 1. Extract Confidence & Selection safely
+            if (text) {
+                const confMatch = text.match(/(?:Confidence|Confidence Level)[:*]*\s*(\d+)%/i);
+                if (confMatch) confidence = confMatch[1];
+
+                const selMatch = text.match(/(?:Selection|Pick|Bet)[:*]*\s*(.*?)(\n|$)/i);
+                if (selMatch) selection = selMatch[1].trim();
+            }
+
+            // 2. Prepare Body: Just use the raw text formatted as HTML.
+            // We do NOT strip lines anymore to prevent accidental deletion.
+            let analysisBody = text 
+                ? text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')
+                : "Analysis pending...";
+
+            return { confidence, selection, analysisBody };
         }
 
         function toggleAnalysis(btn) {
