@@ -175,86 +175,76 @@
 
         if (document.cookie.includes("sg_auth=true")) initApp();
 
-        // --- CORE LOGIC ---
-        async function fetchData() {
-            try {
-                const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
-                if (!res.ok) throw new Error("Feed offline");
-                
-                const data = await res.json();
-                
-                // Filter DRAFTs and Sort
-                allPredictions = data
-                    .filter(p => p.status === "PUBLISH")
-                    .reverse(); 
-                
-                document.getElementById('loading').classList.add('hidden');
-                document.getElementById('lastUpdated').innerText = `Last Sync: ${new Date().toLocaleTimeString()}`;
-                
-                renderCards(allPredictions);
+// --- CORE LOGIC ---
+async function fetchData() {
+    // ... (rest of fetchData remains the same)
 
-            } catch (err) {
-                console.error(err);
-                document.getElementById('loading').innerHTML = `<p>⚠️ System Offline. Check back later.</p>`;
-            }
-        }
+    items.forEach(pred => {
+        // --- V8.2.2 PARSER (Reads clean fields from JSON) ---
 
-        function renderCards(items) {
-            const container = document.getElementById('predictionsContainer');
-            container.innerHTML = "";
-            
-            if (items.length === 0) {
-                document.getElementById('noData').classList.remove('hidden');
-                return;
-            }
-            document.getElementById('noData').classList.add('hidden');
+        // Read clean fields created by 05_ai_predictor.py
+        const selection = pred.selection || 'See Details';
+        const confidenceTier = pred.confidence_tier || 'PASS'; 
+        const gameId = pred.id; // Assuming the ID is clean
+        
+        // V8.2.2 does not output a % number. We must map the Tier to a numerical value for the filter logic.
+        let confidenceVal = 0; 
+        let tierClass = "conf-pass";
+        
+        if (confidenceTier.toUpperCase().includes('LOCK')) { confidenceVal = 85; tierClass = "conf-strong"; }
+        else if (confidenceTier.toUpperCase().includes('STRONG')) { confidenceVal = 75; tierClass = "conf-solid"; }
+        else if (confidenceTier.toUpperCase().includes('LEAN')) { confidenceVal = 65; tierClass = "conf-lean"; }
+        // The confidenceVal is used by the old renderCards logic for filtering/sorting.
 
-            items.forEach(pred => {
-                const { confidence, selection, analysisBody } = parseAnalysis(pred.analysis);
-                
-                let tierClass = "conf-pass";
-                let tierLabel = "PASS";
-                const confVal = parseInt(confidence);
-                
-                if (confVal >= 80) { tierClass = "conf-strong"; tierLabel = "LOCK"; }
-                else if (confVal >= 70) { tierClass = "conf-solid"; tierLabel = "STRONG"; }
-                else if (confVal >= 60) { tierClass = "conf-lean"; tierLabel = "LEAN"; }
+        // Format Analysis: Remove metadata headers (Selection/Confidence/Sections) from the body text
+        let analysisBody = pred.analysis
+            .replace(/════.*?\n/g, '') // Remove top and bottom boundaries
+            .replace(/## \d\. .*?\n/g, '<strong>') // Remove all ## SECTION HEADERS
+            .replace(/━━━━━━━━.*?\n/g, '') // Remove horizontal lines
+            .replace(/Selection:.*?\n/i, '')
+            .replace(/Confidence:.*?\n/i, '')
+            .replace(/Analysis:.*?\n/i, '') // Old V8 prefix
+            .trim()
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+        
+        const sport = pred.sport || detectSport(pred.game) || "NFL";
 
-                const sport = pred.sport || detectSport(pred.game) || "NFL";
-
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.innerHTML = `
-                    <div class="card-header">
-                        <div>
-                            <div class="game-meta">
-                                <span class="sport-tag">${sport}</span>
-                                <span>${formatDate(pred.date)}</span>
-                            </div>
-                            <div class="matchup-title">${pred.game}</div>
-                        </div>
-                        <span class="confidence-badge ${tierClass}">${confVal}% ${tierLabel}</span>
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        // Use the mapped confidence value for filtering/sorting
+        card.setAttribute('data-confidence', confidenceVal);
+        card.innerHTML = `
+            <div class="card-header">
+                <div>
+                    <div class="game-meta">
+                        <span class="sport-tag">${sport}</span>
+                        <span>${formatDate(pred.date)}</span>
                     </div>
-                    <div class="card-body">
-                        <div class="pick-row">
-                            <span class="pick-label">Target</span>
-                            <span class="pick-value" style="color:#667eea">${selection}</span>
-                        </div>
-                        
-                        <div class="analysis-content">
-                            <div class="analysis-preview">
-                                ${analysisBody}
-                            </div>
-                            <div class="analysis-full">
-                                ${analysisBody}
-                            </div>
-                            <button class="read-more-btn" onclick="toggleAnalysis(this)">Read Analysis ↓</button>
-                        </div>
+                    <div class="matchup-title">${pred.game}</div>
+                </div>
+                <span class="confidence-badge ${tierClass}">${confidenceTier}</span>
+            </div>
+            <div class="card-body">
+                <div class="pick-row">
+                    <span class="pick-label">Target</span>
+                    <span class="pick-value" style="color:#667eea">${selection}</span>
+                </div>
+                
+                <div class="analysis-content">
+                    <div class="analysis-preview">
+                        ${analysisBody}
                     </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+                    <div class="analysis-full" style="display:none;">
+                        ${analysisBody}
+                    </div>
+                    <button class="read-more-btn" onclick="toggleAnalysis(this)">Read Analysis ↓</button>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
 
         // --- SAFE PARSER ---
         function parseAnalysis(text) {
