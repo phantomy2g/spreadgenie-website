@@ -56,23 +56,21 @@
         .conf-lean { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
         .conf-pass { background: #9ca3af; }
 
-        /* ANALYSIS TEXT STYLES - FIXED */
+        /* ANALYSIS TEXT STYLES */
         .analysis-content { 
             font-size: 0.95rem; color: #4b5563; line-height: 1.6;
             margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f3f4f6;
         }
         
-        /* The "Preview" view (truncated) */
         .analysis-preview {
             display: -webkit-box;
-            -webkit-line-clamp: 3; /* Show 3 lines */
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
         
-        /* The "Full" view (expanded) */
         .analysis-full {
-            display: none; /* Hidden by default */
+            display: none;
         }
         
         .read-more-btn { 
@@ -158,7 +156,7 @@
         // --- AUTH LOGIC ---
         function checkPassword() {
             if (document.getElementById('passwordInput').value === PASSWORD) {
-                document.cookie = "sg_auth=true; max-age=604800; path=/"; // 7 days
+                document.cookie = "sg_auth=true; max-age=604800; path=/"; 
                 initApp();
             } else {
                 document.getElementById('passwordError').style.display = 'block';
@@ -171,7 +169,6 @@
             fetchData();
         }
 
-        // Auto-login check
         if (document.cookie.includes("sg_auth=true")) initApp();
 
         // --- CORE LOGIC ---
@@ -182,10 +179,9 @@
                 
                 const data = await res.json();
                 
-                // Filter DRAFTs and Sort
                 allPredictions = data
                     .filter(p => p.status === "PUBLISH")
-                    .reverse(); // Newest first
+                    .reverse(); 
                 
                 document.getElementById('loading').classList.add('hidden');
                 document.getElementById('lastUpdated').innerText = `Last Sync: ${new Date().toLocaleTimeString()}`;
@@ -209,10 +205,8 @@
             document.getElementById('noData').classList.add('hidden');
 
             items.forEach(pred => {
-                // Parse AI Text
                 const { confidence, selection, analysisBody } = parseAnalysis(pred.analysis);
                 
-                // Determine Tier Color
                 let tierClass = "conf-pass";
                 let tierLabel = "PASS";
                 const confVal = parseInt(confidence);
@@ -221,8 +215,6 @@
                 else if (confVal >= 70) { tierClass = "conf-solid"; tierLabel = "STRONG"; }
                 else if (confVal >= 60) { tierClass = "conf-lean"; tierLabel = "LEAN"; }
 
-                // Determine Sport (Simple keyword check if not in JSON)
-                // Default to NFL if unknown for now
                 const sport = pred.sport || detectSport(pred.game) || "NFL";
 
                 const card = document.createElement('div');
@@ -259,30 +251,50 @@
             });
         }
 
-        // --- HELPERS ---
+        // --- FIXED PARSER ---
         function parseAnalysis(text) {
             let confidence = "50";
             let selection = "See Details";
             let bodyLines = [];
 
-            text.split('\n').forEach(line => {
+            if (!text) return { confidence, selection, analysisBody: "No analysis available." };
+
+            const lines = text.split('\n');
+
+            lines.forEach(line => {
                 const clean = line.replace(/\*\*/g, '').trim();
+                if (!clean) return;
                 
-                if (clean.match(/^(Confidence)/i)) {
+                // 1. Extract Confidence
+                if (clean.match(/^(Confidence|Confidence Level)/i)) {
                     const m = clean.match(/(\d+)%/);
                     if (m) confidence = m[1];
-                } else if (clean.match(/^(Selection|Pick)/i)) {
+                } 
+                // 2. Extract Selection
+                else if (clean.match(/^(Selection|Pick)/i)) {
                     selection = clean.replace(/^(Selection|Pick)[:\s-]*/i, '').trim();
-                } else if (clean) {
-                    // Skip metadata lines in body
-                    if (!clean.includes("Analysis:")) bodyLines.push(line);
+                } 
+                // 3. Extract Body (THE FIX: Check for "Analysis:" label but KEEP the text)
+                else {
+                    let content = line;
+                    // If line starts with "Analysis:", strip the label but keep the rest
+                    if (clean.match(/^Analysis[:\s]/i)) {
+                        content = clean.replace(/^Analysis[:\s]*/i, '').trim();
+                    }
+                    
+                    if (content.length > 0) {
+                        bodyLines.push(content);
+                    }
                 }
             });
 
             // Convert body to HTML
-            let analysisBody = bodyLines.join('<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            // Fallback: if bodyLines is empty, use raw text to avoid "Missing Analysis"
+            let finalBody = bodyLines.length > 0 
+                ? bodyLines.join('<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                : text.replace(/\n/g, '<br>');
             
-            return { confidence, selection, analysisBody };
+            return { confidence, selection, analysisBody: finalBody };
         }
 
         function toggleAnalysis(btn) {
@@ -303,30 +315,23 @@
 
         function formatDate(dateStr) {
             try {
-                // If it's just YYYY-MM-DD
                 if (dateStr.length === 10) return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-                // If it includes time
                 return dateStr;
             } catch { return dateStr; }
         }
 
         function detectSport(gameTitle) {
-            // Simple keyword matching for now
             if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
             if (gameTitle.includes("Lakers") || gameTitle.includes("Celtics")) return "NBA";
-            return "NFL"; // Default
+            return "NFL";
         }
 
-        // --- FILTERING ---
         function filterLeague(league) {
             currentLeague = league;
-            
-            // Update Buttons
             document.querySelectorAll('.league-btn').forEach(btn => {
                 if (btn.innerText === (league === "ALL" ? "All Sports" : league)) btn.classList.add('active');
                 else btn.classList.remove('active');
             });
-
             applyFilters();
         }
 
@@ -336,14 +341,12 @@
 
         function applyFilters() {
             const search = document.getElementById('searchInput').value.toLowerCase();
-            
             const filtered = allPredictions.filter(p => {
                 const sport = detectSport(p.game) || "NFL";
                 const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
                 const matchesSearch = p.game.toLowerCase().includes(search);
                 return matchesLeague && matchesSearch;
             });
-            
             renderCards(filtered);
         }
     </script>
