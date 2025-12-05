@@ -27,7 +27,7 @@
         .league-btn { background: #f3f4f6; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; color: #6b7280; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
         .league-btn:hover { background: #e5e7eb; color: #374151; }
         .league-btn.active { background: #667eea; color: white; }
-        .search-container { position: relative; margin-left: auto; }
+        .search- { position: relative; margin-left: auto; }
         .search-input { padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 20px; border: 1px solid #e5e7eb; background: #f9fafb; outline: none; width: 200px; }
         .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 0.9rem; }
 
@@ -184,9 +184,6 @@
             <div class="hero">
                 <h1>Live Betting Intelligence</h1>
                 <p id="lastUpdated">Syncing feed...</p>
-                <div class="hero">
-                <h1>Live Betting Intelligence</h1>
-                <p id="lastUpdated">Syncing feed...</p>
             </div>
             
             <div id="confidenceFilterBar" style="display:flex; justify-content: center; gap: 1rem; padding: 1rem 0; background: rgba(0, 0, 0, 0.1); border-radius: 8px; margin-bottom: 2rem;">
@@ -196,9 +193,6 @@
                 <button class="filter-btn conf-lean" onclick="filterConfidence('LEAN', this)">💡 LEAN</button>
                 <button class="filter-btn conf-pass" onclick="filterConfidence('PASS', this)">➖ PASS</button>
             </div>
-            <div id="predictionsContainer" class="grid-container"></div>
-            </div>
-
             <div id="predictionsContainer" class="grid-container"></div>
             
             <div id="loading" style="text-align:center; padding:4rem; color:white;">
@@ -429,173 +423,3 @@
             document.addEventListener('DOMContentLoaded', fetchData);
         }
     </script>
-
-// --- CORE LOGIC ---
-async function fetchData() {
-    // ... (rest of fetchData remains the same)
-
-    items.forEach(pred => {
-        // --- V8.2.2 PARSER (Reads clean fields from JSON) ---
-
-        // Read clean fields created by 05_ai_predictor.py
-        const selection = pred.selection || 'See Details';
-        const confidenceTier = pred.confidence_tier || 'PASS'; 
-        const gameId = pred.id; // Assuming the ID is clean
-        
-        // V8.2.2 does not output a % number. We must map the Tier to a numerical value for the filter logic.
-        let confidenceVal = 0; 
-        let tierClass = "conf-pass";
-        
-        if (confidenceTier.toUpperCase().includes('LOCK')) { confidenceVal = 85; tierClass = "conf-strong"; }
-        else if (confidenceTier.toUpperCase().includes('STRONG')) { confidenceVal = 75; tierClass = "conf-solid"; }
-        else if (confidenceTier.toUpperCase().includes('LEAN')) { confidenceVal = 65; tierClass = "conf-lean"; }
-        // The confidenceVal is used by the old renderCards logic for filtering/sorting.
-
-        // Format Analysis: Remove metadata headers (Selection/Confidence/Sections) from the body text
-        let analysisBody = pred.analysis
-            .replace(/════.*?\n/g, '') // Remove top and bottom boundaries
-            .replace(/## \d\. .*?\n/g, '<strong>') // Remove all ## SECTION HEADERS
-            .replace(/━━━━━━━━.*?\n/g, '') // Remove horizontal lines
-            .replace(/Selection:.*?\n/i, '')
-            .replace(/Confidence:.*?\n/i, '')
-            .replace(/Analysis:.*?\n/i, '') // Old V8 prefix
-            .trim()
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\n/g, '<br>');
-        
-        const sport = pred.sport || detectSport(pred.game) || "NFL";
-
-        const card = document.createElement('div');
-        card.className = 'game-card';
-        // --- V8.4 FILTER ATTRIBUTE INJECTION ---
-        // We use the raw confidence tier for filtering
-        card.setAttribute('data-confidence-tier', confidenceTier);
-        card.innerHTML = `
-            <div class="card-header">
-                <div>
-                    <div class="game-meta">
-                        <span class="sport-tag">${sport}</span>
-                        <span>${formatDate(pred.date)}</span>
-                    </div>
-                    <div class="matchup-title">${pred.game}</div>
-                </div>
-                <span class="confidence-badge ${tierClass}">${confidenceTier}</span>
-            </div>
-            <div class="card-body">
-                <div class="pick-row">
-                    <span class="pick-label">Target</span>
-                    <span class="pick-value" style="color:#667eea">${selection}</span>
-                </div>
-                
-                <div class="analysis-content">
-                    <div class="analysis-preview">
-                        ${analysisBody}
-                    </div>
-                    <div class="analysis-full" style="display:none;">
-                        ${analysisBody}
-                    </div>
-                    <button class="read-more-btn" onclick="toggleAnalysis(this)">Read Analysis ↓</button>
-                </div>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-}
-
-        // --- SAFE PARSER ---
-        function parseAnalysis(text) {
-            let confidence = "50";
-            let selection = "See Details";
-            
-            if (!text) return { confidence, selection, analysisBody: "No analysis available." };
-
-            // 1. Extract Metadata
-            const confMatch = text.match(/(?:Confidence|Confidence Level)[:*]*\s*(\d+)%/i);
-            if (confMatch) confidence = confMatch[1];
-
-            const selMatch = text.match(/(?:Selection|Pick|Bet)[:*]*\s*(.*?)(\n|$)/i);
-            if (selMatch) selection = selMatch[1].trim();
-
-            // 2. Prepare Body: Just use raw text formatted as HTML
-            // We do NOT strip lines anymore to prevent accidental deletion
-            let analysisBody = text
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\n/g, '<br>');
-
-            return { confidence, selection, analysisBody };
-        }
-
-        function toggleAnalysis(btn) {
-            const container = btn.closest('.analysis-content');
-            const full = container.querySelector('.analysis-full');
-            const preview = container.querySelector('.analysis-preview');
-            
-            if (full.style.display === 'block') {
-                full.style.display = 'none';
-                preview.style.display = '-webkit-box';
-                btn.innerText = 'Read Analysis ↓';
-            } else {
-                full.style.display = 'block';
-                preview.style.display = 'none';
-                btn.innerText = 'Hide Analysis ↑';
-            }
-        }
-
-        function formatDate(dateStr) {
-            try {
-                if (dateStr.length === 10) return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-                return dateStr;
-            } catch { return dateStr; }
-        }
-
-        function detectSport(gameTitle) {
-            if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
-            if (gameTitle.includes("Lakers") || gameTitle.includes("Celtics")) return "NBA";
-            return "NFL";
-        }
-
-        function filterLeague(league) {
-            currentLeague = league;
-            document.querySelectorAll('.league-btn').forEach(btn => {
-                if (btn.innerText === (league === "ALL" ? "All Sports" : league)) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
-            applyFilters();
-        }
-
-        function filterPredictions() {
-            applyFilters();
-        }
-
-        function applyFilters() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            
-            // Filter the master list based on all three criteria
-            const filtered = allPredictions.filter(p => {
-                const sport = detectSport(p.game) || "NFL";
-                const cardConfidence = p.confidence_tier.toUpperCase(); // Read the clean JSON field
-
-                // 1. League Filter
-                const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
-                
-                // 2. Search Filter
-                const matchesSearch = p.game.toLowerCase().includes(search);
-                
-                // 3. Confidence Filter
-                const matchesConfidence = currentConfidence === "ALL" || cardConfidence === currentConfidence;
-                
-                return matchesLeague && matchesSearch && matchesConfidence;
-            });
-            renderCards(filtered);
-        }
-
-        function filterConfidence(tier, btnElement) {
-            currentConfidence = tier;
-            // Update button styles
-            document.querySelectorAll('#confidenceFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
-            btnElement.classList.add('active');
-            applyFilters();
-        }
-    </script>
-</body>
-</html>
