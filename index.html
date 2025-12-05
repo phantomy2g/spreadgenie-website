@@ -79,6 +79,7 @@
         
         .modal-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; }
         .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #9ca3af; }
+        /* LEFT ALIGNED TEXT FIX */
         .modal-body { font-size: 1rem; color: #374151; line-height: 1.7; white-space: pre-wrap; text-align: left; }
 
         /* AUTH & UTILS */
@@ -226,7 +227,6 @@
                 else if (confidenceTier.toUpperCase().includes('STRONG')) tierClass = "conf-strong";
                 else if (confidenceTier.toUpperCase().includes('LEAN')) tierClass = "conf-lean";
             
-                // Use explicit sport tag OR fallback detection
                 const sport = pred.sport || detectSportFallback(pred.game);
 
                 const card = document.createElement('div');
@@ -247,25 +247,17 @@
                             <span class="pick-label">Target</span>
                             <span class="pick-value" style="color:#667eea">${selection}</span>
                         </div>
-                        <button class="read-more-btn" onclick="openModal(${index})">Read Analysis</button>
+                        <button class="read-more-btn" onclick="openModal('${pred.id}')">Read Analysis</button>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        // --- MODAL LOGIC (POP-OUT) ---
-        function openModal(index) {
-            // Find the correct item based on current filtered list is tricky, 
-            // so we find it in allPredictions by matching the visual card? 
-            // Better: re-filter locally or pass ID. 
-            // Simplest for now: Use the filtered 'currentItems' if possible, or just pass object.
-            // Actually, renderCards receives 'items'. We need to be careful with index.
-            // Let's attach the data-id to the card button.
-            
-            // FIX: We will look up the item in 'allPredictions' using the Game Name or ID from the card.
-            // Re-render:
-            const item = currentRenderedItems[index]; 
+        // --- MODAL LOGIC (ROBUST LOOKUP) ---
+        function openModal(id) {
+            const item = allPredictions.find(p => p.id === id);
+            if (!item) return;
             
             document.getElementById('modalTitle').innerText = item.game;
             document.getElementById('modalSport').innerText = item.sport || "Sports";
@@ -294,8 +286,6 @@
             }
         }
 
-        let currentRenderedItems = []; // Store current view for modal lookup
-
         function applyFilters() {
             const search = document.getElementById('searchInput').value.toLowerCase();
             
@@ -309,14 +299,12 @@
                 
                 return matchesLeague && matchesSearch && matchesConfidence;
             });
-            
-            currentRenderedItems = filtered; // Update global reference for modal
             renderCards(filtered);
         }
 
         function detectSportFallback(gameTitle) {
             if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
-            return "CFB"; // Default to CFB if not obvious NFL (Temporary fix)
+            return "CFB"; 
         }
 
         function getTierClass(tier) {
