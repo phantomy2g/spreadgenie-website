@@ -212,30 +212,84 @@
     </div>
 
     <script>
-        // --- CONFIG ---
-        const PASSWORD = "Mirlou1210!";
-        const DATA_URL = "./data/predictions.json";
-        let allPredictions = [];
-        let currentLeague = "ALL";
-        let currentConfidence = "ALL";
+    // --- V8.4 GLOBAL CONFIGURATION (No Duplication) ---
+    const PASSWORD = "Mirlou1210!";
+    const DATA_URL = "./data/predictions.json";
+    let allPredictions = [];
+    let currentLeague = "ALL";
+    let currentConfidence = "ALL"; 
+    
+    // --- AUTH LOGIC ---
+    function checkPassword() {
+        if (document.getElementById('passwordInput').value === PASSWORD) {
+            document.cookie = "sg_auth=true; max-age=604800; path=/"; 
+            initApp(); // Calls initApp on successful login
+        } else {
+            document.getElementById('passwordError').style.display = 'block';
+        }
+    }
 
-        // --- AUTH LOGIC ---
-        function checkPassword() {
-            if (document.getElementById('passwordInput').value === PASSWORD) {
-                document.cookie = "sg_auth=true; max-age=604800; path=/"; 
-                initApp();
-            } else {
-                document.getElementById('passwordError').style.display = 'block';
+    function initApp() {
+        document.getElementById('passwordOverlay').classList.add('hidden');
+        document.getElementById('mainContent').classList.add('visible');
+        // CRITICAL: Start fetching data immediately after successful authentication
+        fetchData(); 
+    }
+
+    // --- V8.4 CORE DATA FETCH LOGIC (RESILIENT) ---
+    async function fetchData() {
+        const container = document.getElementById('predictionsContainer');
+        const statusElement = document.getElementById('lastUpdated');
+        
+        // Use a generic loading screen until data is verified
+        container.innerHTML = '<div style="text-align: center; padding: 4rem;"><h2>Loading V8.4 Engine...</h2></div>'; 
+
+        try {
+            const response = await fetch(DATA_URL);
+
+            if (!response.ok) {
+                // Handle 404 (file not found) or network errors gracefully
+                statusElement.innerText = `Error: Could not fetch predictions (${response.status}).`;
+                container.innerHTML = `<h2>No predictions published yet.</h2>`;
+                allPredictions = [];
+                return;
             }
-        }
 
-        function initApp() {
-            document.getElementById('passwordOverlay').classList.add('hidden');
-            document.getElementById('mainContent').classList.add('visible');
-            fetchData();
-        }
+            const data = await response.json();
+            
+            if (data && data.length > 0) {
+                // SUCCESS: Store globally and apply filters
+                allPredictions = data; 
+                applyFilters(); // Apply filters which calls renderCards
+                statusElement.innerText = `Feed Synced: ${new Date().toLocaleTimeString()}`;
+            } else {
+                // SUCCESS: File found, but data is empty
+                statusElement.innerText = 'Feed Synced: No active picks.';
+                container.innerHTML = '<h2>No active picks right now. Check back soon.</h2>';
+                allPredictions = [];
+            }
 
-        if (document.cookie.includes("sg_auth=true")) initApp();
+        } catch (error) {
+            // CRITICAL FAIL: Handles JSON parsing errors or other critical JS faults
+            console.error("Critical Error loading predictions:", error);
+            statusElement.innerText = 'Feed Error. Check console.';
+            container.innerHTML = `<h2>Critical Error: Failed to load data.</h2>`;
+            allPredictions = [];
+        }
+    }
+    
+    // --- V8.4 INITIALIZATION ---
+
+    // 1. Check for valid cookie and call initApp (which calls fetchData)
+    if (document.cookie.includes("sg_auth=true")) {
+        initApp();
+    } else {
+        // 2. If no cookie, simply call fetchData once the DOM is ready (shows loading screen immediately)
+        document.addEventListener('DOMContentLoaded', fetchData);
+    }
+    
+    // The rest of your script (renderCards, toggleAnalysis, applyFilters, etc.) continues below this line.
+    </script>
 
 // --- CORE LOGIC ---
 async function fetchData() {
