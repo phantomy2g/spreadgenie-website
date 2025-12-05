@@ -136,6 +136,19 @@
             <div class="hero">
                 <h1>Live Betting Intelligence</h1>
                 <p id="lastUpdated">Syncing feed...</p>
+                <div class="hero">
+                <h1>Live Betting Intelligence</h1>
+                <p id="lastUpdated">Syncing feed...</p>
+            </div>
+            
+            <div id="confidenceFilterBar" style="display:flex; justify-content: center; gap: 1rem; padding: 1rem 0; background: rgba(0, 0, 0, 0.1); border-radius: 8px; margin-bottom: 2rem;">
+                <button class="filter-btn active" onclick="filterConfidence('ALL', this)">All Picks</button>
+                <button class="filter-btn conf-lock" onclick="filterConfidence('LOCK', this)">👑 LOCK</button>
+                <button class="filter-btn conf-strong" onclick="filterConfidence('STRONG', this)">🔥 STRONG</button>
+                <button class="filter-btn conf-lean" onclick="filterConfidence('LEAN', this)">💡 LEAN</button>
+                <button class="filter-btn conf-pass" onclick="filterConfidence('PASS', this)">➖ PASS</button>
+            </div>
+            <div id="predictionsContainer" class="grid-container"></div>
             </div>
 
             <div id="predictionsContainer" class="grid-container"></div>
@@ -156,6 +169,7 @@
         const DATA_URL = "./data/predictions.json";
         let allPredictions = [];
         let currentLeague = "ALL";
+        let currentConfidence = "ALL";
 
         // --- AUTH LOGIC ---
         function checkPassword() {
@@ -212,8 +226,9 @@ async function fetchData() {
 
         const card = document.createElement('div');
         card.className = 'game-card';
-        // Use the mapped confidence value for filtering/sorting
-        card.setAttribute('data-confidence', confidenceVal);
+        // --- V8.4 FILTER ATTRIBUTE INJECTION ---
+        // We use the raw confidence tier for filtering
+        card.setAttribute('data-confidence-tier', confidenceTier);
         card.innerHTML = `
             <div class="card-header">
                 <div>
@@ -313,13 +328,32 @@ async function fetchData() {
 
         function applyFilters() {
             const search = document.getElementById('searchInput').value.toLowerCase();
+            
+            // Filter the master list based on all three criteria
             const filtered = allPredictions.filter(p => {
                 const sport = detectSport(p.game) || "NFL";
+                const cardConfidence = p.confidence_tier.toUpperCase(); // Read the clean JSON field
+
+                // 1. League Filter
                 const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
+                
+                // 2. Search Filter
                 const matchesSearch = p.game.toLowerCase().includes(search);
-                return matchesLeague && matchesSearch;
+                
+                // 3. Confidence Filter
+                const matchesConfidence = currentConfidence === "ALL" || cardConfidence === currentConfidence;
+                
+                return matchesLeague && matchesSearch && matchesConfidence;
             });
             renderCards(filtered);
+        }
+
+        function filterConfidence(tier, btnElement) {
+            currentConfidence = tier;
+            // Update button styles
+            document.querySelectorAll('#confidenceFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+            applyFilters();
         }
     </script>
 </body>
