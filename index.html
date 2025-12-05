@@ -232,18 +232,14 @@
         function initApp() {
             document.getElementById('passwordOverlay').classList.add('hidden');
             document.getElementById('mainContent').classList.add('visible');
-            // CRITICAL: Start fetching data immediately after successful authentication
             fetchData(); 
         }
-    
-        if (document.cookie.includes("sg_auth=true")) initApp();
     
         // --- V8.4 CORE DATA FETCH LOGIC (RESILIENT) ---
         async function fetchData() {
             const container = document.getElementById('predictionsContainer');
             const statusElement = document.getElementById('lastUpdated');
             
-            // Set initial loading state
             container.innerHTML = '<div style="text-align: center; padding: 4rem;"><h2>Loading V8.4 Engine...</h2></div>'; 
     
             try {
@@ -251,7 +247,7 @@
                 const response = await fetch(`${DATA_URL}?t=${Date.now()}`);
     
                 if (!response.ok) {
-                    statusElement.innerText = `Error: Could not fetch predictions (${response.status}).`;
+                    statusElement.innerText = `Error: Could not fetch predictions (${response.status}). Check deployment path.`;
                     container.innerHTML = `<h2>No predictions published yet. Deployment error.</h2>`;
                     allPredictions = [];
                     return;
@@ -260,20 +256,17 @@
                 const data = await response.json();
                 
                 if (data && data.length > 0) {
-                    // SUCCESS: Store globally and apply initial filters
-                    // Filter DRAFTs and Sort by most recent
+                    // SUCCESS: Filter DRAFTs and apply initial filters
                     allPredictions = data.filter(p => p.status === "PUBLISH").reverse();
-                    applyFilters(); // Apply filters which calls renderCards
+                    applyFilters(); 
                     statusElement.innerText = `Feed Synced: ${new Date().toLocaleTimeString()}`;
                 } else {
-                    // SUCCESS: File found, but data is empty
                     statusElement.innerText = 'Feed Synced: No active picks.';
                     container.innerHTML = '<h2>No active picks right now. Check back soon.</h2>';
                     allPredictions = [];
                 }
     
             } catch (error) {
-                // CRITICAL FAIL: Handles JSON parsing errors or other critical JS faults
                 console.error("Critical Error loading predictions:", error);
                 statusElement.innerText = 'Feed Error. Check console.';
                 container.innerHTML = `<h2>Critical Error: Failed to load data.</h2>`;
@@ -294,7 +287,7 @@
             document.getElementById('noData').classList.add('hidden');
     
             items.forEach(pred => {
-                // Read clean fields created by 05_ai_predictor.py
+                // Read clean fields from 05_ai_predictor.py
                 const selection = pred.selection || 'See Details';
                 const confidenceTier = pred.confidence_tier || 'PASS'; 
                 
@@ -306,24 +299,24 @@
                 else if (confidenceTier.toUpperCase().includes('STRONG')) { confidenceVal = 75; tierClass = "conf-solid"; }
                 else if (confidenceTier.toUpperCase().includes('LEAN')) { confidenceVal = 65; tierClass = "conf-lean"; }
     
-                // Format Analysis: Remove metadata headers (Selection/Confidence/Sections) from the body text
+                // Format Analysis: Remove metadata headers from the analysis text
                 let analysisBody = pred.analysis
-                    .replace(/════.*?\n/g, '') // Remove top and bottom boundaries
-                    .replace(/## \d\. .*?\n/g, '<strong>') // Remove all ## SECTION HEADERS and replace with strong tag
-                    .replace(/━━━━━━━━.*?\n/g, '') // Remove horizontal lines
+                    .replace(/════.*?\n/g, '') 
+                    .replace(/## \d\. .*?\n/g, '<strong>') // Replacing headers with strong text
+                    .replace(/━━━━━━━━.*?\n/g, '') 
                     .replace(/Selection:.*?\n/i, '')
                     .replace(/Confidence:.*?\n/i, '')
-                    .replace(/Analysis:.*?\n/i, '') // Old V8 prefix
+                    .replace(/Analysis:.*?\n/i, '') 
                     .trim()
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\n/g, '<br>'); // Convert newlines to HTML breaks
+                    .replace(/\n/g, '<br>'); 
                 
                 const sport = pred.sport || detectSport(pred.game) || "NFL";
     
                 const card = document.createElement('div');
                 card.className = 'game-card';
                 card.setAttribute('data-confidence-tier', confidenceTier);
-                card.setAttribute('data-confidence', confidenceVal); // Used for sorting/numeric comparison
+                card.setAttribute('data-confidence', confidenceVal); 
     
                 card.innerHTML = `
                     <div class="card-header">
@@ -355,13 +348,9 @@
                 `;
                 container.appendChild(card);
             });
-            
-            // Re-attach listeners for the expansion logic
-            document.querySelectorAll('.read-more-btn').forEach(btn => {
-                btn.closest('.analysis-content').querySelector('.analysis-preview').style.display = '-webkit-box';
-            });
-    
         }
+        
+        // --- HELPER FUNCTIONS (Simplified and Cleaned) ---
         
         function toggleAnalysis(btn) {
             const container = btn.closest('.analysis-content');
@@ -370,7 +359,7 @@
             
             if (full.style.display === 'block') {
                 full.style.display = 'none';
-                preview.style.display = '-webkit-box'; // Show preview text clamp
+                preview.style.display = '-webkit-box'; 
                 btn.innerText = 'Read Analysis ↓';
             } else {
                 full.style.display = 'block';
@@ -381,7 +370,6 @@
     
         function formatDate(dateStr) {
             try {
-                // Attempt to handle date strings from the JSON
                 return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
             } catch { 
                 return dateStr; 
@@ -389,7 +377,6 @@
         }
     
         function detectSport(gameTitle) {
-            // Simple logic for category filtering
             if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs") || gameTitle.includes("Lions")) return "NFL";
             if (gameTitle.includes("Lakers") || gameTitle.includes("Celtics")) return "NBA";
             return "NFL";
@@ -406,7 +393,6 @@
     
         function filterConfidence(tier, btnElement) {
             currentConfidence = tier;
-            // Update button styles
             document.querySelectorAll('#confidenceFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
             btnElement.classList.add('active');
             applyFilters();
@@ -431,6 +417,16 @@
                 return matchesLeague && matchesSearch && matchesConfidence;
             });
             renderCards(filtered);
+        }
+        
+        // --- V8.4 INITIALIZATION ---
+    
+        // 1. Check for valid cookie and call initApp (which calls fetchData)
+        if (document.cookie.includes("sg_auth=true")) {
+            initApp();
+        } else {
+            // 2. If no cookie, simply call fetchData once the DOM is ready (shows loading screen immediately)
+            document.addEventListener('DOMContentLoaded', fetchData);
         }
     </script>
 
