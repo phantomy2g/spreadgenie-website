@@ -212,83 +212,226 @@
     </div>
 
     <script>
-    // --- V8.4 GLOBAL CONFIGURATION (No Duplication) ---
-    const PASSWORD = "Mirlou1210!";
-    const DATA_URL = "./data/predictions.json";
-    let allPredictions = [];
-    let currentLeague = "ALL";
-    let currentConfidence = "ALL"; 
-    
-    // --- AUTH LOGIC ---
-    function checkPassword() {
-        if (document.getElementById('passwordInput').value === PASSWORD) {
-            document.cookie = "sg_auth=true; max-age=604800; path=/"; 
-            initApp(); // Calls initApp on successful login
-        } else {
-            document.getElementById('passwordError').style.display = 'block';
-        }
-    }
-
-    function initApp() {
-        document.getElementById('passwordOverlay').classList.add('hidden');
-        document.getElementById('mainContent').classList.add('visible');
-        // CRITICAL: Start fetching data immediately after successful authentication
-        fetchData(); 
-    }
-
-    // --- V8.4 CORE DATA FETCH LOGIC (RESILIENT) ---
-    async function fetchData() {
-        const container = document.getElementById('predictionsContainer');
-        const statusElement = document.getElementById('lastUpdated');
+        // --- V8.4 GLOBAL CONFIGURATION ---
+        const PASSWORD = "Mirlou1210!";
+        const DATA_URL = "./data/predictions.json";
+        let allPredictions = [];
+        let currentLeague = "ALL";
+        let currentConfidence = "ALL"; 
         
-        // Use a generic loading screen until data is verified
-        container.innerHTML = '<div style="text-align: center; padding: 4rem;"><h2>Loading V8.4 Engine...</h2></div>'; 
-
-        try {
-            const response = await fetch(DATA_URL);
-
-            if (!response.ok) {
-                // Handle 404 (file not found) or network errors gracefully
-                statusElement.innerText = `Error: Could not fetch predictions (${response.status}).`;
-                container.innerHTML = `<h2>No predictions published yet.</h2>`;
+        // --- AUTH LOGIC ---
+        function checkPassword() {
+            if (document.getElementById('passwordInput').value === PASSWORD) {
+                document.cookie = "sg_auth=true; max-age=604800; path=/"; 
+                initApp();
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
+            }
+        }
+    
+        function initApp() {
+            document.getElementById('passwordOverlay').classList.add('hidden');
+            document.getElementById('mainContent').classList.add('visible');
+            // CRITICAL: Start fetching data immediately after successful authentication
+            fetchData(); 
+        }
+    
+        if (document.cookie.includes("sg_auth=true")) initApp();
+    
+        // --- V8.4 CORE DATA FETCH LOGIC (RESILIENT) ---
+        async function fetchData() {
+            const container = document.getElementById('predictionsContainer');
+            const statusElement = document.getElementById('lastUpdated');
+            
+            // Set initial loading state
+            container.innerHTML = '<div style="text-align: center; padding: 4rem;"><h2>Loading V8.4 Engine...</h2></div>'; 
+    
+            try {
+                // CRITICAL: Use cache-busting parameter to ensure fresh data after deployment
+                const response = await fetch(`${DATA_URL}?t=${Date.now()}`);
+    
+                if (!response.ok) {
+                    statusElement.innerText = `Error: Could not fetch predictions (${response.status}).`;
+                    container.innerHTML = `<h2>No predictions published yet. Deployment error.</h2>`;
+                    allPredictions = [];
+                    return;
+                }
+    
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    // SUCCESS: Store globally and apply initial filters
+                    // Filter DRAFTs and Sort by most recent
+                    allPredictions = data.filter(p => p.status === "PUBLISH").reverse();
+                    applyFilters(); // Apply filters which calls renderCards
+                    statusElement.innerText = `Feed Synced: ${new Date().toLocaleTimeString()}`;
+                } else {
+                    // SUCCESS: File found, but data is empty
+                    statusElement.innerText = 'Feed Synced: No active picks.';
+                    container.innerHTML = '<h2>No active picks right now. Check back soon.</h2>';
+                    allPredictions = [];
+                }
+    
+            } catch (error) {
+                // CRITICAL FAIL: Handles JSON parsing errors or other critical JS faults
+                console.error("Critical Error loading predictions:", error);
+                statusElement.innerText = 'Feed Error. Check console.';
+                container.innerHTML = `<h2>Critical Error: Failed to load data.</h2>`;
                 allPredictions = [];
+            }
+        }
+        
+        // --- V8.4 RENDER LOGIC ---
+    
+        function renderCards(items) {
+            const container = document.getElementById('predictionsContainer');
+            container.innerHTML = "";
+            
+            if (items.length === 0) {
+                document.getElementById('noData').classList.remove('hidden');
                 return;
             }
-
-            const data = await response.json();
+            document.getElementById('noData').classList.add('hidden');
+    
+            items.forEach(pred => {
+                // Read clean fields created by 05_ai_predictor.py
+                const selection = pred.selection || 'See Details';
+                const confidenceTier = pred.confidence_tier || 'PASS'; 
+                
+                // Map the Tier to a visual class and value
+                let confidenceVal = 0; 
+                let tierClass = "conf-pass";
+                
+                if (confidenceTier.toUpperCase().includes('LOCK')) { confidenceVal = 85; tierClass = "conf-strong"; }
+                else if (confidenceTier.toUpperCase().includes('STRONG')) { confidenceVal = 75; tierClass = "conf-solid"; }
+                else if (confidenceTier.toUpperCase().includes('LEAN')) { confidenceVal = 65; tierClass = "conf-lean"; }
+    
+                // Format Analysis: Remove metadata headers (Selection/Confidence/Sections) from the body text
+                let analysisBody = pred.analysis
+                    .replace(/════.*?\n/g, '') // Remove top and bottom boundaries
+                    .replace(/## \d\. .*?\n/g, '<strong>') // Remove all ## SECTION HEADERS and replace with strong tag
+                    .replace(/━━━━━━━━.*?\n/g, '') // Remove horizontal lines
+                    .replace(/Selection:.*?\n/i, '')
+                    .replace(/Confidence:.*?\n/i, '')
+                    .replace(/Analysis:.*?\n/i, '') // Old V8 prefix
+                    .trim()
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\n/g, '<br>'); // Convert newlines to HTML breaks
+                
+                const sport = pred.sport || detectSport(pred.game) || "NFL";
+    
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.setAttribute('data-confidence-tier', confidenceTier);
+                card.setAttribute('data-confidence', confidenceVal); // Used for sorting/numeric comparison
+    
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div>
+                            <div class="game-meta">
+                                <span class="sport-tag">${sport}</span>
+                                <span>${formatDate(pred.date)}</span>
+                            </div>
+                            <div class="matchup-title">${pred.game}</div>
+                        </div>
+                        <span class="confidence-badge ${tierClass}">${confidenceTier}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="pick-row">
+                            <span class="pick-label">Target</span>
+                            <span class="pick-value" style="color:#667eea">${selection}</span>
+                        </div>
+                        
+                        <div class="analysis-content">
+                            <div class="analysis-preview">
+                                ${analysisBody}
+                            </div>
+                            <div class="analysis-full" style="display:none;">
+                                ${analysisBody}
+                            </div>
+                            <button class="read-more-btn" onclick="toggleAnalysis(this)">Read Analysis ↓</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
             
-            if (data && data.length > 0) {
-                // SUCCESS: Store globally and apply filters
-                allPredictions = data; 
-                applyFilters(); // Apply filters which calls renderCards
-                statusElement.innerText = `Feed Synced: ${new Date().toLocaleTimeString()}`;
-            } else {
-                // SUCCESS: File found, but data is empty
-                statusElement.innerText = 'Feed Synced: No active picks.';
-                container.innerHTML = '<h2>No active picks right now. Check back soon.</h2>';
-                allPredictions = [];
-            }
-
-        } catch (error) {
-            // CRITICAL FAIL: Handles JSON parsing errors or other critical JS faults
-            console.error("Critical Error loading predictions:", error);
-            statusElement.innerText = 'Feed Error. Check console.';
-            container.innerHTML = `<h2>Critical Error: Failed to load data.</h2>`;
-            allPredictions = [];
+            // Re-attach listeners for the expansion logic
+            document.querySelectorAll('.read-more-btn').forEach(btn => {
+                btn.closest('.analysis-content').querySelector('.analysis-preview').style.display = '-webkit-box';
+            });
+    
         }
-    }
+        
+        function toggleAnalysis(btn) {
+            const container = btn.closest('.analysis-content');
+            const full = container.querySelector('.analysis-full');
+            const preview = container.querySelector('.analysis-preview');
+            
+            if (full.style.display === 'block') {
+                full.style.display = 'none';
+                preview.style.display = '-webkit-box'; // Show preview text clamp
+                btn.innerText = 'Read Analysis ↓';
+            } else {
+                full.style.display = 'block';
+                preview.style.display = 'none';
+                btn.innerText = 'Hide Analysis ↑';
+            }
+        }
     
-    // --- V8.4 INITIALIZATION ---
-
-    // 1. Check for valid cookie and call initApp (which calls fetchData)
-    if (document.cookie.includes("sg_auth=true")) {
-        initApp();
-    } else {
-        // 2. If no cookie, simply call fetchData once the DOM is ready (shows loading screen immediately)
-        document.addEventListener('DOMContentLoaded', fetchData);
-    }
+        function formatDate(dateStr) {
+            try {
+                // Attempt to handle date strings from the JSON
+                return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+            } catch { 
+                return dateStr; 
+            }
+        }
     
-    // The rest of your script (renderCards, toggleAnalysis, applyFilters, etc.) continues below this line.
+        function detectSport(gameTitle) {
+            // Simple logic for category filtering
+            if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs") || gameTitle.includes("Lions")) return "NFL";
+            if (gameTitle.includes("Lakers") || gameTitle.includes("Celtics")) return "NBA";
+            return "NFL";
+        }
+    
+        function filterLeague(league) {
+            currentLeague = league;
+            document.querySelectorAll('.league-btn').forEach(btn => {
+                if (btn.innerText === (league === "ALL" ? "All Sports" : league)) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            applyFilters();
+        }
+    
+        function filterConfidence(tier, btnElement) {
+            currentConfidence = tier;
+            // Update button styles
+            document.querySelectorAll('#confidenceFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+            applyFilters();
+        }
+    
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = allPredictions.filter(p => {
+                const sport = detectSport(p.game) || "NFL";
+                const cardConfidence = p.confidence_tier ? p.confidence_tier.toUpperCase() : 'PASS';
+                
+                // 1. League Filter
+                const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
+                
+                // 2. Search Filter
+                const matchesSearch = p.game.toLowerCase().includes(search);
+                
+                // 3. Confidence Filter
+                const matchesConfidence = currentConfidence === "ALL" || cardConfidence === currentConfidence;
+                
+                return matchesLeague && matchesSearch && matchesConfidence;
+            });
+            renderCards(filtered);
+        }
     </script>
 
 // --- CORE LOGIC ---
