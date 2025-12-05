@@ -26,197 +26,69 @@
             -webkit-text-fill-color: transparent; 
         }
         
-        /* SEARCH */
+        /* SEARCH & MENU */
         .search-container { position: relative; margin-left: auto; }
         .search-input { padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 20px; border: 1px solid #e5e7eb; background: #f9fafb; outline: none; width: 200px; }
         .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 0.9rem; }
 
-        /* MENU */
         .league-menu { display: flex; gap: 1rem; overflow-x: auto; padding: 1rem 0; scrollbar-width: none; }
         .league-btn { background: #f3f4f6; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; color: #6b7280; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
         .league-btn:hover { background: #e5e7eb; color: #374151; }
         .league-btn.active { background: #667eea; color: white; }
 
-        /* HERO & FILTER BAR */
-        .hero { 
-            text-align: center; 
-            padding: 4rem 0 1rem; 
-            color: white; 
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
+        /* HERO & FILTER */
+        .hero { text-align: center; padding: 4rem 0 1rem; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
         #lastUpdated { font-size: 1rem; opacity: 0.8; }
         
-        /* CONFIDENCE FILTERS */
-        #confidenceFilterBar {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 1.25rem 0;
-            flex-wrap: wrap; 
-        }
-        .filter-btn {
-            border: 2px solid transparent;
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-            background: #e5e7eb; 
-            color: #4b5563;
-        }
+        #confidenceFilterBar { display: flex; justify-content: center; gap: 12px; padding: 1.25rem 0; flex-wrap: wrap; }
+        .filter-btn { border: 2px solid transparent; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; background: #e5e7eb; color: #4b5563; }
         .filter-btn:hover { border-color: #93c5fd; }
+        .filter-btn.active { box-shadow: 0 4px 8px rgba(102, 114, 234, 0.3); color: white; border-color: transparent; transform: translateY(-1px); }
+        
+        /* CONFIDENCE COLORS */
+        .conf-lock, .filter-btn.active.conf-lock { background: #10b981; color: white; } 
+        .conf-strong, .filter-btn.active.conf-strong { background: #3b82f6; color: white; } 
+        .conf-lean, .filter-btn.active.conf-lean { background: #f59e0b; color: white; } 
+        .conf-pass, .filter-btn.active.conf-pass { background: #6b7280; color: white; } 
 
-        .filter-btn.active {
-            box-shadow: 0 4px 8px rgba(102, 114, 234, 0.3);
-            color: white; 
-            border-color: transparent;
-            transform: translateY(-1px);
-        }
+        .confidence-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 700; color: white; }
 
-        /* Confidence Tier Colors */
-        .conf-lock, .filter-btn.active.conf-lock { background: #10b981; color: white; } /* Green */
-        .conf-strong, .filter-btn.active.conf-strong { background: #3b82f6; color: white; } /* Blue */
-        .conf-lean, .filter-btn.active.conf-lean { background: #f59e0b; color: white; } /* Amber */
-        .conf-pass, .filter-btn.active.conf-pass { background: #6b7280; color: white; } /* Gray */
-
-        .confidence-badge {
-            display: inline-block;
-            padding: 0.3rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
-        }
-
-        /* GAME CARDS */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
-            padding-top: 20px;
-        }
-        .game-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        .card-header {
-            padding: 1.25rem;
-            background: #f9fafb;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .matchup-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-top: 5px;
-        }
-        .game-meta {
-            font-size: 0.8rem;
-            color: #6b7280;
-            display: flex;
-            gap: 10px;
-        }
-        .sport-tag { 
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        /* CARD BODY & PICK ROW */
-        .card-body { padding: 1.25rem; }
-        .pick-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f3f4f6;
-            margin-bottom: 1rem;
-        }
+        /* CARDS */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding-top: 20px; }
+        .game-card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; }
+        .card-header { padding: 1.25rem; background: #f9fafb; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
+        .matchup-title { font-size: 1.15rem; font-weight: 700; color: #1f2937; margin-top: 5px; }
+        .game-meta { font-size: 0.8rem; color: #6b7280; display: flex; gap: 10px; }
+        .sport-tag { font-weight: 700; color: #667eea; }
+        .card-body { padding: 1.25rem; flex-grow: 1; }
+        .pick-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid #f3f4f6; margin-bottom: 1rem; }
         .pick-label { font-weight: 600; color: #4b5563; }
         .pick-value { font-size: 1.1rem; font-weight: 700; color: #10b981; }
 
-        /* ANALYSIS CONTENT (RESTORED TOGGLE) */
-        .analysis-content { position: relative; }
-        
-        .analysis-preview {
-            max-height: 80px; /* Limits height to approx 3-4 lines */
-            overflow: hidden;
-            color: #4b5563;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 3; /* Show only 3 lines */
-            -webkit-box-orient: vertical;
-            white-space: normal;
-        }
-        
-        .analysis-full {
-            display: none; /* Hidden by default */
-            color: #4b5563;
-            line-height: 1.6;
-            white-space: pre-wrap; /* Preserve paragraph spacing */
-        }
-        
-        .read-more-btn {
-            background: none;
-            border: none;
-            color: #667eea;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            padding: 0;
-            text-decoration: underline;
-            display: block;
-        }
-        
-        /* AUTH OVERLAY */
-        #passwordOverlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            transition: opacity 0.5s;
-        }
-        #passwordOverlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            width: 90%;
-            max-width: 400px;
-        }
-        .login-box h2 { color: #667eea; margin-bottom: 20px; }
-        .login-box input {
-            width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;
-        }
-        .login-box button {
-            background: #667eea; color: white; padding: 12px 25px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.3s;
-        }
-        .login-box button:hover { background: #5a66d0; }
-        #passwordError { color: #ef4444; margin-top: 10px; display: none; font-size: 0.9rem; }
+        /* BUTTONS */
+        .read-more-btn { background: #667eea; color: white; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; margin-top: auto; }
+        .read-more-btn:hover { background: #5a66d0; }
 
-        #mainContent {
-            opacity: 0;
-            transition: opacity 0.5s 0.3s;
-        }
-        #mainContent.visible {
-            opacity: 1;
-        }
+        /* MODAL (POP-OUT) */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        
+        .modal-content { background: white; padding: 2rem; border-radius: 16px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .modal-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; }
+        .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #9ca3af; }
+        .modal-body { font-size: 1rem; color: #374151; line-height: 1.7; white-space: pre-wrap; text-align: left; }
+
+        /* AUTH & UTILS */
+        #passwordOverlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%); display: flex; justify-content: center; align-items: center; z-index: 2000; transition: opacity 0.5s; }
+        #passwordOverlay.hidden { opacity: 0; pointer-events: none; }
+        .login-box { background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: 90%; max-width: 400px; }
+        .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        .login-box button { background: #667eea; color: white; padding: 12px 25px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; }
+        #mainContent { opacity: 0; transition: opacity 0.5s 0.3s; }
+        #mainContent.visible { opacity: 1; }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -228,7 +100,23 @@
             <p>Access requires authentication.</p>
             <input type="password" id="passwordInput" placeholder="Enter Access Code">
             <button onclick="checkPassword()">Access Analytics</button>
-            <div id="passwordError">Incorrect access code. Please try again.</div>
+            <div id="passwordError" style="color:red; margin-top:10px; display:none">Incorrect access code.</div>
+        </div>
+    </div>
+
+    <div id="analysisModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <span id="modalSport" class="sport-tag">NFL</span>
+                    <h2 id="modalTitle" style="margin: 5px 0;">Game Title</h2>
+                    <span id="modalBadge" class="confidence-badge conf-strong">STRONG</span>
+                </div>
+                <button class="modal-close" onclick="closeModal(event)">×</button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                Analysis text goes here...
+            </div>
         </div>
     </div>
 
@@ -237,7 +125,7 @@
             <div class="container">
                 <nav>
                     <div class="logo">
-                        🎯 SpreadGenie Pro <span style="font-size:0.8rem; font-weight: normal; color:#667eea;">V8.4</span>
+                        🎯 SpreadGenie Pro
                     </div>
                     <div class="search-container">
                         <span class="search-icon">🔍</span>
@@ -268,23 +156,19 @@
             </div>
 
             <div id="predictionsContainer" class="grid-container"></div>
-
             <div id="noData" class="hidden" style="text-align: center; padding: 3rem; color: white;">
-                <h2>No active predictions found for this filter.</h2>
-                <p>Try resetting the filter or check back later.</p>
+                <h2>No active predictions found.</h2>
             </div>
         </main>
     </div>
 
     <script>
-        // --- V8.4 GLOBAL CONFIGURATION ---
         const PASSWORD = "Mirlou1210!";
         const DATA_URL = "./data/predictions.json"; 
         let allPredictions = [];
         let currentLeague = "ALL";
         let currentConfidence = "ALL"; 
         
-        // --- AUTH LOGIC ---
         function checkPassword() {
             if (document.getElementById('passwordInput').value === PASSWORD) {
                 document.cookie = "sg_auth=true; max-age=604800; path=/"; 
@@ -300,47 +184,29 @@
             fetchData(); 
         }
 
-        // --- V8.4 CORE DATA FETCH LOGIC ---
         async function fetchData() {
             const container = document.getElementById('predictionsContainer');
             const statusElement = document.getElementById('lastUpdated');
-            
-            container.innerHTML = '<div style="text-align: center; padding: 4rem; color: white;"><h2>Loading V8.4 Engine...</h2></div>'; 
+            container.innerHTML = '<div style="text-align:center; padding:4rem; color:white;"><h2>Loading Engine...</h2></div>'; 
 
             try {
-                // Add cache-busting to ensure fresh data
                 const response = await fetch(`${DATA_URL}?t=${Date.now()}`);
-
-                if (!response.ok) {
-                    statusElement.innerText = `Status: Offline (${response.status})`;
-                    container.innerHTML = `<h2 style="color:white; text-align:center;">No predictions found.</h2>`;
-                    allPredictions = [];
-                    return;
-                }
-
+                if (!response.ok) throw new Error("File not found");
                 const data = await response.json();
                 
                 if (data && data.length > 0) {
-                    // SUCCESS: Filter DRAFTs and apply initial filters
                     allPredictions = data.filter(p => p.status === "PUBLISH").reverse();
                     applyFilters(); 
                     statusElement.innerText = `Feed Synced: ${new Date().toLocaleTimeString()}`;
                 } else {
-                    statusElement.innerText = 'Feed Synced: No active picks.';
-                    container.innerHTML = '<h2 style="color:white; text-align:center;">No active picks right now. Check back soon.</h2>';
-                    allPredictions = [];
+                    container.innerHTML = '<h2 style="color:white; text-align:center;">No active picks.</h2>';
                 }
-
             } catch (error) {
-                console.error("Fetch Error:", error);
-                statusElement.innerText = 'Feed Error (Check Console)';
+                statusElement.innerText = 'Feed Error';
                 container.innerHTML = `<h2 style="color:white; text-align:center;">System Error: Failed to load data.</h2>`;
-                allPredictions = [];
             }
         }
         
-        // --- V8.4 RENDER LOGIC ---
-
         function renderCards(items) {
             const container = document.getElementById('predictionsContainer');
             container.innerHTML = "";
@@ -351,35 +217,20 @@
             }
             document.getElementById('noData').classList.add('hidden');
 
-            items.forEach(pred => {
+            items.forEach((pred, index) => {
                 const selection = pred.selection || 'See Details';
                 const confidenceTier = pred.confidence_tier || 'PASS'; 
-                
-                let confidenceVal = 0; 
                 let tierClass = "conf-pass";
                 
-                if (confidenceTier.toUpperCase().includes('LOCK')) { confidenceVal = 85; tierClass = "conf-lock"; }
-                else if (confidenceTier.toUpperCase().includes('STRONG')) { confidenceVal = 75; tierClass = "conf-strong"; }
-                else if (confidenceTier.toUpperCase().includes('LEAN')) { confidenceVal = 65; tierClass = "conf-lean"; }
-
-                // Clean up the analysis text for display
-                let analysisBody = pred.analysis
-                    .replace(/════.*?\n/g, '') 
-                    .replace(/## \d\. .*?\n/g, '<strong>') 
-                    .replace(/━━━━━━━━.*?\n/g, '') 
-                    .replace(/Selection:.*?\n/i, '')
-                    .replace(/Confidence:.*?\n/i, '')
-                    .replace(/Analysis:.*?\n/i, '') 
-                    .trim()
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\n/g, '<br>'); 
-                
-                const sport = detectSport(pred.game) || "NFL";
+                if (confidenceTier.toUpperCase().includes('LOCK')) tierClass = "conf-lock";
+                else if (confidenceTier.toUpperCase().includes('STRONG')) tierClass = "conf-strong";
+                else if (confidenceTier.toUpperCase().includes('LEAN')) tierClass = "conf-lean";
+            
+                // Use explicit sport tag OR fallback detection
+                const sport = pred.sport || detectSportFallback(pred.game);
 
                 const card = document.createElement('div');
                 card.className = 'game-card';
-                card.setAttribute('data-confidence-tier', confidenceTier);
-
                 card.innerHTML = `
                     <div class="card-header">
                         <div>
@@ -396,51 +247,88 @@
                             <span class="pick-label">Target</span>
                             <span class="pick-value" style="color:#667eea">${selection}</span>
                         </div>
-                        
-                        <div class="analysis-content">
-                            <div class="analysis-preview">
-                                ${analysisBody}
-                            </div>
-                            <div class="analysis-full">
-                                ${analysisBody}
-                            </div>
-                            <button class="read-more-btn" onclick="toggleAnalysis(this)">Read Analysis ↓</button>
-                        </div>
+                        <button class="read-more-btn" onclick="openModal(${index})">Read Analysis</button>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
-        
-        // --- TOGGLE HELPER (RESTORED) ---
-        
-        function toggleAnalysis(btn) {
-            const container = btn.closest('.analysis-content');
-            const full = container.querySelector('.analysis-full');
-            const preview = container.querySelector('.analysis-preview');
+
+        // --- MODAL LOGIC (POP-OUT) ---
+        function openModal(index) {
+            // Find the correct item based on current filtered list is tricky, 
+            // so we find it in allPredictions by matching the visual card? 
+            // Better: re-filter locally or pass ID. 
+            // Simplest for now: Use the filtered 'currentItems' if possible, or just pass object.
+            // Actually, renderCards receives 'items'. We need to be careful with index.
+            // Let's attach the data-id to the card button.
             
-            if (full.style.display === 'block') {
-                full.style.display = 'none';
-                preview.style.display = '-webkit-box'; 
-                btn.innerText = 'Read Analysis ↓';
-            } else {
-                full.style.display = 'block';
-                preview.style.display = 'none';
-                btn.innerText = 'Hide Analysis ↑';
+            // FIX: We will look up the item in 'allPredictions' using the Game Name or ID from the card.
+            // Re-render:
+            const item = currentRenderedItems[index]; 
+            
+            document.getElementById('modalTitle').innerText = item.game;
+            document.getElementById('modalSport').innerText = item.sport || "Sports";
+            
+            const badge = document.getElementById('modalBadge');
+            badge.innerText = item.confidence_tier;
+            badge.className = `confidence-badge ${getTierClass(item.confidence_tier)}`;
+            
+            // Clean Analysis Text
+            let analysisText = item.analysis
+                .replace(/════.*?\n/g, '') 
+                .replace(/## \d\. .*?\n/g, '') 
+                .replace(/━━━━━━━━.*?\n/g, '') 
+                .replace(/Selection:.*?\n/i, '')
+                .replace(/Confidence:.*?\n/i, '')
+                .replace(/Analysis:.*?\n/i, '') 
+                .trim();
+
+            document.getElementById('modalBody').innerText = analysisText;
+            document.getElementById('analysisModal').classList.add('active');
+        }
+
+        function closeModal(e) {
+            if (e.target === document.getElementById('analysisModal') || e.target.classList.contains('modal-close')) {
+                document.getElementById('analysisModal').classList.remove('active');
             }
         }
 
-        // --- OTHER HELPERS ---
+        let currentRenderedItems = []; // Store current view for modal lookup
 
-        function formatDate(dateStr) {
-            try {
-                return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-            } catch { return dateStr; }
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = allPredictions.filter(p => {
+                const sport = p.sport || detectSportFallback(p.game);
+                const cardConfidence = p.confidence_tier ? p.confidence_tier.toUpperCase() : 'PASS';
+                
+                const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
+                const matchesSearch = p.game.toLowerCase().includes(search);
+                const matchesConfidence = currentConfidence === "ALL" || cardConfidence.includes(currentConfidence);
+                
+                return matchesLeague && matchesSearch && matchesConfidence;
+            });
+            
+            currentRenderedItems = filtered; // Update global reference for modal
+            renderCards(filtered);
         }
 
-        function detectSport(gameTitle) {
-            if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs") || gameTitle.includes("Lions")) return "NFL";
-            return "NFL";
+        function detectSportFallback(gameTitle) {
+            if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
+            return "CFB"; // Default to CFB if not obvious NFL (Temporary fix)
+        }
+
+        function getTierClass(tier) {
+            if (tier.includes('LOCK')) return "conf-lock";
+            if (tier.includes('STRONG')) return "conf-strong";
+            if (tier.includes('LEAN')) return "conf-lean";
+            return "conf-pass";
+        }
+
+        function formatDate(dateStr) {
+            try { return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); } 
+            catch { return dateStr; }
         }
 
         function filterLeague(league, btnElement) {
@@ -456,32 +344,8 @@
             btnElement.classList.add('active');
             applyFilters();
         }
-
-        function applyFilters() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            
-            const filtered = allPredictions.filter(p => {
-                const sport = detectSport(p.game) || "NFL";
-                const cardConfidence = p.confidence_tier ? p.confidence_tier.toUpperCase() : 'PASS';
-                
-                // 1. League Filter
-                const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
-                
-                // 2. Search Filter
-                const matchesSearch = p.game.toLowerCase().includes(search);
-                
-                // 3. Confidence Filter
-                const matchesConfidence = currentConfidence === "ALL" || cardConfidence.includes(currentConfidence);
-                
-                return matchesLeague && matchesSearch && matchesConfidence;
-            });
-            renderCards(filtered);
-        }
         
-        // --- INITIALIZATION ---
-        if (document.cookie.includes("sg_auth=true")) {
-            initApp();
-        }
+        if (document.cookie.includes("sg_auth=true")) initApp();
     </script>
 </body>
 </html>
