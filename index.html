@@ -26,6 +26,17 @@
             -webkit-text-fill-color: transparent; 
         }
         
+        /* SEARCH */
+        .search-container { position: relative; margin-left: auto; }
+        .search-input { padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 20px; border: 1px solid #e5e7eb; background: #f9fafb; outline: none; width: 200px; }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 0.9rem; }
+
+        /* MENU */
+        .league-menu { display: flex; gap: 1rem; overflow-x: auto; padding: 1rem 0; scrollbar-width: none; }
+        .league-btn { background: #f3f4f6; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; color: #6b7280; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .league-btn:hover { background: #e5e7eb; color: #374151; }
+        .league-btn.active { background: #667eea; color: white; }
+
         /* HERO & FILTER BAR */
         .hero { 
             text-align: center; 
@@ -36,7 +47,7 @@
         .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
         #lastUpdated { font-size: 1rem; opacity: 0.8; }
         
-        /* UI BUTTONS & FILTERS */
+        /* CONFIDENCE FILTERS */
         #confidenceFilterBar {
             display: flex;
             justify-content: center;
@@ -64,7 +75,7 @@
             transform: translateY(-1px);
         }
 
-        /* Confidence Tier Colors for Filters/Badges */
+        /* Confidence Tier Colors */
         .conf-lock, .filter-btn.active.conf-lock { background: #10b981; color: white; } /* Green */
         .conf-strong, .filter-btn.active.conf-strong { background: #3b82f6; color: white; } /* Blue */
         .conf-lean, .filter-btn.active.conf-lean { background: #f59e0b; color: white; } /* Amber */
@@ -83,7 +94,7 @@
         /* GAME CARDS */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 20px;
             padding-top: 20px;
         }
@@ -131,44 +142,97 @@
         .pick-label { font-weight: 600; color: #4b5563; }
         .pick-value { font-size: 1.1rem; font-weight: 700; color: #10b981; }
 
-        /* ANALYSIS CONTENT */
+        /* ANALYSIS CONTENT (RESTORED TOGGLE) */
         .analysis-content { position: relative; }
-        .analysis-text {
+        
+        .analysis-preview {
+            max-height: 80px; /* Limits height to approx 3-4 lines */
+            overflow: hidden;
+            color: #4b5563;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Show only 3 lines */
+            -webkit-box-orient: vertical;
+            white-space: normal;
+        }
+        
+        .analysis-full {
+            display: none; /* Hidden by default */
             color: #4b5563;
             line-height: 1.6;
-            white-space: pre-wrap; /* Preserves paragraphs */
+            white-space: pre-wrap; /* Preserve paragraph spacing */
         }
         
-        /* UTILS */
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            padding: 0;
+            text-decoration: underline;
+            display: block;
+        }
+        
+        /* AUTH OVERLAY */
+        #passwordOverlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            transition: opacity 0.5s;
+        }
+        #passwordOverlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+        .login-box h2 { color: #667eea; margin-bottom: 20px; }
+        .login-box input {
+            width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;
+        }
+        .login-box button {
+            background: #667eea; color: white; padding: 12px 25px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.3s;
+        }
+        .login-box button:hover { background: #5a66d0; }
+        #passwordError { color: #ef4444; margin-top: 10px; display: none; font-size: 0.9rem; }
+
+        #mainContent {
+            opacity: 0;
+            transition: opacity 0.5s 0.3s;
+        }
+        #mainContent.visible {
+            opacity: 1;
+        }
         .hidden { display: none !important; }
-        .main-content { display: none; }
-        .main-content.visible { display: block; }
-        
-        /* PASSWORD */
-        .password-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 9999; }
-        .password-box { background: white; padding: 2.5rem; border-radius: 16px; text-align: center; width: 90%; max-width: 360px; }
-        .password-input { width: 100%; padding: 0.8rem; border: 1px solid #e5e7eb; border-radius: 8px; margin: 1rem 0; }
-        .unlock-btn { background: #667eea; color: white; border: none; padding: 0.8rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; }
-        
-        @media (max-width: 768px) {
-            .grid-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-        }
     </style>
 </head>
 <body>
 
-    <div id="passwordOverlay" class="password-overlay">
-        <div class="password-box">
-            <h2>SpreadGenie Pro</h2>
-            <p style="color:#6b7280; margin-bottom:10px">Client Access Portal</p>
-            <input type="password" id="passwordInput" class="password-input" placeholder="Enter Access Code">
-            <button onclick="checkPassword()" class="unlock-btn">Unlock</button>
-            <p id="passwordError" style="color:red; display:none; margin-top:10px">Invalid Code</p>
+    <div id="passwordOverlay">
+        <div class="login-box">
+            <h2>Welcome to SpreadGenie Pro</h2>
+            <p>Access requires authentication.</p>
+            <input type="password" id="passwordInput" placeholder="Enter Access Code">
+            <button onclick="checkPassword()">Access Analytics</button>
+            <div id="passwordError">Incorrect access code. Please try again.</div>
         </div>
     </div>
 
-    <div id="mainContent" class="main-content">
+    <div id="mainContent">
         <header>
             <div class="container">
                 <nav>
@@ -290,7 +354,6 @@
             items.forEach(pred => {
                 const selection = pred.selection || 'See Details';
                 const confidenceTier = pred.confidence_tier || 'PASS'; 
-                const analysisText = pred.analysis || 'Analysis unavailable.';
                 
                 let confidenceVal = 0; 
                 let tierClass = "conf-pass";
@@ -298,7 +361,19 @@
                 if (confidenceTier.toUpperCase().includes('LOCK')) { confidenceVal = 85; tierClass = "conf-lock"; }
                 else if (confidenceTier.toUpperCase().includes('STRONG')) { confidenceVal = 75; tierClass = "conf-strong"; }
                 else if (confidenceTier.toUpperCase().includes('LEAN')) { confidenceVal = 65; tierClass = "conf-lean"; }
-            
+
+                // Clean up the analysis text for display
+                let analysisBody = pred.analysis
+                    .replace(/════.*?\n/g, '') 
+                    .replace(/## \d\. .*?\n/g, '<strong>') 
+                    .replace(/━━━━━━━━.*?\n/g, '') 
+                    .replace(/Selection:.*?\n/i, '')
+                    .replace(/Confidence:.*?\n/i, '')
+                    .replace(/Analysis:.*?\n/i, '') 
+                    .trim()
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\n/g, '<br>'); 
+                
                 const sport = detectSport(pred.game) || "NFL";
 
                 const card = document.createElement('div');
@@ -323,9 +398,13 @@
                         </div>
                         
                         <div class="analysis-content">
-                            <div class="analysis-text">
-                                ${analysisText}
+                            <div class="analysis-preview">
+                                ${analysisBody}
                             </div>
+                            <div class="analysis-full">
+                                ${analysisBody}
+                            </div>
+                            <button class="read-more-btn" onclick="toggleAnalysis(this)">Read Analysis ↓</button>
                         </div>
                     </div>
                 `;
@@ -333,7 +412,25 @@
             });
         }
         
-        // --- HELPER FUNCTIONS ---
+        // --- TOGGLE HELPER (RESTORED) ---
+        
+        function toggleAnalysis(btn) {
+            const container = btn.closest('.analysis-content');
+            const full = container.querySelector('.analysis-full');
+            const preview = container.querySelector('.analysis-preview');
+            
+            if (full.style.display === 'block') {
+                full.style.display = 'none';
+                preview.style.display = '-webkit-box'; 
+                btn.innerText = 'Read Analysis ↓';
+            } else {
+                full.style.display = 'block';
+                preview.style.display = 'none';
+                btn.innerText = 'Hide Analysis ↑';
+            }
+        }
+
+        // --- OTHER HELPERS ---
 
         function formatDate(dateStr) {
             try {
