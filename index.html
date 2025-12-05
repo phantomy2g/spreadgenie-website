@@ -54,32 +54,55 @@
 
         .confidence-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 700; color: white; }
 
-        /* CARDS */
+        /* CARDS (ALIGNMENT FIX) */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding-top: 20px; }
-        .game-card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; }
+        
+        .game-card { 
+            background: white; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+            overflow: hidden; 
+            transition: transform 0.3s; 
+            display: flex; 
+            flex-direction: column; /* Force column layout */
+            height: 100%; /* Ensure full height */
+        }
+        
         .card-header { padding: 1.25rem; background: #f9fafb; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
         .matchup-title { font-size: 1.15rem; font-weight: 700; color: #1f2937; margin-top: 5px; }
         .game-meta { font-size: 0.8rem; color: #6b7280; display: flex; gap: 10px; }
         .sport-tag { font-weight: 700; color: #667eea; }
-        .card-body { padding: 1.25rem; flex-grow: 1; }
-        .pick-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid #f3f4f6; margin-bottom: 1rem; }
+        
+        .card-body { 
+            padding: 1.25rem; 
+            flex-grow: 1; /* Occupy remaining space */
+            display: flex; 
+            flex-direction: column; /* Column for internal elements */
+        }
+        
+        .pick-row { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 0.75rem 0; 
+            border-bottom: 1px solid #f3f4f6; 
+            margin-bottom: 1rem;
+            margin-top: auto; /* CRITICAL: Pushes this row to the bottom */
+        }
+        
         .pick-label { font-weight: 600; color: #4b5563; }
         .pick-value { font-size: 1.1rem; font-weight: 700; color: #10b981; }
 
         /* BUTTONS */
-        .read-more-btn { background: #667eea; color: white; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; margin-top: auto; }
+        .read-more-btn { background: #667eea; color: white; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; }
         .read-more-btn:hover { background: #5a66d0; }
 
         /* MODAL (POP-OUT) */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
-        
         .modal-content { background: white; padding: 2rem; border-radius: 16px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
-        
         .modal-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; }
         .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #9ca3af; }
-        /* LEFT ALIGNED TEXT FIX */
         .modal-body { font-size: 1rem; color: #374151; line-height: 1.7; white-space: pre-wrap; text-align: left; }
 
         /* AUTH & UTILS */
