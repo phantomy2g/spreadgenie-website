@@ -6,34 +6,8 @@
     "analysis": "The market is flashing a nuclear trap signal on this matchup. With an overwhelming 88% of the public money pouring in on the Dallas Cowboys +3, the line has remained completely static at Detroit -3.0 since opening. This is a classic example of reverse line movement, where oddsmakers refuse to budge despite heavy public sentiment, indicating that sharp money is quietly taking the Lions.\n\nDallas is in a dangerous spot here, coming off an emotionally charged victory against the Chiefs. This sets them up for a classic letdown performance on the road against a Lions team that historically performs exceptionally well after a loss, boasting a 3-1 ATS record in such situations. Expect a motivated Detroit squad to expose this public trap and control the game at home.",
     "status": "PUBLISH",
     "selection": "Detroit Lions -3.0",
-    "confidence_tier": "STRONG"
-  },
-  {
-    "id": "unlv_rebels_vs_boise_state_broncos",
-    "game": "UNLV Rebels vs Boise State Broncos",
-    "date": "2025-12-05",
-    "analysis": "This G5 showdown presents a clear case for G5 variance, especially with the home team playing on a Friday night. The internal model line favors the Broncos by a full touchdown, while the market has them sitting at a more favorable -5.5. This half-point to full-point difference is significant in G5 contests, where games often come down to a single score, providing excellent value on the home favorite.\n\nDespite the anomalous (0-0) records listed for both teams in December, the historical context of a night game on the blue turf for the Broncos remains a powerful differentiator. Their consistent performance at home, particularly in key conference matchups, makes it a difficult environment for any visiting squad. Taking Boise State at -5.5, which is lower than the projected model line of -7, capitalizes on the market potentially underestimating the home-field advantage and the Broncos' ability to secure a decisive victory in this G5 contest.",
-    "status": "PUBLISH",
-    "selection": "Boise State Broncos -5.5",
-    "confidence_tier": "STRONG"
-  },
-  {
-    "id": "byu_cougars_vs_texas_tech_red_raiders",
-    "game": "BYU Cougars vs Texas Tech Red Raiders",
-    "date": "2025-12-05",
-    "analysis": "The market is significantly overvaluing Texas Tech in this Week 15 matchup, presenting a clear value opportunity on the road underdog. Despite identical talent scores and identical 8-4 records for both P4 programs, DraftKings has inflated the home favorite's line well beyond what the model suggests. This substantial 7.5-point divergence indicates a potential public overreaction to home-field advantage or recent perception, ignoring the underlying parity in talent.\n\nTexas Tech is currently favored by 12.5 points at home, but the internal math anchor shows a much tighter contest, pegging the Red Raiders as only 5-point favorites. Both teams enter this contest with strong 8-4 records, suggesting competitive balance rather than a dominant favorite. This contest is far closer to a pick'em than the market implies. Betting against such a wide market discrepancy on perfectly matched talent profiles is a sharp play.",
-    "status": "PUBLISH",
-    "selection": "BYU Cougars +12.5",
-    "confidence_tier": "STRONG"
-  },
-  {
-    "id": "miami_(oh)_redhawks_vs_western_michigan_broncos",
-    "game": "Miami (OH) RedHawks vs Western Michigan Broncos",
-    "date": "2025-12-05",
-    "analysis": "This Championship Week clash presents a clear value play against the market. While both teams boast impressive 8-4 records in a competitive G5 conference, our internal models identify a significant discrepancy in the perceived strength of the home team. The sharp angle here is recognizing the undervalued home favorite, likely a product of G5 variance where talent levels are tight but home-field advantage and end-of-season form can dictate a larger margin than the market suggests.\n\nThis is a high-stakes championship game for two equally talented G5 programs, both holding a Talent Score of 700. The home team, Western Michigan, enters with an 8-4 record and our model projects them as a 5.0-point favorite. The market, however, has them priced at a mere -1.5. This 3.5-point gap strongly suggests the Broncos are being significantly undervalued by the betting public, providing a prime opportunity to capitalize on the host's edge in a winner-take-all scenario.",
-    "status": "PUBLISH",
-    "selection": "Western Michigan Broncos -1.5",
-    "confidence_tier": "STRONG"
+    "confidence_tier": "STRONG",
+    "sport": "NFL"
   },
   {
     "id": "kennesaw_state_owls_vs_jacksonville_state_gamecocks",
