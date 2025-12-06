@@ -7,96 +7,119 @@
     "status": "PUBLISH",
     "selection": "Detroit Lions -3.0",
     "confidence_tier": "STRONG",
-    "sport": "NFL"
-  },
-  {
-    "id": "kennesaw_state_vs_jacksonville_state",
-    "game": "Kennesaw State vs Jacksonville State",
-    "date": "2025-12-06",
-    "analysis": "While Kennesaw State's disruptive defense (17.3% Havoc) is a factor, the Hard Math heavily favors Jacksonville State. Our model projects them as an 11.1-point favorite, a stark contrast to the market's +2.5 underdog line, highlighting a significant value play. Jacksonville State's superior PPA (0.205) indicates their efficiency in staying on schedule and moving the chains, which will be crucial in mitigating Kennesaw State's pressure.\n\nThis substantial market discrepancy, coupled with Jacksonville State's slight edge in overall net efficiency and playing at home, makes them the clear pick. Despite the likelihood of some disruption from Kennesaw State's defense, the underlying metrics point to Jacksonville State not only covering but potentially winning outright by a comfortable margin.",
-    "status": "PUBLISH",
-    "selection": "Jacksonville State +2.5",
-    "confidence_tier": "STRONG",
-    "sport": "CFB"
-  },
-  {
-    "id": "troy_vs_james_madison",
-    "game": "Troy vs James Madison",
-    "date": "2025-12-06",
-    "analysis": "While Troy offers some resistance, the Hard Math heavily tilts towards James Madison. Their superior PPA (0.224 vs 0.095) means they're far better at 'staying on schedule' and 'moving the chains,' dictating the game's rhythm. Furthermore, their 20.5% Havoc rate indicates they'll be 'living in the backfield' and bringing significant defensive 'chaos' to Troy's offense. The model line of -38.8 against a market line of -23.5 strongly suggests the Dukes are significantly undervalued, setting up for a potential blowout.\n\nJames Madison's consistent offensive 'efficiency' combined with their ability to cause 'disruption' on defense will be too much for Troy to handle. Even without specific recent form metrics, the overwhelming statistical and situational edge for James Madison at home makes this a clear value play. Expect the Dukes to put on a dominant performance.",
-    "status": "PUBLISH",
-    "selection": "James Madison -23.5",
-    "confidence_tier": "STRONG",
-    "sport": "CFB"
-  },
-  {
-    "id": "north_texas_vs_tulane",
-    "game": "North Texas vs Tulane",
-    "date": "2025-12-06",
-    "analysis": "While the market sees Tulane as an underdog at +2.5, our Hard Math layers reveal a clear efficiency and disruption edge for the Green Wave. Tulane consistently demonstrates higher **efficiency** in \"staying on schedule\" with a PPA of 0.221 compared to North Texas's 0.394, indicating their superior ability to \"move the chains.\" Furthermore, Tulane's defense excels at creating **disruption**, with a Havoc rate of 16.3%, living in the backfield more often than North Texas (14.3%).\n\nThis mathematical advantage is further amplified by our internal model line, which places Tulane as a -2.3 favorite, a significant deviation from the market's +2.5. This substantial mispricing creates a strong value opportunity, positioning Tulane to not only cover but potentially win outright. We're backing the Green Wave to assert their dominance and deliver on the hidden value.",
-    "status": "PUBLISH",
-    "selection": "Tulane +2.5",
-    "confidence_tier": "LOCK",
-    "sport": "CFB"
-  },
-  {
-    "id": "unlv_vs_boise_state",
-    "game": "UNLV vs Boise State",
-    "date": "2025-12-06",
-    "analysis": "While UNLV has showcased impressive **efficiency** with a significantly higher PPA, suggesting they can consistently stay on schedule, this Mountain West Championship presents a classic case where situational dominance trumps raw metrics. Boise State owns this game historically, boasting a phenomenal record in conference championship matchups on their home turf. Their experience and comfort in this high-stakes environment provide an undeniable edge that often diminishes an opponent's statistical advantages in such crucial spots.\n\nFurthermore, Boise State is playing for an interim coach with a chance to secure the job, creating a significant motivation gap that will fuel their effort. Expect their defense to apply immense **disruption**, living in the backfield and creating chaos, which is a hallmark of their championship pedigree. Combine their home-field advantage with a deep-seated winning culture in title games, and the Broncos are poised to control the narrative from start to finish.",
-    "status": "PUBLISH",
-    "selection": "Boise State -5.5",
-    "confidence_tier": "STRONG",
-    "sport": "CFB"
+    "sport": "NFL",
+    "best_bet": {
+      "selection": "Detroit Lions -3.0",
+      "confidence": "STRONG"
+    },
+    "next_bet": {
+      "selection": "N/A",
+      "confidence": "PASS"
+    }
   },
   {
     "id": "byu_vs_texas_tech",
     "game": "BYU vs Texas Tech",
     "date": "2025-12-06",
-    "analysis": "While the market is giving BYU a chance with a -12.5 spread, the core metrics paint a starkly different picture. Texas Tech demonstrates superior **efficiency** with a significantly higher PPA and Net Efficiency, indicating their ability to consistently move the chains and score. Furthermore, their elite 23.0% **Havoc** rate points to a relentless defense that will create substantial **disruption** for BYU's offense, living in the backfield and making life difficult. The model line of Texas Tech -20.5 compared to the market at -12.5 suggests a clear value discrepancy, indicating a potential blowout.\n\nTexas Tech's statistical dominance across key offensive and defensive metrics positions them to control this matchup from start to finish. Their superior ability to stay on schedule offensively and generate chaos defensively should allow them to not only secure a win but cover the spread comfortably against a less efficient BYU squad.",
+    "timestamp": "2025-12-06T13:26:47.444066",
+    "analysis": "Alright, listen up, the play of the day is absolutely the **Over 49.5** in this BYU-Texas Tech game \u2013 it's a stone-cold lock. The market is completely asleep at the wheel here. Texas Tech's defense is going to be living in the backfield, creating chaos and putting constant pressure on BYU. That kind of suffocating pressure often leads to turnovers and short fields, which means quick strikes and more possessions for both teams. Plus, when the Red Raider offense gets going, they're excellent at staying on schedule and moving the chains. This game has all the hallmarks of a much higher-scoring affair than the oddsmakers are letting on.\n\nThe numbers are screaming at us that this total is drastically undervalued, indicating massive value on the Over. We're talking about a game that sets up for plenty of points from both sides. And if you're looking for a little something extra, we also like BYU at +12.5 \u2013 they might just hang around in this one, but the real money is on the scoreboard lighting up.",
     "status": "PUBLISH",
-    "selection": "Texas Tech -12.5",
-    "confidence_tier": "STRONG",
+    "best_bet": {
+      "selection": "Over 49.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
+    "next_bet": {
+      "selection": "BYU +12.5",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "confidence_tier": "LOCK",
+    "selection": "Over 49.5",
     "sport": "CFB"
   },
   {
     "id": "miami_(oh)_vs_western_michigan",
     "game": "Miami (OH) vs Western Michigan",
     "date": "2025-12-06",
-    "analysis": "While the raw metrics show Miami (OH) with a slight edge in offensive efficiency (PPA) and defensive disruption (Havoc), our comprehensive model strongly indicates Western Michigan should be a more significant favorite. The analytical line of Western Michigan -3.0 provides a clear value opportunity against the current market spread of -1.5. Both teams demonstrate high defensive Havoc, promising a game defined by pressure and disruption in the backfield.\n\nThis divergence between our internal math anchor and the market is critical. Western Michigan\u2019s ability to stay on schedule and navigate potential chaos will be key. We anticipate Western Michigan leveraging their strengths to convert opportunities into points more efficiently than Miami (OH), ultimately covering the spread. This isn't just a statistical edge; it's a valuation mismatch that favors the home team.",
+    "timestamp": "2025-12-06T13:26:58.385216",
+    "analysis": "Alright, my absolute lock of the day is the Over 43.5 in the Miami (OH) and Western Michigan game. I'm telling you, the market total on this one is just absurdly low; our numbers are screaming that this is going to be a much higher scoring affair than Vegas believes. Both of these teams, despite having defenses that create some chaos and live in the backfield, also have offenses that are far more capable of staying on schedule and moving the chains than the oddsmakers are giving them credit for. We're looking at a huge amount of value here because the true scoring potential is being completely overlooked.\n\nSeriously, I'd bet the farm on that Over. And if you're looking for a second play, I also really like Miami (OH) +1.5; our data suggests the wrong team is slightly favored, so you're getting some solid value with Miami on top of all those expected points. Don't overthink it, just smash that Over.",
     "status": "PUBLISH",
-    "selection": "Western Michigan -1.5",
-    "confidence_tier": "STRONG",
+    "best_bet": {
+      "selection": "Over 43.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
+    "next_bet": {
+      "selection": "Miami (OH) +1.5",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "confidence_tier": "LOCK",
+    "selection": "Over 43.5",
     "sport": "CFB"
   },
   {
     "id": "georgia_vs_alabama",
     "game": "Georgia vs Alabama",
     "date": "2025-12-06",
-    "analysis": "While the raw metrics show a tight contest in terms of offensive efficiency (\"staying on schedule\" with similar PPA scores) and defensive \"finishing,\" Alabama holds a crucial edge in \"chaos\" with an 18.6% Havoc rate. However, in this SEC Championship, Layer 3 (Situational Dominance) overrides the Hard Math. Alabama has historically owned this specific matchup in title games, often defying regular-season expectations. The massive discrepancy between our model line of Alabama -13.0 and the market's Alabama +2.5 screams value, highlighting a significant motivation gap where Alabama is playing for their CFP lives.\n\nThis historical situational edge is amplified by Alabama's urgent motivation and their proven capacity for disruption. Their defense consistently lives in the backfield, which will limit Georgia's offensive efficiency and ability to \"stay on schedule.\" Despite the potential for chaos due to high defensive Havoc, the combination of championship history and Alabama's strong model projection makes them the clear side here. Expect Alabama to not just cover, but to assert their dominance when it matters most.",
+    "timestamp": "2025-12-06T13:27:13.831562",
+    "analysis": "Listen up, the absolute best bet on the board tonight is the **Over 48.5 in Georgia @ Alabama**. Don't even think twice. The market is completely asleep at the wheel on this one. Our numbers are screaming that this total is laughably low, predicting a point explosion that no one else sees coming. We're talking about offenses that are going to be absolutely flying, constantly staying on schedule and moving the chains. While Georgia's defense is certainly capable of creating some disruption and living in the backfield, our data shows an undeniable path to an extremely high-scoring affair, with efficiency dominating any potential defensive stalls. This game is going to be a shootout, plain and simple.\n\nThis isn't just a hunch; the numbers don't lie, showing a massive value here on the total. It\u2019s one of those rare spots where the gap between our projection and the market is enormous. And if you're looking for another angle, we've also got **Georgia -2.5** as a strong play. We believe the market is completely mispricing this matchup, and Georgia is absolutely poised to dictate the pace and rhythm from start to finish. But make no mistake, the Over is the absolute lock here. Grab your seats, because this game is going to be nothing short of a fireworks display.",
     "status": "PUBLISH",
-    "selection": "Alabama +2.5",
-    "confidence_tier": "STRONG",
+    "best_bet": {
+      "selection": "Over 48.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
+    "next_bet": {
+      "selection": "Georgia -2.5",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "confidence_tier": "LOCK",
+    "selection": "Over 48.5",
     "sport": "CFB"
   },
   {
     "id": "duke_vs_virginia",
     "game": "Duke vs Virginia",
     "date": "2025-12-06",
-    "analysis": "The Hard Math screams value for Virginia in this matchup. While both teams demonstrate an ability for defensive chaos with high Havoc rates (Virginia 19.1%, Duke 17.7%), Virginia holds a significant edge in offensive **efficiency** as indicated by their superior PPA (0.189). More critically, our internal model projects Virginia as a dominant -17.9 favorite, a massive gap compared to the market's -4.0. This suggests the market is severely undervaluing Virginia's underlying statistical profile, especially their capacity for consistent **disruption** on defense combined with their overall net efficiency.\n\nThis significant discrepancy between our projected line and the market creates a clear play. Virginia's stronger foundational metrics, particularly their PPA, suggest they will be able to stay on schedule and move the chains more effectively. Even with potential chaos from both high Havoc defenses, Virginia's higher net efficiency and the sheer model difference indicate they should cover this spread comfortably. We are betting on the deep metrics revealing a superior team that the market has not yet caught up to.",
+    "timestamp": "2025-12-06T13:27:26.148489",
+    "analysis": "Alright, forget everything you think you know about typical low-scoring affairs, because for Duke @ Virginia, we are absolutely hammering the Over 57.5. Our model isn't just seeing value here; it's practically screaming about an offensive explosion. Both these teams are going to be living in the backfield and creating chaos on defense, but the market is completely undervaluing how many points are actually going to hit the scoreboard. The numbers don't lie, and they're projecting a truly wild game, way beyond what Vegas is expecting.\n\nThis isn't just a slight lean; it's a monumental mismatch between our projection and the market's. Expect constant pressure, yes, but also a flurry of points, potentially from quick changes of possession or big plays. And while the market thinks Virginia cruises, we're also seeing massive value on Duke +4.0. The whole game is mispriced, but that Over is a certified lock.",
     "status": "PUBLISH",
-    "selection": "Virginia -4.0",
-    "confidence_tier": "STRONG",
+    "best_bet": {
+      "selection": "Over 57.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
+    "next_bet": {
+      "selection": "Duke +4.0",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "confidence_tier": "LOCK",
+    "selection": "Over 57.5",
     "sport": "CFB"
   },
   {
     "id": "indiana_vs_ohio_state",
     "game": "Indiana vs Ohio State",
     "date": "2025-12-06",
-    "analysis": "Our internal model identifies a significant market mispricing, pegging Ohio State as a 6.6-point favorite against a market line of -4.0. While Indiana demonstrates notable **Disruption** with a high Havoc rate of 24.2% and even a slight edge in offensive **Efficiency** (PPA 0.370), the holistic view of our Hard Math framework reveals Ohio State's superior overall net efficiency (0.369 vs. 0.329).\n\nThis substantial 2.6-point discrepancy signals strong value on Ohio State. Despite the potential for chaos from Indiana's defense, the Buckeyes' consistent overall efficiency is poised to allow them to stay on schedule and overcome the projected spread. We're confidently backing Ohio State to cover, exploiting this clear market undervaluation.",
+    "timestamp": "2025-12-06T13:27:41.111388",
+    "analysis": "Alright, best bet tonight, we're hammering the Over 47.5 in the Indiana @ Ohio State game. The market is completely asleep at the wheel on this one. Our numbers show a massive value here, indicating a far higher scoring affair than what's priced. Ohio State's offense is a machine built for staying on schedule, relentlessly moving the chains, and dictating the rhythm of the game against most defenses. Even with Ohio State's ability to live in the backfield on defense and create chaos, the sheer offensive efficiency expected from both sides, especially the Buckeyes, means we're going to see plenty of points hit the board.\n\nDon't let the low total fool you; this game's got fireworks. The market is expecting a defensive struggle, but we're seeing two offenses that will find ways to produce. And actually, while we love the points, we also see strong value on Indiana +4.0. The market seems to be overvaluing Ohio State's ability to truly separate and blow the doors off completely. We think Indiana can keep this thing closer than the current spread suggests. So, grab your drink, because we're cashing tickets on a high-scoring game and a closer contest than advertised.",
     "status": "PUBLISH",
-    "selection": "Ohio State -4.0",
-    "confidence_tier": "STRONG",
+    "best_bet": {
+      "selection": "Over 47.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
+    "next_bet": {
+      "selection": "Indiana +4.0",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "confidence_tier": "LOCK",
+    "selection": "Over 47.5",
     "sport": "CFB"
   }
 ]
