@@ -52,10 +52,10 @@
         .conf-lean, .filter-btn.active.conf-lean { background: #f59e0b; color: white; } 
         .conf-pass, .filter-btn.active.conf-pass { background: #6b7280; color: white; } 
 
-        .confidence-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .confidence-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; color: white; text-transform: uppercase; }
 
-        /* CARDS (ALIGNMENT FIX) */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding-top: 20px; }
+        /* CARDS (HYBRID LAYOUT) */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; padding-top: 20px; }
         
         .game-card { 
             background: white; 
@@ -64,39 +64,45 @@
             overflow: hidden; 
             transition: transform 0.3s; 
             display: flex; 
-            flex-direction: column; /* Force column layout */
-            height: 100%; /* Ensure full height */
+            flex-direction: column; 
+            height: 100%; 
         }
         
-        .card-header { padding: 1.25rem; background: #f9fafb; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
-        .matchup-title { font-size: 1.15rem; font-weight: 700; color: #1f2937; margin-top: 5px; }
-        .game-meta { font-size: 0.8rem; color: #6b7280; display: flex; gap: 10px; }
+        .card-header { padding: 1rem 1.25rem; background: #f9fafb; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
+        .matchup-title { font-size: 1.1rem; font-weight: 700; color: #1f2937; margin-top: 2px; }
+        .game-meta { font-size: 0.75rem; color: #6b7280; display: flex; gap: 8px; }
         .sport-tag { font-weight: 700; color: #667eea; }
         
         .card-body { 
             padding: 1.25rem; 
-            flex-grow: 1; /* Occupy remaining space */
+            flex-grow: 1; 
             display: flex; 
-            flex-direction: column; /* Column for internal elements */
+            flex-direction: column; 
         }
         
-        .pick-row { 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 0.75rem 0; 
-            border-bottom: 1px solid #f3f4f6; 
-            margin-bottom: 1rem;
-            margin-top: auto; /* CRITICAL: Pushes this row to the bottom */
+        /* HYBRID BET ROWS */
+        .bet-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
         }
+        .bet-row.best-bet {
+            background: #f0fdf4; /* Light Green Bg */
+            border-color: #d1fae5;
+        }
+        .bet-label { font-size: 0.75rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 2px;}
+        .bet-value { font-size: 1.05rem; font-weight: 700; color: #374151; }
         
-        .pick-label { font-weight: 600; color: #4b5563; }
-        .pick-value { font-size: 1.1rem; font-weight: 700; color: #10b981; }
-
         /* BUTTONS */
-        .read-more-btn { background: #667eea; color: white; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; }
+        .read-more-btn { background: #667eea; color: white; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; margin-top: auto; }
         .read-more-btn:hover { background: #5a66d0; }
 
-        /* MODAL (POP-OUT) */
+        /* MODAL */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content { background: white; padding: 2rem; border-radius: 16px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s; }
@@ -219,7 +225,7 @@
                 const data = await response.json();
                 
                 if (data && data.length > 0) {
-                    allPredictions = data.filter(p => p.status === "PUBLISH").reverse();
+                    allPredictions = data.filter(p => p.status !== "ARCHIVED").reverse();
                     applyFilters(); 
                     statusElement.innerText = `Feed Synced: ${new Date().toLocaleTimeString()}`;
                 } else {
@@ -242,15 +248,13 @@
             document.getElementById('noData').classList.add('hidden');
 
             items.forEach((pred, index) => {
-                const selection = pred.selection || 'See Details';
-                const confidenceTier = pred.confidence_tier || 'PASS'; 
-                let tierClass = "conf-pass";
-                
-                if (confidenceTier.toUpperCase().includes('LOCK')) tierClass = "conf-lock";
-                else if (confidenceTier.toUpperCase().includes('STRONG')) tierClass = "conf-strong";
-                else if (confidenceTier.toUpperCase().includes('LEAN')) tierClass = "conf-lean";
-            
+                // Parsing new Nested JSON structure
+                const bestBet = pred.best_bet || { selection: "N/A", confidence: "PASS" };
+                const nextBet = pred.next_bet || { selection: "N/A", confidence: "PASS" };
                 const sport = pred.sport || detectSportFallback(pred.game);
+                
+                // Determine Badge Class
+                const tierClass = getTierClass(bestBet.confidence);
 
                 const card = document.createElement('div');
                 card.className = 'game-card';
@@ -259,46 +263,51 @@
                         <div>
                             <div class="game-meta">
                                 <span class="sport-tag">${sport}</span>
-                                <span>${formatDate(pred.date)}</span>
+                                <span>${formatDate(pred.timestamp)}</span>
                             </div>
                             <div class="matchup-title">${pred.game}</div>
                         </div>
-                        <span class="confidence-badge ${tierClass}">${confidenceTier}</span>
                     </div>
                     <div class="card-body">
-                        <div class="pick-row">
-                            <span class="pick-label">Target</span>
-                            <span class="pick-value" style="color:#667eea">${selection}</span>
+                        <div class="bet-row best-bet">
+                            <div>
+                                <span class="bet-label">🏆 Best Bet</span>
+                                <span class="bet-value">${bestBet.selection}</span>
+                            </div>
+                            <span class="confidence-badge ${getTierClass(bestBet.confidence)}">${bestBet.confidence}</span>
                         </div>
-                        <button class="read-more-btn" onclick="openModal('${pred.id}')">Read Analysis</button>
+
+                        ${nextBet.confidence !== "PASS" ? `
+                        <div class="bet-row">
+                            <div>
+                                <span class="bet-label">💡 Next Up</span>
+                                <span class="bet-value">${nextBet.selection}</span>
+                            </div>
+                            <span class="confidence-badge ${getTierClass(nextBet.confidence)}">${nextBet.confidence}</span>
+                        </div>` : ''}
+
+                        <button class="read-more-btn" onclick="openModal('${index}')">Read Analysis</button>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        // --- MODAL LOGIC (ROBUST LOOKUP) ---
-        function openModal(id) {
-            const item = allPredictions.find(p => p.id === id);
+        // --- MODAL LOGIC ---
+        function openModal(index) {
+            const item = allPredictions[index]; // Simple index lookup since ID might be missing in new schema
             if (!item) return;
             
             document.getElementById('modalTitle').innerText = item.game;
             document.getElementById('modalSport').innerText = item.sport || "Sports";
             
+            const bestBet = item.best_bet || { confidence: "PASS" };
             const badge = document.getElementById('modalBadge');
-            badge.innerText = item.confidence_tier;
-            badge.className = `confidence-badge ${getTierClass(item.confidence_tier)}`;
+            badge.innerText = bestBet.confidence;
+            badge.className = `confidence-badge ${getTierClass(bestBet.confidence)}`;
             
-            // Clean Analysis Text
-            let analysisText = item.analysis
-                .replace(/════.*?\n/g, '') 
-                .replace(/## \d\. .*?\n/g, '') 
-                .replace(/━━━━━━━━.*?\n/g, '') 
-                .replace(/Selection:.*?\n/i, '')
-                .replace(/Confidence:.*?\n/i, '')
-                .replace(/Analysis:.*?\n/i, '') 
-                .trim();
-
+            // Format Analysis Text
+            let analysisText = item.analysis || "Analysis unavailable.";
             document.getElementById('modalBody').innerText = analysisText;
             document.getElementById('analysisModal').classList.add('active');
         }
@@ -314,11 +323,11 @@
             
             const filtered = allPredictions.filter(p => {
                 const sport = p.sport || detectSportFallback(p.game);
-                const cardConfidence = p.confidence_tier ? p.confidence_tier.toUpperCase() : 'PASS';
+                const bestBetConf = p.best_bet ? p.best_bet.confidence : (p.confidence_tier || 'PASS');
                 
                 const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
                 const matchesSearch = p.game.toLowerCase().includes(search);
-                const matchesConfidence = currentConfidence === "ALL" || cardConfidence.includes(currentConfidence);
+                const matchesConfidence = currentConfidence === "ALL" || bestBetConf.includes(currentConfidence);
                 
                 return matchesLeague && matchesSearch && matchesConfidence;
             });
@@ -331,6 +340,7 @@
         }
 
         function getTierClass(tier) {
+            if (!tier) return "conf-pass";
             if (tier.includes('LOCK')) return "conf-lock";
             if (tier.includes('STRONG')) return "conf-strong";
             if (tier.includes('LEAN')) return "conf-lean";
@@ -339,7 +349,7 @@
 
         function formatDate(dateStr) {
             try { return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); } 
-            catch { return dateStr; }
+            catch { return "Today"; }
         }
 
         function filterLeague(league, btnElement) {
