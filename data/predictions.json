@@ -21,30 +21,63 @@
     "id": "georgia_vs_alabama",
     "game": "Georgia vs Alabama",
     "date": "2025-12-06",
+    "timestamp": "2025-12-06T15:06:27.496387",
     "analysis": "Alright, my absolute Best Bet tonight is Georgia -2.5. The market is completely asleep at the wheel here, because our numbers are screaming that Georgia isn't just winning, they're dominating. Their defensive front is an absolute nightmare, consistently living in the backfield and creating suffocation pressure that will leave Alabama's offense stuck behind the sticks all game. We're seeing massive value on this line; the market is truly undervaluing how badly this mismatch plays out.\n\nThis isn't just about Georgia's disruption; it's about how they dictate the rhythm and move the chains on their own drives. Alabama simply won't have answers. And given that kind of offensive momentum from Georgia, plus some potential garbage time scoring once Alabama is forced to air it out, my next confident play is the Over 48.5. Trust me, the scoreboard is going to light up, and Georgia is going to cover this with ease.",
     "status": "PUBLISH",
-    "selection": "N/A",
+    "best_bet": {
+      "selection": "Georgia -2.5",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "next_bet": {
+      "selection": "Over 48.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
     "confidence_tier": "STRONG",
+    "selection": "Georgia -2.5",
     "sport": "CFB"
   },
   {
     "id": "duke_vs_virginia",
     "game": "Duke vs Virginia",
     "date": "2025-12-06",
+    "timestamp": "2025-12-06T15:06:41.558490",
     "analysis": "Alright, my best bet tonight is Duke +4.0 against Virginia. Look, the market is completely missing the boat on this one. While everyone else is leaning heavily on Virginia, our numbers are screaming that this line is way off. We're getting massive value with Duke here. Both of these teams are going to be living in the backfield all night, creating chaos and suffocating pressure on every snap. This isn't going to be a clean, efficient game for either offense; expect plenty of stalled drives and disruptions.\n\nBecause of all that defensive disruption and the sheer volatility, our models are also seeing a massive discrepancy on the total. It's not often you get such a huge gap between our projected total and the market, which is why the Over 57.5 is an absolute lock for me. This game is going to be far more open and higher-scoring than anyone expects, which only adds to the chaos that Duke can exploit. Don't be surprised when this one sails over the number, and Duke keeps it well within reach.",
     "status": "PUBLISH",
-    "selection": "N/A",
+    "best_bet": {
+      "selection": "Duke +4.0",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "next_bet": {
+      "selection": "Over 57.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
     "confidence_tier": "STRONG",
+    "selection": "Duke +4.0",
     "sport": "CFB"
   },
   {
     "id": "indiana_vs_ohio_state",
     "game": "Indiana vs Ohio State",
     "date": "2025-12-06",
+    "timestamp": "2025-12-06T15:06:57.525296",
     "analysis": "Alright, listen up, because my favorite play of the night is Indiana +4.0. The market is absolutely sleeping on the Hoosiers here. This Indiana defense is built on disruption; they're constantly living in the backfield and creating chaos that will prevent Ohio State from staying on schedule. That consistent pressure is going to keep the Buckeyes behind the sticks, leading to stalled drives and putting offensive sand in their gears. My model sees massive value here, indicating the market is vastly undervaluing this mismatch.\n\nDon't get me wrong, Ohio State's offense will still find ways to move the chains, and that's why we're also loving the Over 47.5 as a strong secondary play \u2013 it's a lock. But between Indiana's ability to create chaos defensively and what my numbers are showing, this game is going to be far closer than the public expects. Grab those points; it's practically stealing.",
     "status": "PUBLISH",
-    "selection": "N/A",
+    "best_bet": {
+      "selection": "Indiana +4.0",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "next_bet": {
+      "selection": "Over 47.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
     "confidence_tier": "STRONG",
+    "selection": "Indiana +4.0",
     "sport": "CFB"
   }
 ]
