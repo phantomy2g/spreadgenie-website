@@ -18,98 +18,60 @@
     }
   },
   {
-    "id": "byu_vs_texas_tech",
-    "game": "BYU vs Texas Tech",
-    "date": "2025-12-07",
-    "timestamp": "2025-12-07T08:07:12.635821",
-    "analysis": "Texas Tech's suffocating defense and overall efficiency advantage will overwhelm BYU in this one. With no prior history between these teams, the numbers strongly suggest Texas Tech dictates the pace and outcome here.",
-    "status": "PUBLISH",
-    "sport": "CFB",
-    "best_bet": {
-      "selection": "Texas Tech -12.5",
-      "confidence": "STRONG"
-    },
-    "next_bet": {
-      "selection": "Under 49.5",
-      "confidence": "LEAN"
-    },
-    "confidence_tier": "STRONG",
-    "selection": "Texas Tech -12.5"
-  },
-  {
-    "id": "miami_(oh)_vs_western_michigan",
-    "game": "Miami (OH) vs Western Michigan",
-    "date": "2025-12-07",
-    "timestamp": "2025-12-07T08:07:26.707980",
-    "analysis": "This Miami-Western Michigan game screams an old-school grind, with both defenses ready to make life hell for opposing offenses. We haven't seen these two face off before, and when that's the case, you always bet on the defenses showing up to set the tone, keeping the score low.",
-    "status": "PUBLISH",
-    "sport": "CFB",
-    "best_bet": {
-      "selection": "Under 43.5",
-      "confidence": "STRONG"
-    },
-    "next_bet": {
-      "selection": "N/A",
-      "confidence": "PASS"
-    },
-    "confidence_tier": "STRONG",
-    "selection": "Under 43.5"
-  },
-  {
     "id": "georgia_vs_alabama",
     "game": "Georgia vs Alabama",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T08:07:39.151724",
-    "analysis": "Forget the fireworks, this Georgia-Bama showdown is gonna be a defensive slugfest from the start. Both these championship-caliber teams bring a suffocating defense, and with the books showing their hand on the Under, that's where the smart money is.",
+    "timestamp": "2025-12-07T09:03:09.480335",
+    "analysis": "The sharp money is already hammering the Under 48.5, and when championship-level suffocating defenses square off for the first time, it's usually a low-scoring grinder. While Georgia is the favorite, taking the home dog Alabama with that slight efficiency edge and higher chaos factor makes sense for the spread.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Total Under 48.5",
-      "confidence": "LOCK"
+      "selection": "Under 48.5",
+      "confidence": "STRONG"
     },
     "next_bet": {
       "selection": "Alabama +2.5",
       "confidence": "LEAN"
     },
-    "confidence_tier": "LOCK",
-    "selection": "Total Under 48.5"
+    "confidence_tier": "STRONG",
+    "selection": "Under 48.5"
   },
   {
     "id": "duke_vs_virginia",
     "game": "Duke vs Virginia",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T08:07:51.010454",
-    "analysis": "Virginia\u2019s suffocating defense and higher chaos factor are going to make points tough to come by for both teams. With no prior history between these squads, expect a grind-it-out battle where championship-level defenses dictate the pace and keep the total low.",
+    "timestamp": "2025-12-07T09:03:23.787435",
+    "analysis": "You gotta like Virginia here, especially at home; their suffocating defense gives them a real efficiency edge, looking to shut down Duke's offense right out of the gate. When you've got that kind of defensive prowess, giving up less than a field goal feels like a steal; they're built to control the pace and grind out a win. The market's telling us to expect more points than you might think in this one, with the sharp money pushing the total over. While both teams are known for their grit, don't be surprised if the scoreboard ticks up a bit more than the initial look suggests.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Total Under 57.5",
+      "selection": "Virginia -3.5",
       "confidence": "STRONG"
     },
     "next_bet": {
-      "selection": "Virginia -3.5",
+      "selection": "Over 57.5",
       "confidence": "LEAN"
     },
     "confidence_tier": "STRONG",
-    "selection": "Total Under 57.5"
+    "selection": "Virginia -3.5"
   },
   {
     "id": "indiana_vs_ohio_state",
     "game": "Indiana vs Ohio State",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T08:08:06.207366",
-    "analysis": "We're riding with Indiana and the points; their defense is all about generating chaos, and that's going to make life difficult for Ohio State. Expect a defensive slugfest with strong fronts battling, and without any prior meetings, we anticipate a low-scoring grinder where those points for Indiana are invaluable.",
+    "timestamp": "2025-12-07T09:03:36.590333",
+    "analysis": "Indiana's got that kind of disruptive defense that creates serious chaos, and with them getting four points against an Ohio State squad that only has a slight efficiency edge, that line feels like a gift. Plus, with no prior history to go off, you gotta figure both defenses will come out looking to prove something, making points hard to come by.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Indiana 4.0",
-      "confidence": "STRONG"
-    },
-    "next_bet": {
-      "selection": "Total Under 47.5",
+      "selection": "Indiana +4.0",
       "confidence": "LEAN"
     },
-    "confidence_tier": "STRONG",
-    "selection": "Indiana 4.0"
+    "next_bet": {
+      "selection": "Under 47.5",
+      "confidence": "LEAN"
+    },
+    "confidence_tier": "LEAN",
+    "selection": "Indiana +4.0"
   }
 ]
