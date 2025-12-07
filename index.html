@@ -3,142 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpreadGenie Pro V12</title>
+    <title>SpreadGenie Pro - Elite Sports Betting Analytics</title>
     <style>
-        /* CORE */
+        /* CORE STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f3f4f6;
-            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
             padding-bottom: 4rem;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
+        
         /* HEADER */
-        header { background: white; padding: 1rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #4f46e5; display: flex; align-items: center; gap: 8px; }
-        
-        /* GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
-        
-        /* CARD */
-        .card { background: white; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow: hidden; display: flex; flex-direction: column; }
-        .card-header { padding: 1.25rem; background: #fafafa; border-bottom: 1px solid #f0f0f0; }
-        .game-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; color: #111827; }
-        .game-meta { font-size: 0.85rem; color: #6b7280; font-weight: 500; }
-
-        .card-body { padding: 1.25rem; flex-grow: 1; display: flex; flex-direction: column; gap: 12px; }
-
-        /* BET ROWS */
-        .bet-row { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 12px; border-radius: 12px; border: 1px solid #e5e7eb; background: #fff;
+        header { background: rgba(255, 255, 255, 0.98); box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; }
+        .logo { 
+            display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: bold; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
         }
-        .bet-row.highlight { background: #eff6ff; border-color: #bfdbfe; } /* Strong Picks get blue bg */
         
-        .bet-type { font-size: 0.7rem; font-weight: 700; color: #6b7280; text-transform: uppercase; display: block; margin-bottom: 2px; }
-        .bet-val { font-size: 1.1rem; font-weight: 800; color: #1f2937; }
+        /* SEARCH & MENU */
+        .search-container { position: relative; margin-left: auto; }
+        .search-input { padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 20px; border: 1px solid #e5e7eb; background: #f9fafb; outline: none; width: 200px; }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 0.9rem; }
+
+        .league-menu { display: flex; gap: 1rem; overflow-x: auto; padding: 1rem 0; scrollbar-width: none; }
+        .league-btn { background: #f3f4f6; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; color: #6b7280; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .league-btn:hover { background: #e5e7eb; color: #374151; }
+        .league-btn.active { background: #667eea; color: white; }
+
+        /* HERO & FILTER */
+        .hero { text-align: center; padding: 4rem 0 1rem; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        #lastUpdated { font-size: 1rem; opacity: 0.8; }
         
-        .badge { padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: white; }
-        .bg-strong { background: #10b981; }
-        .bg-medium { background: #3b82f6; }
-        .bg-lean { background: #f59e0b; }
-        .bg-pass { background: #9ca3af; }
+        #confidenceFilterBar { display: flex; justify-content: center; gap: 12px; padding: 1.25rem 0; flex-wrap: wrap; }
+        .filter-btn { border: 2px solid transparent; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; background: #e5e7eb; color: #4b5563; }
+        .filter-btn:hover { border-color: #93c5fd; }
+        .filter-btn.active { box-shadow: 0 4px 8px rgba(102, 114, 234, 0.3); color: white; border-color: transparent; transform: translateY(-1px); }
+        
+        /* CONFIDENCE COLORS */
+        .conf-lock, .filter-btn.active.conf-lock { background: #10b981; color: white; } 
+        .conf-strong, .filter-btn.active.conf-strong { background: #3b82f6; color: white; } 
+        .conf-lean, .filter-btn.active.conf-lean { background: #f59e0b; color: white; } 
+        .conf-medium, .filter-btn.active.conf-medium { background: #3b82f6; color: white; }
+        .conf-pass, .filter-btn.active.conf-pass { background: #6b7280; color: white; } 
 
-        .analysis-box { font-size: 0.9rem; color: #4b5563; line-height: 1.5; margin-top: 8px; padding-top: 12px; border-top: 1px dashed #e5e7eb; }
+        .confidence-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; color: white; text-transform: uppercase; }
 
-        /* AUTH */
-        #loginOverlay { position: fixed; inset: 0; background: #4f46e5; display: flex; justify-content: center; align-items: center; z-index: 999; }
-        .login-box { background: white; padding: 2rem; border-radius: 12px; width: 300px; text-align: center; }
-        .login-box input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; }
-        .login-box button { width: 100%; padding: 10px; background: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; }
+        /* CARDS (HYBRID LAYOUT) */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; padding-top: 20px; }
+        
+        .game-card { 
+            background: white; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+            overflow: hidden; 
+            transition: transform 0.3s; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100%; 
+        }
+        
+        .card-header { padding: 1rem 1.25rem; background: #f9fafb; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
+        .matchup-title { font-size: 1.1rem; font-weight: 700; color: #1f2937; margin-top: 2px; }
+        .game-meta { font-size: 0.75rem; color: #6b7280; display: flex; gap: 8px; }
+        .sport-tag { font-weight: 700; color: #667eea; }
+        
+        .card-body { 
+            padding: 1.25rem; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        /* --- UPDATED BET ROW STYLES (Surgical Fix) --- */
+        .bet-row {
+            display: flex;
+            justify-content: space-between; /* Pushes content to edges */
+            align-items: center; /* Vertically centers items */
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+        }
+        .bet-row.best-bet {
+            background: #f0fdf4; 
+            border-color: #d1fae5;
+        }
+        .bet-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .bet-label { 
+            font-size: 0.7rem; 
+            color: #6b7280; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            margin-bottom: 4px;
+        }
+        .bet-value { 
+            font-size: 1.1rem; 
+            font-weight: 800; 
+            color: #111827; 
+            line-height: 1.2;
+        }
+        
+        /* BUTTONS */
+        .read-more-btn { background: #667eea; color: white; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; margin-top: auto; }
+        .read-more-btn:hover { background: #5a66d0; }
+
+        /* MODAL */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-content { background: white; padding: 2rem; border-radius: 16px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; }
+        .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #9ca3af; }
+        .modal-body { font-size: 1rem; color: #374151; line-height: 1.7; white-space: pre-wrap; text-align: left; }
+
+        /* AUTH & UTILS */
+        #passwordOverlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%); display: flex; justify-content: center; align-items: center; z-index: 2000; transition: opacity 0.5s; }
+        #passwordOverlay.hidden { opacity: 0; pointer-events: none; }
+        .login-box { background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: 90%; max-width: 400px; }
+        .login-box input { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        .login-box button { background: #667eea; color: white; padding: 12px 25px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; }
+        #mainContent { opacity: 0; transition: opacity 0.5s 0.3s; }
+        #mainContent.visible { opacity: 1; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <div id="loginOverlay">
+    <div id="passwordOverlay">
         <div class="login-box">
-            <h2>SpreadGenie V12</h2>
-            <input type="password" id="pw" placeholder="Enter Access Code">
-            <button onclick="auth()">Enter</button>
+            <h2>Welcome to SpreadGenie Pro</h2>
+            <p>Access requires authentication.</p>
+            <input type="password" id="passwordInput" placeholder="Enter Access Code">
+            <button onclick="checkPassword()">Access Analytics</button>
+            <div id="passwordError" style="color:red; margin-top:10px; display:none">Incorrect access code.</div>
         </div>
     </div>
 
-    <header>
-        <div class="container">
-            <div class="logo">🧞 SpreadGenie Pro</div>
+    <div id="analysisModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <span id="modalSport" class="sport-tag">NFL</span>
+                    <h2 id="modalTitle" style="margin: 5px 0;">Game Title</h2>
+                    <span id="modalBadge" class="confidence-badge conf-strong">STRONG</span>
+                </div>
+                <button class="modal-close" onclick="closeModal(event)">×</button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                Analysis text goes here...
+            </div>
         </div>
-    </header>
+    </div>
 
-    <main class="container">
-        <div id="grid" class="grid"></div>
-    </main>
+    <div id="mainContent">
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">
+                        🎯 SpreadGenie Pro
+                    </div>
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search..." onkeyup="applyFilters()">
+                    </div>
+                </nav>
+                <div class="league-menu">
+                    <button class="league-btn active" onclick="filterLeague('ALL', this)">All Sports</button>
+                    <button class="league-btn" onclick="filterLeague('NFL', this)">NFL</button>
+                    <button class="league-btn" onclick="filterLeague('CFB', this)">CFB</button>
+                    <button class="league-btn" onclick="filterLeague('NBA', this)">NBA</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="hero">
+                <h1>Live Betting Intelligence</h1>
+                <p id="lastUpdated">Syncing feed...</p>
+            </div>
+            
+            <div id="confidenceFilterBar">
+                <button class="filter-btn active" onclick="filterConfidence('ALL', this)">All Picks</button>
+                <button class="filter-btn conf-lock" onclick="filterConfidence('LOCK', this)">👑 LOCK</button>
+                <button class="filter-btn conf-strong" onclick="filterConfidence('STRONG', this)">🔥 STRONG</button>
+                <button class="filter-btn conf-medium" onclick="filterConfidence('MEDIUM', this)">✅ MEDIUM</button>
+                <button class="filter-btn conf-lean" onclick="filterConfidence('LEAN', this)">💡 LEAN</button>
+                <button class="filter-btn conf-pass" onclick="filterConfidence('PASS', this)">➖ PASS</button>
+            </div>
+
+            <div id="predictionsContainer" class="grid-container"></div>
+            <div id="noData" class="hidden" style="text-align: center; padding: 3rem; color: white;">
+                <h2>No active predictions found.</h2>
+            </div>
+        </main>
+    </div>
 
     <script>
-        const DATA_URL = "./data/predictions.json";
-
-        function auth() {
-            if(document.getElementById('pw').value === "SG2025") {
-                document.getElementById('loginOverlay').style.display = 'none';
-                loadData();
+        const PASSWORD = "SG2025";
+        const DATA_URL = "./data/predictions.json"; 
+        let allPredictions = [];
+        let currentLeague = "ALL";
+        let currentConfidence = "ALL"; 
+        
+        function checkPassword() {
+            if (document.getElementById('passwordInput').value === PASSWORD) {
+                document.cookie = "sg_auth=true; max-age=604800; path=/"; 
+                initApp();
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
             }
         }
 
-        async function loadData() {
+        function initApp() {
+            document.getElementById('passwordOverlay').classList.add('hidden');
+            document.getElementById('mainContent').classList.add('visible');
+            fetchData(); 
+        }
+
+        async function fetchData() {
+            const container = document.getElementById('predictionsContainer');
+            const statusElement = document.getElementById('lastUpdated');
+            container.innerHTML = '<div style="text-align:center; padding:4rem; color:white;"><h2>Loading Engine...</h2></div>'; 
+
             try {
-                const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
-                const data = await res.json();
-                render(data.reverse());
-            } catch (e) {
-                document.getElementById('grid').innerHTML = "<h2>Error loading feed. Check console.</h2>";
+                const response = await fetch(`${DATA_URL}?t=${Date.now()}`);
+                if (!response.ok) throw new Error("File not found");
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    allPredictions = data.filter(p => p.status !== "ARCHIVED").reverse();
+                    applyFilters(); 
+                    statusElement.innerText = `Feed Synced: ${new Date().toLocaleTimeString()}`;
+                } else {
+                    container.innerHTML = '<h2 style="color:white; text-align:center;">No active picks.</h2>';
+                }
+            } catch (error) {
+                statusElement.innerText = 'Feed Error';
+                container.innerHTML = `<h2 style="color:white; text-align:center;">System Error: Failed to load data.</h2>`;
             }
-        }
-
-        function render(picks) {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = picks.map(p => `
-                <div class="card">
-                    <div class="card-header">
-                        <div class="game-title">${p.game}</div>
-                        <div class="game-meta">NFL • ${new Date(p.timestamp).toLocaleDateString()}</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="bet-row ${getBg(p.spread_confidence)}">
-                            <div>
-                                <span class="bet-type">Spread Pick</span>
-                                <div class="bet-val">${p.spread_pick}</div>
-                            </div>
-                            <span class="badge ${getBadge(p.spread_confidence)}">${p.spread_confidence}</span>
-                        </div>
-
-                        <div class="bet-row ${getBg(p.total_confidence)}">
-                            <div>
-                                <span class="bet-type">Total Pick</span>
-                                <div class="bet-val">${p.total_pick}</div>
-                            </div>
-                            <span class="badge ${getBadge(p.total_confidence)}">${p.total_confidence}</span>
-                        </div>
-
-                        <div class="analysis-box">
-                            "${p.analysis}"
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function getBadge(conf) {
-            if(conf.includes('Strong')) return 'bg-strong';
-            if(conf.includes('Medium')) return 'bg-medium';
-            if(conf.includes('Lean')) return 'bg-lean';
-            return 'bg-pass';
         }
         
-        function getBg(conf) {
-            if(conf.includes('Strong') || conf.includes('Medium')) return 'highlight';
-            return '';
+        function renderCards(items) {
+            const container = document.getElementById('predictionsContainer');
+            container.innerHTML = "";
+            
+            if (items.length === 0) {
+                document.getElementById('noData').classList.remove('hidden');
+                return;
+            }
+            document.getElementById('noData').classList.add('hidden');
+
+            items.forEach((pred, index) => {
+                const selection = pred.selection || "N/A";
+                const confidence = (pred.confidence_tier || "PASS").toUpperCase();
+                const sport = pred.sport || detectSportFallback(pred.game);
+                const tierClass = getTierClass(confidence);
+
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                
+                // --- SURGICAL JS UPDATE: WRAPPED IN 'bet-info' ---
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div>
+                            <div class="game-meta">
+                                <span class="sport-tag">${sport}</span>
+                                <span>${formatDate(pred.timestamp)}</span>
+                            </div>
+                            <div class="matchup-title">${pred.game}</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="bet-row best-bet">
+                            <div class="bet-info">
+                                <span class="bet-label">🏆 SELECTION</span>
+                                <span class="bet-value">${selection}</span>
+                            </div>
+                            <span class="confidence-badge ${tierClass}">${confidence}</span>
+                        </div>
+
+                        <button class="read-more-btn" onclick="openModal('${index}')">Read Analysis</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
         }
+
+        function openModal(index) {
+            const item = allPredictions[index];
+            if (!item) return;
+            
+            document.getElementById('modalTitle').innerText = item.game;
+            document.getElementById('modalSport').innerText = item.sport || "Sports";
+            
+            const confidence = (item.confidence_tier || "PASS").toUpperCase();
+            const badge = document.getElementById('modalBadge');
+            badge.innerText = confidence;
+            badge.className = `confidence-badge ${getTierClass(confidence)}`;
+            
+            let analysisText = item.analysis || "Analysis unavailable.";
+            document.getElementById('modalBody').innerText = analysisText;
+            document.getElementById('analysisModal').classList.add('active');
+        }
+
+        function closeModal(e) {
+            if (e.target === document.getElementById('analysisModal') || e.target.classList.contains('modal-close')) {
+                document.getElementById('analysisModal').classList.remove('active');
+            }
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = allPredictions.filter(p => {
+                const sport = p.sport || detectSportFallback(p.game);
+                const conf = (p.confidence_tier || 'PASS').toUpperCase();
+                
+                const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
+                const matchesSearch = p.game.toLowerCase().includes(search);
+                const matchesConfidence = currentConfidence === "ALL" || conf.includes(currentConfidence);
+                
+                return matchesLeague && matchesSearch && matchesConfidence;
+            });
+            renderCards(filtered);
+        }
+
+        function detectSportFallback(gameTitle) {
+            if (!gameTitle) return "Sports";
+            if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
+            return "NFL"; 
+        }
+
+        function getTierClass(tier) {
+            if (!tier) return "conf-pass";
+            tier = tier.toUpperCase();
+            if (tier.includes('LOCK')) return "conf-lock";
+            if (tier.includes('STRONG')) return "conf-strong";
+            if (tier.includes('MEDIUM')) return "conf-medium";
+            if (tier.includes('LEAN')) return "conf-lean";
+            return "conf-pass";
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return "Today";
+            try { return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }); } 
+            catch { return "Today"; }
+        }
+
+        function filterLeague(league, btnElement) {
+            currentLeague = league;
+            document.querySelectorAll('.league-menu .league-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            applyFilters();
+        }
+
+        function filterConfidence(tier, btnElement) {
+            currentConfidence = tier;
+            document.querySelectorAll('#confidenceFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+            applyFilters();
+        }
+        
+        if (document.cookie.includes("sg_auth=true")) initApp();
     </script>
 </body>
 </html>
