@@ -73,5 +73,122 @@
     },
     "confidence_tier": "LEAN",
     "selection": "Indiana +4.0"
+  },
+  {
+    "id": "pittsburgh_steelers_vs_baltimore_ravens",
+    "game": "Pittsburgh Steelers vs Baltimore Ravens",
+    "date": "2025-12-07",
+    "selection": "PIT +5.5",
+    "confidence_tier": "Medium",
+    "analysis": "The books are begging you to take the Ravens at -5.5 after that Bengals embarrassment. Steelers keep it close in a divisional dogfight.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "cincinnati_bengals_vs_buffalo_bills",
+    "game": "Cincinnati Bengals vs Buffalo Bills",
+    "date": "2025-12-07",
+    "selection": "CIN +6",
+    "confidence_tier": "Medium",
+    "analysis": "The public is going to hammer the Bills at home, and the Bengals are live dogs who just smashed the Ravens. This smells like a classic overreaction spot. Plus, Burrow is a stone-cold killer.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "tennessee_titans_vs_cleveland_browns",
+    "game": "Tennessee Titans vs Cleveland Browns",
+    "date": "2025-12-07",
+    "selection": "TEN +4.5",
+    "confidence_tier": "Medium",
+    "analysis": "Cleveland looked completely lifeless last week. The public is gonna be all over them to bounce back, but I'm betting they're still beat up. Tennessee's got a decent enough defense to keep it close.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "indianapolis_colts_vs_jacksonville_jaguars",
+    "game": "Indianapolis Colts vs Jacksonville Jaguars",
+    "date": "2025-12-07",
+    "selection": "IND +2.5",
+    "confidence_tier": "Low",
+    "analysis": "Indy's gotta be pissed after that Houston loss. Plus, the weather turns this into a coin flip, so I'll grab the points. Smells like a stay-away, though.",
+    "status": "DRAFT"
+  },
+  {
+    "id": "miami_dolphins_vs_new_york_jets",
+    "game": "Miami Dolphins vs New York Jets",
+    "date": "2025-12-07",
+    "selection": "Miami -2.5",
+    "confidence_tier": "Medium",
+    "analysis": "Miami's defense travels, and the Jets are still the Jets. This smells like a setup for the public to hammer the home team.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "washington_commanders_vs_minnesota_vikings",
+    "game": "Washington Commanders vs Minnesota Vikings",
+    "date": "2025-12-07",
+    "selection": "WAS +1.5",
+    "confidence_tier": "Medium",
+    "analysis": "Minnesota is in a bad spot coming off that shutout. Washington is hungry, and that line is way too small given how the Vikings are playing. Gimme the points with Washington.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "new_orleans_saints_vs_tampa_bay_buccaneers",
+    "game": "New Orleans Saints vs Tampa Bay Buccaneers",
+    "date": "2025-12-07",
+    "selection": "New Orleans +7.5",
+    "confidence_tier": "Medium",
+    "analysis": "Brady hasn't looked like himself, and the Saints defense is legit. This has all the markings of a classic letdown spot for Tampa after that Cardinals win. Taking the points with New Orleans.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "seattle_seahawks_vs_atlanta_falcons",
+    "game": "Seattle Seahawks vs Atlanta Falcons",
+    "date": "2025-12-07",
+    "selection": "Atlanta +7.0",
+    "confidence_tier": "Medium",
+    "analysis": "The books are practically begging you to bet Seattle. Atlanta's at home and due for a bounce back. Fade the public and take the points.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "denver_broncos_vs_las_vegas_raiders",
+    "game": "Denver Broncos vs Las Vegas Raiders",
+    "date": "2025-12-07",
+    "selection": "Denver +8.5",
+    "confidence_tier": "Medium",
+    "analysis": "The Raiders look terrible, and Denver has momentum. Laying that many points with the Raiders right now? No way.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "los_angeles_rams_vs_arizona_cardinals",
+    "game": "Los Angeles Rams vs Arizona Cardinals",
+    "date": "2025-12-07",
+    "selection": "LAR -9.5",
+    "confidence_tier": "Medium",
+    "analysis": "The Cards are terrible and the Rams are due for a get right game. McVay is 10-2 vs the Cardinals in his career. This smells like a beatdown. ",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "chicago_bears_vs_green_bay_packers",
+    "game": "Chicago Bears vs Green Bay Packers",
+    "date": "2025-12-07",
+    "selection": "GB -6.5",
+    "confidence_tier": "Medium",
+    "analysis": "Rodgers in Lambeau coming off a win? This is a classic spot. The Bears are improved, but the Pack are looking for a statement win to close out the season. I'll lay the points.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "houston_texans_vs_kansas_city_chiefs",
+    "game": "Houston Texans vs Kansas City Chiefs",
+    "date": "2025-12-07",
+    "selection": "Houston +3.5",
+    "confidence_tier": "Medium",
+    "analysis": "KC is coming off a tough loss and the public is gonna be all over them. Houston is healthy and playing like they have something to prove. Ride with the points here and hope for a close one.",
+    "status": "PUBLISH"
+  },
+  {
+    "id": "philadelphia_eagles_vs_los_angeles_chargers",
+    "game": "Philadelphia Eagles vs Los Angeles Chargers",
+    "date": "2025-12-07",
+    "selection": "LAC -1.5",
+    "confidence_tier": "Medium",
+    "analysis": "The public loves the Chargers, but I'm not fading them here. They are at home against a Philly team that's struggling to score. Herbert is live.",
+    "status": "PUBLISH"
   }
 ]
