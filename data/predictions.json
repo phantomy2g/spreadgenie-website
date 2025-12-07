@@ -21,95 +21,95 @@
     "id": "byu_vs_texas_tech",
     "game": "BYU vs Texas Tech",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T00:02:40.882066",
-    "analysis": "The V10.1 protocol applied the Tier 2 Defensive Deflator, adjusting the total down by 9 points from the market line to an anchor of 40.5. This significant 9-point difference, in conjunction with the inability to evaluate the spread due to missing data, highlights strong value for the Total Under 49.5.",
+    "timestamp": "2025-12-07T07:13:56.456303",
+    "analysis": "The V11.1 protocol's 'Championship Defense' deflator, applied due to no prior meeting, strongly favors the Total UNDER. Texas Tech holds a significant statistical edge in PPA and a high 23.0% Havoc rate, suggesting potential for a dominant performance to cover the spread.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Total Under 49.5",
+      "selection": "Total UNDER 49.5",
       "confidence": "STRONG"
     },
     "next_bet": {
-      "selection": "Spread Pass",
-      "confidence": "PASS"
+      "selection": "Texas Tech -12.5",
+      "confidence": "LEAN"
     },
     "confidence_tier": "STRONG",
-    "selection": "Total Under 49.5"
+    "selection": "Total UNDER 49.5"
   },
   {
     "id": "miami_(oh)_vs_western_michigan",
     "game": "Miami (OH) vs Western Michigan",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T00:03:18.664330",
-    "analysis": "The Defensive Deflator for championship intensity suggests a lower total by 9 points (34.5), however, the SHARP ALERT on Over 42.5 is a Tier 1 signal that must be trusted. This Tier 1 signal overrides the general deflator, indicating significant smart money value on the Over 43.5 and thus providing the biggest 'Edge'.",
+    "timestamp": "2025-12-07T07:14:12.746722",
+    "analysis": "The Totals Anchor indicates a strong lean to the UNDER due to the application of the 'Championship Defense' protocol, which deflates the current total of 43.5 by 9 points. This substantial adjustment creates a significant edge for the UNDER 43.5, while Western Michigan's slight defensive PPA advantage, absent the underdog's Chaos Factor, provides a subtle lean for their spread.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Total Over 43.5",
+      "selection": "Total UNDER 43.5",
       "confidence": "STRONG"
     },
     "next_bet": {
-      "selection": "Western Michigan -1.5 Spread",
-      "confidence": "PASS"
+      "selection": "Western Michigan -1.5",
+      "confidence": "LEAN"
     },
     "confidence_tier": "STRONG",
-    "selection": "Total Over 43.5"
+    "selection": "Total UNDER 43.5"
   },
   {
     "id": "georgia_vs_alabama",
     "game": "Georgia vs Alabama",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T00:03:26.652972",
-    "analysis": "The primary anchor for this investigation is the Defensive Deflator, which adjusts the total down by 9 points for championship intensity. This adjustment, combined with a \"SHARP ALERT\" on the Under, creates a significant 9-point edge, making the Under 48.5 a high-confidence play.",
+    "timestamp": "2025-12-07T07:14:27.620916",
+    "analysis": "The primary anchor for this analysis is the Championship Defense deflator, strongly indicating an Under play due to the high-stakes nature of the game. This edge is reinforced by the juiced Under 48.5 line, while Georgia +2.5 offers value as the PPA stats for both teams are extremely close, making the favorite's -2.5 spread potentially overstated.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Total Under 48.5",
+      "selection": "Under 48.5",
       "confidence": "LOCK"
     },
     "next_bet": {
-      "selection": "Spread (PASS)",
-      "confidence": "PASS"
+      "selection": "Georgia +2.5",
+      "confidence": "LEAN"
     },
     "confidence_tier": "LOCK",
-    "selection": "Total Under 48.5"
+    "selection": "Under 48.5"
   },
   {
     "id": "duke_vs_virginia",
     "game": "Duke vs Virginia",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T00:03:43.637802",
-    "analysis": "The Defensive Deflator anchor for totals suggests an expected total of 48.5 points due to championship intensity. However, the 'SHARP ALERT' for Over 57.5 is a Tier 1 signal that must be trusted, indicating strong value on the higher scoring outcome.",
+    "timestamp": "2025-12-07T07:14:40.125490",
+    "analysis": "The primary anchor for this analysis is the V11.1 Total Protocol's \"Championship Defense (-9 pts deflator)\" due to no prior meeting. Applying this deflator to the given total of 57.5 yields a projected total of 48.5, indicating a significant edge on the Under.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Total Over 57.5",
-      "confidence": "LOCK"
+      "selection": "Total UNDER 57.5",
+      "confidence": "STRONG"
     },
     "next_bet": {
-      "selection": "Spread (PASS)",
-      "confidence": "PASS"
+      "selection": "Virginia -3.5",
+      "confidence": "LEAN"
     },
-    "confidence_tier": "LOCK",
-    "selection": "Total Over 57.5"
+    "confidence_tier": "STRONG",
+    "selection": "Total UNDER 57.5"
   },
   {
     "id": "indiana_vs_ohio_state",
     "game": "Indiana vs Ohio State",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T00:03:54.383066",
-    "analysis": "1. The Defensive Deflator for championship intensity serves as the Anchor, reducing the total line from 47.5 to 38.5. 2. This creates a significant 9.0-point edge, strongly indicating value on the Under due to the expected lower scoring environment.",
+    "timestamp": "2025-12-07T07:14:51.907361",
+    "analysis": "The primary anchor for this analysis is Indiana's Havoc Factor, as their 24.2% rate exceeds the V11.1 protocol's 22% threshold. This activates the Chaos Factor, leading SpreadGenie to favor the underdog on the spread and apply the Championship Defense deflator for the total.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Total UNDER 47.5",
+      "selection": "Indiana +4.0",
       "confidence": "STRONG"
     },
     "next_bet": {
-      "selection": "Spread PASS",
-      "confidence": "PASS"
+      "selection": "UNDER 47.5",
+      "confidence": "STRONG"
     },
     "confidence_tier": "STRONG",
-    "selection": "Total UNDER 47.5"
+    "selection": "Indiana +4.0"
   }
 ]
