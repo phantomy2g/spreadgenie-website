@@ -150,45 +150,45 @@
     "id": "denver_broncos_vs_las_vegas_raiders",
     "game": "Denver Broncos vs Las Vegas Raiders",
     "date": "2025-12-07",
-    "selection": "Denver +8.5",
+    "selection": "LV +11.0",
     "confidence_tier": "Medium",
-    "analysis": "Raiders look lost and Denver might have a little something brewing after last week. 8.5 is too many points in a division game.",
+    "analysis": "Raiders are at home and getting double-digit points? I'll take that action all day. Denver's offense ain't exactly lighting it up.",
     "status": "PUBLISH"
   },
   {
     "id": "los_angeles_rams_vs_arizona_cardinals",
     "game": "Los Angeles Rams vs Arizona Cardinals",
     "date": "2025-12-07",
-    "selection": "Arizona +9.5",
+    "selection": "ARI +9.0",
     "confidence_tier": "Medium",
-    "analysis": "The public is going to pound the Rams, but laying 9.5 on the road in a division game is tough, especially with Arizona desperate for a win. This has the stench of a trap game all over it.",
+    "analysis": "Arizona's at home in the dome, so the weather's a non-factor. LA's giving up almost double-digits on the road with some key injuries. Gimme the points.",
     "status": "PUBLISH"
   },
   {
     "id": "chicago_bears_vs_green_bay_packers",
     "game": "Chicago Bears vs Green Bay Packers",
     "date": "2025-12-07",
-    "selection": "CHI +6.5",
+    "selection": "CHI +8.0",
     "confidence_tier": "Medium",
-    "analysis": "The books are begging you to take the Packers. Chicago's defense is playing better, and they just beat up the Eagles. This has 'trap game' written all over it.",
+    "analysis": "The Bears have been putting up points, and the Packers' defense is dealing with injuries. Eight points is a lot in a rivalry game, so I'll roll with the dog.",
     "status": "PUBLISH"
   },
   {
     "id": "houston_texans_vs_kansas_city_chiefs",
     "game": "Houston Texans vs Kansas City Chiefs",
     "date": "2025-12-07",
-    "selection": "Kansas City -3.5",
-    "confidence_tier": "Medium",
-    "analysis": "KC is in a bounce-back spot at home, and Houston is coming off a fluky win. Mahomes doesn't lose back to back at home. Lay the points.",
+    "selection": "Under 41.5",
+    "confidence_tier": "Strong",
+    "analysis": "Mahomes is hobbled and the weather is ass. Both offenses are gonna struggle to move the ball in this slop.",
     "status": "PUBLISH"
   },
   {
     "id": "philadelphia_eagles_vs_los_angeles_chargers",
     "game": "Philadelphia Eagles vs Los Angeles Chargers",
     "date": "2025-12-07",
-    "selection": "PHI +1.5",
+    "selection": "LAC +2.0",
     "confidence_tier": "Medium",
-    "analysis": "Philly's too proud to get blown out after that Bears debacle, and the Chargers ain't exactly world-beaters. This smells like a tight, grind-it-out game where the points matter. Give me the dog.",
+    "analysis": "Philly's offense has been MIA lately, barely scraping by. LAC at home in a dome getting points? I'll roll the dice.",
     "status": "PUBLISH"
   }
 ]
