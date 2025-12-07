@@ -149,46 +149,56 @@
   {
     "id": "denver_broncos_vs_las_vegas_raiders",
     "game": "Denver Broncos vs Las Vegas Raiders",
-    "date": "2025-12-07",
-    "selection": "LV +11.0",
-    "confidence_tier": "Medium",
-    "analysis": "Raiders are at home and getting double-digit points? I'll take that action all day. Denver's offense ain't exactly lighting it up.",
-    "status": "PUBLISH"
+    "timestamp": "2025-12-07T14:32:16.280290",
+    "spread_pick": "LV +11.0",
+    "spread_confidence": "Medium",
+    "total_pick": "Under 42.0",
+    "total_confidence": "Strong",
+    "analysis": "With sharp money leaning both sides of the spread at heavy juice, that smells like a stay-away. That being said, a lot of sharp action is pounding the Under, and LV has been putrid on offense.",
+    "status": "PUBLISHED"
   },
   {
     "id": "los_angeles_rams_vs_arizona_cardinals",
     "game": "Los Angeles Rams vs Arizona Cardinals",
-    "date": "2025-12-07",
-    "selection": "ARI +9.0",
-    "confidence_tier": "Medium",
-    "analysis": "Arizona's at home in the dome, so the weather's a non-factor. LA's giving up almost double-digits on the road with some key injuries. Gimme the points.",
-    "status": "PUBLISH"
+    "timestamp": "2025-12-07T14:32:18.591231",
+    "spread_pick": "LA -9.0",
+    "spread_confidence": "Medium",
+    "total_pick": "Under 54.0",
+    "total_confidence": "Medium",
+    "analysis": "The sharps are all over the Rams, so I'm gonna roll with LA -9 here. Contrarian play on the total as I'm seeing sharp money hammering the under; Cards offense is dogshit right now.",
+    "status": "PUBLISHED"
   },
   {
     "id": "chicago_bears_vs_green_bay_packers",
     "game": "Chicago Bears vs Green Bay Packers",
-    "date": "2025-12-07",
-    "selection": "CHI +8.0",
-    "confidence_tier": "Medium",
-    "analysis": "The Bears have been putting up points, and the Packers' defense is dealing with injuries. Eight points is a lot in a rivalry game, so I'll roll with the dog.",
-    "status": "PUBLISH"
+    "timestamp": "2025-12-07T14:32:20.768811",
+    "spread_pick": "Green Bay -8.0",
+    "spread_confidence": "Medium",
+    "total_pick": "Under 32.0",
+    "total_confidence": "Strong",
+    "analysis": "The sharps are all over the Packers and hammering that under. Green Bay should cover at home in this gross spot.",
+    "status": "PUBLISHED"
   },
   {
     "id": "houston_texans_vs_kansas_city_chiefs",
     "game": "Houston Texans vs Kansas City Chiefs",
-    "date": "2025-12-07",
-    "selection": "Under 41.5",
-    "confidence_tier": "Strong",
-    "analysis": "Mahomes is hobbled and the weather is ass. Both offenses are gonna struggle to move the ball in this slop.",
-    "status": "PUBLISH"
+    "timestamp": "2025-12-07T14:32:22.995856",
+    "spread_pick": "Kansas City -4.0",
+    "spread_confidence": "Medium",
+    "total_pick": "Over 41.5",
+    "total_confidence": "Strong",
+    "analysis": "KC is in a gross spot after that Cowboys loss, but the sharps are on 'em. Hammering the over -- looks like the play.",
+    "status": "PUBLISHED"
   },
   {
     "id": "philadelphia_eagles_vs_los_angeles_chargers",
     "game": "Philadelphia Eagles vs Los Angeles Chargers",
-    "date": "2025-12-07",
-    "selection": "LAC +2.0",
-    "confidence_tier": "Medium",
-    "analysis": "Philly's offense has been MIA lately, barely scraping by. LAC at home in a dome getting points? I'll roll the dice.",
-    "status": "PUBLISH"
+    "timestamp": "2025-12-07T14:32:25.561062",
+    "spread_pick": "PHI -2.0",
+    "spread_confidence": "Medium",
+    "total_pick": "Over 42.0",
+    "total_confidence": "Medium",
+    "analysis": "Philly's gotta bounce back after that Bears debacle; sharps are backing them on the spread, even with the juice. The over's getting pounded by the wise guys too, looks like they see some points in this one.",
+    "status": "PUBLISHED"
   }
 ]
