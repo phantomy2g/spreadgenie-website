@@ -18,11 +18,53 @@
     }
   },
   {
+    "id": "byu_vs_texas_tech",
+    "game": "BYU vs Texas Tech",
+    "date": "2025-12-06",
+    "timestamp": "2025-12-06T22:39:30.604268",
+    "analysis": "Alright, lean in, because the absolute best bet this weekend is BYU catching +12.5 points against Texas Tech. The market is drastically overestimating Texas Tech's ability to run away with this one. Our numbers are telling us that BYU's offense is far more adept at staying on schedule and moving the chains than people realize, making them resistant to the kind of suffocation Texas Tech typically brings. While Texas Tech's defensive front loves living in the backfield, BYU's offensive efficiency and discipline means they won't be consistently stuck behind the sticks, even under pressure. This is a massive value play, where the public expects a blowout, but our model has flagged this line as way too high.\n\nBYU is absolutely built to limit the kind of disruption that would lead to a true blow-out here. They're not going to be dictating the rhythm of the game from start to finish, but they will generate enough stops and keep drives alive long enough to grind this one out and stay well within that generous +12.5. The market is just giving us too many points. Forget the total; the real play is on BYU to keep this a much tighter contest than people are expecting. It\u2019s a strong signal, my friend.",
+    "status": "PUBLISH",
+    "best_bet": {
+      "selection": "BYU +12.5",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "next_bet": {
+      "selection": "Over 49.5",
+      "confidence": "PASS",
+      "type": "Total"
+    },
+    "confidence_tier": "STRONG",
+    "selection": "BYU +12.5",
+    "sport": "CFB"
+  },
+  {
+    "id": "miami_(oh)_vs_western_michigan",
+    "game": "Miami (OH) vs Western Michigan",
+    "date": "2025-12-06",
+    "timestamp": "2025-12-06T22:39:43.412316",
+    "analysis": "Alright, listen up, because I've got a strong read on the Miami (OH) game. My best bet, no question, is Miami (OH) +1.5. We're getting phenomenal value here because the market is just completely missing what Miami brings to the table. Their defensive front is an absolute nightmare; they're going to be living in Western Michigan's backfield all game, creating chaos and suffocating pressure that will lead to constant stalled drives for the Broncos. On the flip side, Miami's offense is sharp, consistently staying on schedule and moving the chains when it matters. The numbers don't lie; this is a clear mismatch the oddsmakers have massively undervalued.\n\nAnd while we're on the subject, don't sleep on the total either. My lean is the Over 43.5. Despite what some might expect from these teams, both offenses are going to find ways to dictate the rhythm and contribute to a higher scoring game than the market gives credit for. There's a lot more offensive potential here than people realize, setting us up for a really solid day.",
+    "status": "PUBLISH",
+    "best_bet": {
+      "selection": "Miami (OH) +1.5",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "next_bet": {
+      "selection": "Over 43.5",
+      "confidence": "LEAN",
+      "type": "Total"
+    },
+    "confidence_tier": "STRONG",
+    "selection": "Miami (OH) +1.5",
+    "sport": "CFB"
+  },
+  {
     "id": "georgia_vs_alabama",
     "game": "Georgia vs Alabama",
     "date": "2025-12-06",
-    "timestamp": "2025-12-06T17:03:35.302653",
-    "analysis": "Alright, best bet tonight, we are absolutely hammering Georgia -2.5. Our numbers are screaming that the market is completely undervaluing this matchup, and there's massive value here. Georgia's defensive front is going to be living in the backfield, creating suffocating pressure and forcing their opponent constantly behind the sticks. This level of disruption is just too much to overcome. On the other side, Georgia's offense is a machine, staying on schedule and moving the chains with ruthless efficiency, dictating the rhythm of the game from start to finish.\n\nThis isn't just about raw talent; it's about how these teams execute under championship pressure. While the stakes are incredibly high, our analysis points to Georgia's superior efficiency and relentless disruption being too much for the market to fully account for at this line. And hey, for a strong secondary play, we also see the Over 48.5 as a great spot. Expect both offenses to find more traction than Vegas is giving them credit for, but make no mistake, Georgia covering the spread is our strongest conviction.",
+    "timestamp": "2025-12-06T22:39:56.387131",
+    "analysis": "Alright, forget the noise, my best bet for this championship clash is **Georgia -2.5**. Look, the market is completely mispricing this game. Georgia's defensive front is going to be living in the backfield all night, creating constant chaos and suffocating pressure that Alabama just won't be able to handle. They're going to keep Alabama behind the sticks and force stalled drives. On the flip side, Georgia's offense is masterful at staying on schedule, moving the chains with ease, and dictating the rhythm of the game. Our numbers show a massive value here; the market is simply undervaluing how decisively Georgia should win this.\n\nAnd speaking of value, I'm also really liking the **Over 48.5**. Everyone's expecting a low-scoring slugfest, but these offenses, especially Georgia's ability to maintain efficiency, are just too good to be kept down. Alabama will get some points too, don't get me wrong, but the market has the total way too low. Expect more fireworks than the public anticipates. This game goes Over.",
     "status": "PUBLISH",
     "best_bet": {
       "selection": "Georgia -2.5",
@@ -36,6 +78,48 @@
     },
     "confidence_tier": "STRONG",
     "selection": "Georgia -2.5",
+    "sport": "CFB"
+  },
+  {
+    "id": "duke_vs_virginia",
+    "game": "Duke vs Virginia",
+    "date": "2025-12-06",
+    "timestamp": "2025-12-06T22:40:11.245659",
+    "analysis": "Alright, the best bet on the board tonight is Duke +4.0. I know what the public thinks about Virginia, but our numbers are screaming that the market is severely undervaluing what Duke brings to the table here. Their defensive unit is relentless, living in the backfield and creating constant chaos, which is going to put Virginia's offense behind the sticks all night. This disruption will prevent Virginia from dictating the rhythm and running up the score. On the other side, Duke's offense is quietly efficient, staying on schedule and moving the chains when it matters. They won't have stalled drives that give Virginia easy momentum. We're talking massive value on Duke here; the gap isn't as wide as the public perceives.\n\nThis isn't just a regular season game, and there's no rematch on the horizon, so both teams are going to leave it all out there. With the juice signal leaning heavily towards the Over, we expect some points, which only helps Duke keep it within this number. Lock it in, buddy, Duke keeps this tight.",
+    "status": "PUBLISH",
+    "best_bet": {
+      "selection": "Duke +4.0",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "next_bet": {
+      "selection": "Over 57.5",
+      "confidence": "PASS",
+      "type": "Total"
+    },
+    "confidence_tier": "STRONG",
+    "selection": "Duke +4.0",
+    "sport": "CFB"
+  },
+  {
+    "id": "indiana_vs_ohio_state",
+    "game": "Indiana vs Ohio State",
+    "date": "2025-12-06",
+    "timestamp": "2025-12-06T22:40:17.281048",
+    "analysis": "Alright, my best bet tonight is the Over 47.5 in the Indiana-Ohio State game. The market here is completely asleep at the wheel. Our numbers are flashing massive value on this total because both offenses are poised to dictate the rhythm of this game. We don't see defenses living in the backfield or creating enough chaos to stall drives. Instead, expect both teams to stay on schedule and consistently move the chains.\n\nThe discrepancy between our projections and the market is just too big to ignore; the numbers truly don't lie on this one. And honestly, while the Over is the absolute lock, I'm also leaning strong on Indiana with the points, which only reinforces the idea that we'll see plenty of scoring on both sides. Get ready for some fireworks.",
+    "status": "PUBLISH",
+    "best_bet": {
+      "selection": "Over 47.5",
+      "confidence": "LOCK",
+      "type": "Total"
+    },
+    "next_bet": {
+      "selection": "Indiana +4.0",
+      "confidence": "STRONG",
+      "type": "Spread"
+    },
+    "confidence_tier": "LOCK",
+    "selection": "Over 47.5",
     "sport": "CFB"
   }
 ]
