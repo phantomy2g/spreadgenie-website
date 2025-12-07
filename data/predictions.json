@@ -21,63 +21,21 @@
     "id": "georgia_vs_alabama",
     "game": "Georgia vs Alabama",
     "date": "2025-12-06",
-    "timestamp": "2025-12-06T16:28:06.457492",
-    "analysis": "Alright, forget the noise, the absolute lock here is the **Over 48.5** in the Georgia-Alabama game. Our numbers are screaming that the market is totally asleep on this total. Both of these offenses are just too explosive, too consistent. They're masters at staying on schedule, relentlessly moving the chains, and dictating the rhythm of the game drive after drive. There's simply too much offensive firepower on the field for this game to stay under that paltry number.\n\nWe're looking at a huge offensive output here, and it's not going to be a fluke. Even though you'll see some disruptive defensive plays on both sides, neither unit is going to completely suffocate the opposing offense enough to keep this score down. In fact, Georgia is the strong play on the spread, more than capable of winning this outright. But the real gift is that total \u2013 the numbers don't lie, and they're telling us this thing is going to sail past 48.5. This isn't just value, it's a massive mispricing.",
+    "timestamp": "2025-12-06T17:03:35.302653",
+    "analysis": "Alright, best bet tonight, we are absolutely hammering Georgia -2.5. Our numbers are screaming that the market is completely undervaluing this matchup, and there's massive value here. Georgia's defensive front is going to be living in the backfield, creating suffocating pressure and forcing their opponent constantly behind the sticks. This level of disruption is just too much to overcome. On the other side, Georgia's offense is a machine, staying on schedule and moving the chains with ruthless efficiency, dictating the rhythm of the game from start to finish.\n\nThis isn't just about raw talent; it's about how these teams execute under championship pressure. While the stakes are incredibly high, our analysis points to Georgia's superior efficiency and relentless disruption being too much for the market to fully account for at this line. And hey, for a strong secondary play, we also see the Over 48.5 as a great spot. Expect both offenses to find more traction than Vegas is giving them credit for, but make no mistake, Georgia covering the spread is our strongest conviction.",
     "status": "PUBLISH",
     "best_bet": {
-      "selection": "Over 48.5",
-      "confidence": "LOCK",
-      "type": "Total"
-    },
-    "next_bet": {
       "selection": "Georgia -2.5",
       "confidence": "STRONG",
       "type": "Spread"
     },
-    "confidence_tier": "LOCK",
-    "selection": "Over 48.5",
-    "sport": "CFB"
-  },
-  {
-    "id": "duke_vs_virginia",
-    "game": "Duke vs Virginia",
-    "date": "2025-12-06",
-    "timestamp": "2025-12-06T16:28:14.289856",
-    "analysis": "Alright, listen up, the absolute best bet on the board tonight is the Over 57.5 in this Duke-Virginia game. Forget what the books are telling you; our numbers are screaming that this total is way too low. We're looking at a game where both offenses are going to be staying on schedule, moving the chains with ease, and dictating the rhythm. Defensively, neither team is known for creating constant chaos or living in the backfield, which means these drives won't be stalling out. The market is completely undervaluing the scoring potential here \u2013 there's massive value on the Over.\n\nAnd if you're looking for a bonus, Duke +4.0 is also looking incredibly strong. The market has completely misread this matchup, making Virginia way too short a favorite. Our models have a huge discrepancy compared to the market line, suggesting the wrong team might even be favored here in terms of where the value lies. This game is going to feature plenty of points, and Duke is going to be right in the thick of it. Lock in that Over, you won't regret it.",
-    "status": "PUBLISH",
-    "best_bet": {
-      "selection": "Over 57.5",
-      "confidence": "LOCK",
+    "next_bet": {
+      "selection": "Over 48.5",
+      "confidence": "STRONG",
       "type": "Total"
     },
-    "next_bet": {
-      "selection": "Duke +4.0",
-      "confidence": "STRONG",
-      "type": "Spread"
-    },
-    "confidence_tier": "LOCK",
-    "selection": "Over 57.5",
-    "sport": "CFB"
-  },
-  {
-    "id": "indiana_vs_ohio_state",
-    "game": "Indiana vs Ohio State",
-    "date": "2025-12-06",
-    "timestamp": "2025-12-06T16:28:30.057695",
-    "analysis": "Alright, listen up, because the best bet on the board tonight is the **Over 47.5** in the Indiana @ Ohio State game, and it's a LOCK. Our numbers are screaming that the market is completely out to lunch on this total. We're looking at two offenses that are consistently staying on schedule, moving the chains with ease, and dictating the rhythm of the game. Neither defense projects to create enough suffocating pressure or live in the backfield to truly put sand in the gears of these attacks. The offensive efficiency on both sides here is just through the roof, setting up a genuine shootout, and the massive value on this over is undeniable.\n\nAnd while we're on the subject, there's also strong value on **Indiana +4.0**. Even though we expect plenty of points, the market is severely underestimating Indiana's capability to keep this game tight and competitive. Don't be surprised when they manage to hang around longer than most expect. The numbers are clear: this game is going to be far more lively and closer than the public perceives.",
-    "status": "PUBLISH",
-    "best_bet": {
-      "selection": "Over 47.5",
-      "confidence": "LOCK",
-      "type": "Total"
-    },
-    "next_bet": {
-      "selection": "Indiana +4.0",
-      "confidence": "STRONG",
-      "type": "Spread"
-    },
-    "confidence_tier": "LOCK",
-    "selection": "Over 47.5",
+    "confidence_tier": "STRONG",
+    "selection": "Georgia -2.5",
     "sport": "CFB"
   }
 ]
