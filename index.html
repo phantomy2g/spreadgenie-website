@@ -50,6 +50,7 @@
         .conf-lock, .filter-btn.active.conf-lock { background: #10b981; color: white; } 
         .conf-strong, .filter-btn.active.conf-strong { background: #3b82f6; color: white; } 
         .conf-lean, .filter-btn.active.conf-lean { background: #f59e0b; color: white; } 
+        .conf-medium, .filter-btn.active.conf-medium { background: #3b82f6; color: white; } /* Handled Medium */
         .conf-pass, .filter-btn.active.conf-pass { background: #6b7280; color: white; } 
 
         .confidence-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; color: white; text-transform: uppercase; }
@@ -181,6 +182,7 @@
                 <button class="filter-btn active" onclick="filterConfidence('ALL', this)">All Picks</button>
                 <button class="filter-btn conf-lock" onclick="filterConfidence('LOCK', this)">👑 LOCK</button>
                 <button class="filter-btn conf-strong" onclick="filterConfidence('STRONG', this)">🔥 STRONG</button>
+                <button class="filter-btn conf-medium" onclick="filterConfidence('MEDIUM', this)">✅ MEDIUM</button>
                 <button class="filter-btn conf-lean" onclick="filterConfidence('LEAN', this)">💡 LEAN</button>
                 <button class="filter-btn conf-pass" onclick="filterConfidence('PASS', this)">➖ PASS</button>
             </div>
@@ -248,13 +250,15 @@
             document.getElementById('noData').classList.add('hidden');
 
             items.forEach((pred, index) => {
-                // Parsing new Nested JSON structure
-                const bestBet = pred.best_bet || { selection: "N/A", confidence: "PASS" };
-                const nextBet = pred.next_bet || { selection: "N/A", confidence: "PASS" };
+                // --- V11.4 FLAT JSON MAPPING (THE FIX) ---
+                // The new script does NOT have 'best_bet' objects. It has root level keys.
+                
+                const selection = pred.selection || "N/A";
+                const confidence = (pred.confidence_tier || "PASS").toUpperCase();
                 const sport = pred.sport || detectSportFallback(pred.game);
                 
                 // Determine Badge Class
-                const tierClass = getTierClass(bestBet.confidence);
+                const tierClass = getTierClass(confidence);
 
                 const card = document.createElement('div');
                 card.className = 'game-card';
@@ -271,20 +275,11 @@
                     <div class="card-body">
                         <div class="bet-row best-bet">
                             <div>
-                                <span class="bet-label">🏆 Best Bet</span>
-                                <span class="bet-value">${bestBet.selection}</span>
+                                <span class="bet-label">🏆 Selection</span>
+                                <span class="bet-value">${selection}</span>
                             </div>
-                            <span class="confidence-badge ${getTierClass(bestBet.confidence)}">${bestBet.confidence}</span>
+                            <span class="confidence-badge ${tierClass}">${confidence}</span>
                         </div>
-
-                        ${nextBet.confidence !== "PASS" ? `
-                        <div class="bet-row">
-                            <div>
-                                <span class="bet-label">💡 Next Up</span>
-                                <span class="bet-value">${nextBet.selection}</span>
-                            </div>
-                            <span class="confidence-badge ${getTierClass(nextBet.confidence)}">${nextBet.confidence}</span>
-                        </div>` : ''}
 
                         <button class="read-more-btn" onclick="openModal('${index}')">Read Analysis</button>
                     </div>
@@ -295,16 +290,17 @@
 
         // --- MODAL LOGIC ---
         function openModal(index) {
-            const item = allPredictions[index]; // Simple index lookup since ID might be missing in new schema
+            const item = allPredictions[index];
             if (!item) return;
             
             document.getElementById('modalTitle').innerText = item.game;
             document.getElementById('modalSport').innerText = item.sport || "Sports";
             
-            const bestBet = item.best_bet || { confidence: "PASS" };
+            // Fix modal badge using root keys
+            const confidence = (item.confidence_tier || "PASS").toUpperCase();
             const badge = document.getElementById('modalBadge');
-            badge.innerText = bestBet.confidence;
-            badge.className = `confidence-badge ${getTierClass(bestBet.confidence)}`;
+            badge.innerText = confidence;
+            badge.className = `confidence-badge ${getTierClass(confidence)}`;
             
             // Format Analysis Text
             let analysisText = item.analysis || "Analysis unavailable.";
@@ -323,11 +319,11 @@
             
             const filtered = allPredictions.filter(p => {
                 const sport = p.sport || detectSportFallback(p.game);
-                const bestBetConf = p.best_bet ? p.best_bet.confidence : (p.confidence_tier || 'PASS');
+                const conf = (p.confidence_tier || 'PASS').toUpperCase();
                 
                 const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
                 const matchesSearch = p.game.toLowerCase().includes(search);
-                const matchesConfidence = currentConfidence === "ALL" || bestBetConf.includes(currentConfidence);
+                const matchesConfidence = currentConfidence === "ALL" || conf.includes(currentConfidence);
                 
                 return matchesLeague && matchesSearch && matchesConfidence;
             });
@@ -335,20 +331,24 @@
         }
 
         function detectSportFallback(gameTitle) {
+            if (!gameTitle) return "Sports";
             if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
-            return "CFB"; 
+            return "NFL"; // V11.4 Default
         }
 
         function getTierClass(tier) {
             if (!tier) return "conf-pass";
+            tier = tier.toUpperCase();
             if (tier.includes('LOCK')) return "conf-lock";
             if (tier.includes('STRONG')) return "conf-strong";
+            if (tier.includes('MEDIUM')) return "conf-medium";
             if (tier.includes('LEAN')) return "conf-lean";
             return "conf-pass";
         }
 
         function formatDate(dateStr) {
-            try { return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); } 
+            if (!dateStr) return "Today";
+            try { return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }); } 
             catch { return "Today"; }
         }
 
