@@ -20,96 +20,96 @@
   {
     "id": "byu_vs_texas_tech",
     "game": "BYU vs Texas Tech",
-    "date": "2025-12-06",
-    "timestamp": "2025-12-06T23:54:15.174072",
-    "analysis": "As there is no prior meeting, the V10.1 protocol applies the 'Championship Defense' deflator of -9 points to the total. This adjusts the total to 40.5, creating a significant 9-point value gap against the market line of 49.5.",
+    "date": "2025-12-07",
+    "timestamp": "2025-12-07T00:02:40.882066",
+    "analysis": "The V10.1 protocol applied the Tier 2 Defensive Deflator, adjusting the total down by 9 points from the market line to an anchor of 40.5. This significant 9-point difference, in conjunction with the inability to evaluate the spread due to missing data, highlights strong value for the Total Under 49.5.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
       "selection": "Total Under 49.5",
-      "confidence": "LOCK"
+      "confidence": "STRONG"
     },
     "next_bet": {
-      "selection": "PASS",
+      "selection": "Spread Pass",
       "confidence": "PASS"
     },
-    "confidence_tier": "LOCK",
+    "confidence_tier": "STRONG",
     "selection": "Total Under 49.5"
   },
   {
     "id": "miami_(oh)_vs_western_michigan",
     "game": "Miami (OH) vs Western Michigan",
-    "date": "2025-12-06",
-    "timestamp": "2025-12-06T23:54:33.000985",
-    "analysis": "The investigation notes no prior meeting, which, according to V10.1, implies a -9 point deflator on the total due to traveling defense. However, the explicit 'SHARP ALERT' on Over 42.5 takes precedence, indicating strong smart money action on a higher score despite the defensive adjustment.",
+    "date": "2025-12-07",
+    "timestamp": "2025-12-07T00:03:18.664330",
+    "analysis": "The Defensive Deflator for championship intensity suggests a lower total by 9 points (34.5), however, the SHARP ALERT on Over 42.5 is a Tier 1 signal that must be trusted. This Tier 1 signal overrides the general deflator, indicating significant smart money value on the Over 43.5 and thus providing the biggest 'Edge'.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Over 43.5",
+      "selection": "Total Over 43.5",
       "confidence": "STRONG"
     },
     "next_bet": {
-      "selection": "PASS",
+      "selection": "Western Michigan -1.5 Spread",
       "confidence": "PASS"
     },
     "confidence_tier": "STRONG",
-    "selection": "Over 43.5"
+    "selection": "Total Over 43.5"
   },
   {
     "id": "georgia_vs_alabama",
     "game": "Georgia vs Alabama",
-    "date": "2025-12-06",
-    "timestamp": "2025-12-06T23:54:40.547370",
-    "analysis": "In the absence of a Tier 0 Rematch Anchor, the V10.1 protocol invokes the Championship Defense deflator, establishing an effective true total of 39.5. This creates a substantial value gap against the current line of 48.5, heavily favoring the Under, which is further validated by the SHARP ALERT on the juice.",
+    "date": "2025-12-07",
+    "timestamp": "2025-12-07T00:03:26.652972",
+    "analysis": "The primary anchor for this investigation is the Defensive Deflator, which adjusts the total down by 9 points for championship intensity. This adjustment, combined with a \"SHARP ALERT\" on the Under, creates a significant 9-point edge, making the Under 48.5 a high-confidence play.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Under 48.5",
+      "selection": "Total Under 48.5",
       "confidence": "LOCK"
     },
     "next_bet": {
-      "selection": "PASS",
+      "selection": "Spread (PASS)",
       "confidence": "PASS"
     },
     "confidence_tier": "LOCK",
-    "selection": "Under 48.5"
+    "selection": "Total Under 48.5"
   },
   {
     "id": "duke_vs_virginia",
     "game": "Duke vs Virginia",
-    "date": "2025-12-06",
-    "timestamp": "2025-12-06T23:54:54.666399",
-    "analysis": "The investigation prioritizes the SHARP ALERT on Over 57.5, as mandated by V10.1 to be explicitly trusted. Despite the absence of a Tier 0 anchor and the potential for a -9 point deflator from assumed defense travel, the sharp money signal indicates a clear value gap for the Over.",
+    "date": "2025-12-07",
+    "timestamp": "2025-12-07T00:03:43.637802",
+    "analysis": "The Defensive Deflator anchor for totals suggests an expected total of 48.5 points due to championship intensity. However, the 'SHARP ALERT' for Over 57.5 is a Tier 1 signal that must be trusted, indicating strong value on the higher scoring outcome.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Over 57.5",
+      "selection": "Total Over 57.5",
       "confidence": "LOCK"
     },
     "next_bet": {
-      "selection": "PASS",
+      "selection": "Spread (PASS)",
       "confidence": "PASS"
     },
     "confidence_tier": "LOCK",
-    "selection": "Over 57.5"
+    "selection": "Total Over 57.5"
   },
   {
     "id": "indiana_vs_ohio_state",
     "game": "Indiana vs Ohio State",
-    "date": "2025-12-06",
-    "timestamp": "2025-12-06T23:55:01.552508",
-    "analysis": "With no prior meeting, the V10.1 Championship Defense protocol applies, mandating a -9 point deflator. This adjusts the true total to 38.5, creating a significant 9-point value gap against the market's 47.5.",
+    "date": "2025-12-07",
+    "timestamp": "2025-12-07T00:03:54.383066",
+    "analysis": "1. The Defensive Deflator for championship intensity serves as the Anchor, reducing the total line from 47.5 to 38.5. 2. This creates a significant 9.0-point edge, strongly indicating value on the Under due to the expected lower scoring environment.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Total Under 47.5",
+      "selection": "Total UNDER 47.5",
       "confidence": "STRONG"
     },
     "next_bet": {
-      "selection": "PASS",
+      "selection": "Spread PASS",
       "confidence": "PASS"
     },
     "confidence_tier": "STRONG",
-    "selection": "Total Under 47.5"
+    "selection": "Total UNDER 47.5"
   }
 ]
