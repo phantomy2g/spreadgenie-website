@@ -50,7 +50,7 @@
         .conf-lock, .filter-btn.active.conf-lock { background: #10b981; color: white; } 
         .conf-strong, .filter-btn.active.conf-strong { background: #3b82f6; color: white; } 
         .conf-lean, .filter-btn.active.conf-lean { background: #f59e0b; color: white; } 
-        .conf-medium, .filter-btn.active.conf-medium { background: #3b82f6; color: white; } /* Handled Medium */
+        .conf-medium, .filter-btn.active.conf-medium { background: #3b82f6; color: white; }
         .conf-pass, .filter-btn.active.conf-pass { background: #6b7280; color: white; } 
 
         .confidence-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; color: white; text-transform: uppercase; }
@@ -81,7 +81,7 @@
             flex-direction: column; 
         }
         
-        /* HYBRID BET ROWS - FIXED ALIGNMENT */
+        /* --- UPDATED BET ROW STYLES (Surgical Fix) --- */
         .bet-row {
             display: flex;
             justify-content: space-between; /* Pushes content to edges */
@@ -266,18 +266,15 @@
             document.getElementById('noData').classList.add('hidden');
 
             items.forEach((pred, index) => {
-                // --- V11.4 FLAT JSON MAPPING (THE FIX) ---
-                // The new script does NOT have 'best_bet' objects. It has root level keys.
-                
                 const selection = pred.selection || "N/A";
                 const confidence = (pred.confidence_tier || "PASS").toUpperCase();
                 const sport = pred.sport || detectSportFallback(pred.game);
-                
-                // Determine Badge Class
                 const tierClass = getTierClass(confidence);
 
                 const card = document.createElement('div');
                 card.className = 'game-card';
+                
+                // --- SURGICAL JS UPDATE: WRAPPED IN 'bet-info' ---
                 card.innerHTML = `
                     <div class="card-header">
                         <div>
@@ -290,8 +287,8 @@
                     </div>
                     <div class="card-body">
                         <div class="bet-row best-bet">
-                            <div>
-                                <span class="bet-label">🏆 Selection</span>
+                            <div class="bet-info">
+                                <span class="bet-label">🏆 SELECTION</span>
                                 <span class="bet-value">${selection}</span>
                             </div>
                             <span class="confidence-badge ${tierClass}">${confidence}</span>
@@ -304,7 +301,6 @@
             });
         }
 
-        // --- MODAL LOGIC ---
         function openModal(index) {
             const item = allPredictions[index];
             if (!item) return;
@@ -312,13 +308,11 @@
             document.getElementById('modalTitle').innerText = item.game;
             document.getElementById('modalSport').innerText = item.sport || "Sports";
             
-            // Fix modal badge using root keys
             const confidence = (item.confidence_tier || "PASS").toUpperCase();
             const badge = document.getElementById('modalBadge');
             badge.innerText = confidence;
             badge.className = `confidence-badge ${getTierClass(confidence)}`;
             
-            // Format Analysis Text
             let analysisText = item.analysis || "Analysis unavailable.";
             document.getElementById('modalBody').innerText = analysisText;
             document.getElementById('analysisModal').classList.add('active');
@@ -349,7 +343,7 @@
         function detectSportFallback(gameTitle) {
             if (!gameTitle) return "Sports";
             if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
-            return "NFL"; // V11.4 Default
+            return "NFL"; 
         }
 
         function getTierClass(tier) {
