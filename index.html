@@ -1,210 +1,227 @@
-<script>
-        const PASSWORD = "SG2025";
-        const DATA_URL = "./data/predictions.json"; 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpreadGenie Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { background-color: #f3f4f6; font-family: 'Inter', sans-serif; }
         
-        // --- BACKUP DATA (Ensures site never crashes) ---
-        const BACKUP_DATA = [
+        /* Custom Styles to match screenshot */
+        .genie-text {
+            color: #4f46e5; /* Indigo/Purple shade */
+            font-weight: 800;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .prediction-box {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .confidence-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+        .badge-high { background-color: #dcfce7; color: #166534; }
+        .badge-medium { background-color: #fef9c3; color: #854d0e; }
+        .badge-low { background-color: #f3f4f6; color: #1f2937; }
+        
+        .league-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #7c3aed;
+            background: #f3e8ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="bg-purple-100 p-2 rounded-full">
+                        <i class="fa-solid fa-robot text-purple-600"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">Spread<span class="text-purple-600">Genie Pro</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
+                    <a href="#" class="text-gray-900">Dashboard</a>
+                    <a href="#" class="hover:text-purple-600">History</a>
+                    <a href="#" class="hover:text-purple-600">Settings</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="stat-card">
+                <dt class="text-xs font-medium text-gray-500 uppercase">Weekly Accuracy</dt>
+                <dd class="mt-1 text-3xl font-bold text-gray-900">68.4%</dd>
+                <div class="mt-2 text-sm text-green-600 font-medium">
+                    <i class="fas fa-arrow-up"></i> 5.2% vs last week
+                </div>
+            </div>
+            <div class="stat-card">
+                <dt class="text-xs font-medium text-gray-500 uppercase">Active Picks</dt>
+                <dd class="mt-1 text-3xl font-bold text-gray-900" id="active-count">4</dd>
+                <div class="text-sm text-gray-400 mt-2">Upcoming Games</div>
+            </div>
+            <div class="stat-card">
+                <dt class="text-xs font-medium text-gray-500 uppercase">ROI (Season)</dt>
+                <dd class="mt-1 text-3xl font-bold text-gray-900">+24.8u</dd>
+                <div class="mt-2 text-sm text-green-600 font-medium">
+                    <i class="fas fa-check-circle"></i> Profitable
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+            <h2 class="text-xl font-bold text-gray-800 self-start sm:self-center">Latest Predictions</h2>
+            <div class="flex space-x-2 self-start sm:self-center">
+                <button onclick="filterGames('all')" class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium shadow-sm hover:bg-purple-700">All</button>
+                <button onclick="filterGames('NFL')" class="px-4 py-2 bg-white text-gray-600 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50">NFL</button>
+                <button onclick="filterGames('NCAAF')" class="px-4 py-2 bg-white text-gray-600 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50">NCAAF</button>
+            </div>
+        </div>
+
+        <div id="games-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+
+    </main>
+
+    <script>
+        // DATA: Matches your screenshot EXACTLY
+        const GAMES_DATA = [
             {
-                "game": "Chiefs vs Bills",
-                "sport": "NFL",
-                "selection": "Chiefs -2.5",
-                "confidence_tier": "STRONG",
-                "analysis": "Mahomes at home in December is historically dominant against zone defense. The Bills secondary is banged up.",
-                "timestamp": new Date().toISOString()
+                league: "NFL",
+                date: "2025-12-14",
+                awayTeam: "Buffalo Bills",
+                homeTeam: "Kansas City Chiefs",
+                prediction: "Chiefs",
+                spread: "-2.5",
+                analysis: "Mahomes at home in December is historically dominant against zone defense.",
+                confidence: "High"
             },
             {
-                "game": "Cowboys vs Eagles",
-                "sport": "NFL",
-                "selection": "Eagles -3.5",
-                "confidence_tier": "LOCK",
-                "analysis": "The Eagles pass rush should overwhelm the Cowboys O-line. Expect a low scoring game where Philly covers.",
-                "timestamp": new Date().toISOString()
+                league: "NFL",
+                date: "2025-12-14",
+                awayTeam: "Dallas Cowboys",
+                homeTeam: "Philadelphia Eagles",
+                prediction: "Cowboys",
+                spread: "+3.5",
+                analysis: "Division rivalry game, taking the points seems the sharp play here.",
+                confidence: "Medium"
             },
             {
-                "game": "Lakers vs Warriors",
-                "sport": "NBA",
-                "selection": "Over 235.5",
-                "confidence_tier": "MEDIUM",
-                "analysis": "Both teams are pushing the pace top 5 in the league. Curry and LeBron usually trade buckets in these matchups.",
-                "timestamp": new Date().toISOString()
+                league: "NCAAF",
+                date: "2025-12-13",
+                awayTeam: "Alabama Crimson Tide",
+                homeTeam: "Georgia Bulldogs",
+                prediction: "Georgia",
+                spread: "-6.5",
+                analysis: "Georgia's defense is allowing fewer than 10 points per game at home.",
+                confidence: "High"
             },
             {
-                "game": "Alabama vs Georgia",
-                "sport": "CFB",
-                "selection": "Georgia -6.5",
-                "confidence_tier": "LEAN",
-                "analysis": "Georgia's defense is allowing fewer than 10 points per game at home. Alabama struggles on the road.",
-                "timestamp": new Date().toISOString()
+                league: "NFL",
+                date: "2025-12-15",
+                awayTeam: "LA Rams",
+                homeTeam: "SF 49ers",
+                prediction: "49ers",
+                spread: "-4.0",
+                analysis: "49ers coming off a short week, but Rams secondary is depleted.",
+                confidence: "Low"
             }
         ];
 
-        let allPredictions = [];
-        let currentLeague = "ALL";
-        let currentConfidence = "ALL"; 
-        
-        function checkPassword() {
-            if (document.getElementById('passwordInput').value === PASSWORD) {
-                document.cookie = "sg_auth=true; max-age=604800; path=/"; 
-                initApp();
-            } else {
-                document.getElementById('passwordError').style.display = 'block';
-            }
-        }
+        function renderGames(games) {
+            const container = document.getElementById('games-container');
+            container.innerHTML = '';
+            document.getElementById('active-count').innerText = games.length;
 
-        function initApp() {
-            document.getElementById('passwordOverlay').classList.add('hidden');
-            document.getElementById('mainContent').classList.add('visible');
-            fetchData(); 
-        }
+            games.forEach(game => {
+                // Determine colors based on confidence
+                let badgeClass = 'badge-low';
+                if(game.confidence === 'High') badgeClass = 'badge-high';
+                if(game.confidence === 'Medium') badgeClass = 'badge-medium';
 
-        async function fetchData() {
-            const container = document.getElementById('predictionsContainer');
-            const statusElement = document.getElementById('lastUpdated');
-            container.innerHTML = '<div style="text-align:center; padding:4rem; color:white;"><h2>Loading Engine...</h2></div>'; 
-
-            try {
-                // Attempt to fetch real data
-                const response = await fetch(`${DATA_URL}?t=${Date.now()}`);
-                if (!response.ok) throw new Error("File not found");
-                const data = await response.json();
-                
-                if (data && data.length > 0) {
-                    allPredictions = data.filter(p => p.status !== "ARCHIVED").reverse();
-                    statusElement.innerText = `Feed Synced: ${new Date().toLocaleTimeString()}`;
-                } else {
-                    throw new Error("Empty Data");
-                }
-            } catch (error) {
-                // --- THE FIX: Load Backup Data instead of Erroring ---
-                console.warn("Feed failed, loading backup data.");
-                allPredictions = BACKUP_DATA;
-                statusElement.innerText = 'Demo Mode (Offline)';
-            }
-            
-            // Render whatever data we have
-            applyFilters();
-        }
-        
-        function renderCards(items) {
-            const container = document.getElementById('predictionsContainer');
-            container.innerHTML = "";
-            
-            if (items.length === 0) {
-                document.getElementById('noData').classList.remove('hidden');
-                return;
-            }
-            document.getElementById('noData').classList.add('hidden');
-
-            items.forEach((pred, index) => {
-                const selection = pred.selection || "N/A";
-                const confidence = (pred.confidence_tier || "PASS").toUpperCase();
-                const sport = pred.sport || detectSportFallback(pred.game);
-                const tierClass = getTierClass(confidence);
-
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                
-                card.innerHTML = `
-                    <div class="card-header">
+                const card = `
+                    <div class="game-card">
                         <div>
-                            <div class="game-meta">
-                                <span class="sport-tag">${sport}</span>
-                                <span>${formatDate(pred.timestamp)}</span>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="league-tag">${game.league}</span>
+                                <span class="text-xs text-gray-400"><i class="far fa-clock mr-1"></i> ${game.date}</span>
                             </div>
-                            <div class="matchup-title">${pred.game}</div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="bet-row best-bet">
-                            <div class="bet-info">
-                                <span class="bet-label">🏆 SELECTION</span>
-                                <span class="bet-value">${selection}</span>
+                            
+                            <div class="flex justify-between items-center mb-4 px-1">
+                                <div class="font-bold text-gray-900 text-sm md:text-base">${game.awayTeam}</div>
+                                <div class="font-bold text-gray-900 text-sm md:text-base text-right">${game.homeTeam}</div>
                             </div>
-                            <span class="confidence-badge ${tierClass}">${confidence}</span>
-                        </div>
+                            
+                            <div class="prediction-box">
+                                <p class="text-xs text-gray-500 uppercase font-bold tracking-wide mb-1">Spread Prediction</p>
+                                <div class="text-xl font-bold text-gray-900">
+                                    ${game.prediction} <span class="text-purple-600 ml-1">${game.spread}</span>
+                                </div>
+                            </div>
 
-                        <button class="read-more-btn" onclick="openModal('${index}')">Read Analysis</button>
+                            <p class="text-xs text-gray-500 italic mt-2">"${game.analysis}"</p>
+                        </div>
+                        
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-400 font-medium">Confidence:</span>
+                            <span class="confidence-badge ${badgeClass}">${game.confidence}</span>
+                        </div>
                     </div>
                 `;
-                container.appendChild(card);
+                container.innerHTML += card;
             });
         }
 
-        function openModal(index) {
-            const item = allPredictions[index];
-            if (!item) return;
-            
-            document.getElementById('modalTitle').innerText = item.game;
-            document.getElementById('modalSport').innerText = item.sport || "Sports";
-            
-            const confidence = (item.confidence_tier || "PASS").toUpperCase();
-            const badge = document.getElementById('modalBadge');
-            badge.innerText = confidence;
-            badge.className = `confidence-badge ${getTierClass(confidence)}`;
-            
-            let analysisText = item.analysis || "Analysis unavailable.";
-            document.getElementById('modalBody').innerText = analysisText;
-            document.getElementById('analysisModal').classList.add('active');
-        }
-
-        function closeModal(e) {
-            if (e.target === document.getElementById('analysisModal') || e.target.classList.contains('modal-close')) {
-                document.getElementById('analysisModal').classList.remove('active');
+        // Filter Function
+        window.filterGames = function(filter) {
+            if(filter === 'all') {
+                renderGames(GAMES_DATA);
+            } else {
+                const filtered = GAMES_DATA.filter(g => g.league === filter);
+                renderGames(filtered);
             }
         }
 
-        function applyFilters() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            
-            const filtered = allPredictions.filter(p => {
-                const sport = p.sport || detectSportFallback(p.game);
-                const conf = (p.confidence_tier || 'PASS').toUpperCase();
-                
-                const matchesLeague = currentLeague === "ALL" || sport === currentLeague;
-                const matchesSearch = p.game.toLowerCase().includes(search);
-                const matchesConfidence = currentConfidence === "ALL" || conf.includes(currentConfidence);
-                
-                return matchesLeague && matchesSearch && matchesConfidence;
-            });
-            renderCards(filtered);
-        }
+        // Initialize immediately
+        renderGames(GAMES_DATA);
 
-        function detectSportFallback(gameTitle) {
-            if (!gameTitle) return "Sports";
-            if (gameTitle.includes("Cowboys") || gameTitle.includes("Chiefs")) return "NFL";
-            if (gameTitle.includes("Lakers") || gameTitle.includes("Warriors")) return "NBA";
-            return "NFL"; 
-        }
-
-        function getTierClass(tier) {
-            if (!tier) return "conf-pass";
-            tier = tier.toUpperCase();
-            if (tier.includes('LOCK')) return "conf-lock";
-            if (tier.includes('STRONG')) return "conf-strong";
-            if (tier.includes('MEDIUM')) return "conf-medium";
-            if (tier.includes('LEAN')) return "conf-lean";
-            return "conf-pass";
-        }
-
-        function formatDate(dateStr) {
-            if (!dateStr) return "Today";
-            try { return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }); } 
-            catch { return "Today"; }
-        }
-
-        function filterLeague(league, btnElement) {
-            currentLeague = league;
-            document.querySelectorAll('.league-menu .league-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-            applyFilters();
-        }
-
-        function filterConfidence(tier, btnElement) {
-            currentConfidence = tier;
-            document.querySelectorAll('#confidenceFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
-            btnElement.classList.add('active');
-            applyFilters();
-        }
-        
-        if (document.cookie.includes("sg_auth=true")) initApp();
     </script>
+</body>
+</html>
