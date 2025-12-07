@@ -21,8 +21,8 @@
     "id": "byu_vs_texas_tech",
     "game": "BYU vs Texas Tech",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T07:20:26.255950",
-    "analysis": "The primary anchor for this analysis is the Totals Anchor's 'Championship Defense' deflator, which applies due to no prior meeting and dictates a -9 point adjustment to the total. This protocol application yields a significantly lower projected total, creating a strong edge on the UNDER, while Texas Tech's superior PPA statistically supports them, albeit against a substantial spread.",
+    "timestamp": "2025-12-07T07:50:58.130507",
+    "analysis": "The 'NO Rematch' protocol dictates applying a Defense Deflator (-9 pts) to the total, suggesting a lower-scoring affair and a strong lean towards the Under. Additionally, the underdog's Havoc rate does not meet the live dog threshold, and the favorite's high Havoc rate supports Texas Tech's capability to control the game and cover the spread.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
@@ -40,76 +40,76 @@
     "id": "miami_(oh)_vs_western_michigan",
     "game": "Miami (OH) vs Western Michigan",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T07:20:47.101893",
-    "analysis": "The spread analysis is anchored by the absence of the Chaos Factor, as Miami (OH)'s Havoc Rate is below the 22% threshold. This, combined with Western Michigan's slightly superior defensive PPA, suggests they are the more stable side to cover a minimal spread. The Totals Anchor protocol mandates assuming a Championship Defense with a -9 point deflator for games without prior meetings, initially pointing to the Under. However, a Sharp Alert indicating juiced money on the Over directly contradicts this protocol instruction, necessitating a pass on the total.",
+    "timestamp": "2025-12-07T07:51:26.026581",
+    "analysis": "The primary anchor for this analysis is the Defense Deflator, mandated due to no prior meeting and anticipated Championship intensity. This protocol adjustment lowers the implied total to 34.5 points, creating a substantial edge on the Under 43.5, while contradictory defensive metrics (PPA vs Havoc) prevented a confident spread pick.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Western Michigan -1.5",
-      "confidence": "LEAN"
+      "selection": "Total Under 43.5",
+      "confidence": "LOCK"
     },
     "next_bet": {
-      "selection": "Total Under 43.5",
+      "selection": "Western Michigan -1.5",
       "confidence": "PASS"
     },
-    "confidence_tier": "LEAN",
-    "selection": "Western Michigan -1.5"
+    "confidence_tier": "LOCK",
+    "selection": "Total Under 43.5"
   },
   {
     "id": "georgia_vs_alabama",
     "game": "Georgia vs Alabama",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T07:21:02.795465",
-    "analysis": "The primary anchor for the total is the Championship Defense deflator, reducing the projected total to 39.5, which is further supported by the sharp alert on the Under. The edge for the spread comes from the absence of a strong spread anchor for the favorite and nearly identical PPA stats, suggesting a tight, low-scoring game where taking the underdog plus points is prudent.",
+    "timestamp": "2025-12-07T07:51:49.093021",
+    "analysis": "The primary anchor applied is the Defense Deflator, reducing the total by 9 points due to championship intensity. This implies a much lower scoring game than 48.5, which is further supported by sharp action juicing the Under. Neither specific Spread Anchor triggered; however, Georgia's marginally better PPA (0.2537 vs 0.2543) provides a slight edge for the favorite.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
       "selection": "Under 48.5",
-      "confidence": "STRONG"
+      "confidence": "LOCK"
     },
     "next_bet": {
-      "selection": "Georgia +2.5",
+      "selection": "Georgia -2.5",
       "confidence": "LEAN"
     },
-    "confidence_tier": "STRONG",
+    "confidence_tier": "LOCK",
     "selection": "Under 48.5"
   },
   {
     "id": "duke_vs_virginia",
     "game": "Duke vs Virginia",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T07:21:20.063975",
-    "analysis": "The spread for Virginia is validated by comparing team statistics, specifically their superior PPA (0.189) against Duke's (0.252), and Duke's Havoc Rate (17.7%) does not meet the Chaos Factor threshold. Virginia's stronger defensive metrics provide a statistical edge to cover the modest -3.5 spread, with no protocol rule explicitly favoring the underdog here. The Totals Anchor instructs to assume Championship Defense with a -9 pts deflator when no prior meeting, which would lean Under the 57.5 total. However, the SHARP ALERT indicating juiced action on the Over directly contradicts this protocol-driven lean, making the total a mandatory pass due to contradictory data.",
+    "timestamp": "2025-12-07T07:52:08.383962",
+    "analysis": "The primary anchor for this game is the V11.2 Totals Anchor, specifically the 'NO Rematch' rule. This rule mandates a Defense Deflator of -9 points for championship intensity, pushing the projected total significantly under the posted line and creating a strong edge on the Under.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
+      "selection": "Total UNDER 57.5",
+      "confidence": "STRONG"
+    },
+    "next_bet": {
       "selection": "Virginia -3.5",
       "confidence": "LEAN"
     },
-    "next_bet": {
-      "selection": "Total 57.5",
-      "confidence": "PASS"
-    },
-    "confidence_tier": "LEAN",
-    "selection": "Virginia -3.5"
+    "confidence_tier": "STRONG",
+    "selection": "Total UNDER 57.5"
   },
   {
     "id": "indiana_vs_ohio_state",
     "game": "Indiana vs Ohio State",
     "date": "2025-12-07",
-    "timestamp": "2025-12-07T07:21:27.893241",
-    "analysis": "The primary anchors are the Spread Anchor, which identifies the underdog Indiana's high Havoc Rate, and the Totals Anchor, which applies a Championship Defense deflator due to no prior meeting. Indiana's 24.2% Havoc Rate as the underdog triggers the 'Chaos Factor' for the spread, while the Championship Defense adjustment lowers the projected total significantly below 47.5, providing value on the Under.",
+    "timestamp": "2025-12-07T07:52:15.765495",
+    "analysis": "The primary anchor for the best bet is Indiana's Havoc Rate of 24.2%, which exceeds the 22% threshold, identifying them as a live underdog. This high Havoc rate suggests Indiana will be disruptive defensively, providing an edge for them to cover the spread.",
     "status": "PUBLISH",
     "sport": "CFB",
     "best_bet": {
-      "selection": "Indiana +4.0",
+      "selection": "Indiana 4.0",
       "confidence": "LOCK"
     },
     "next_bet": {
-      "selection": "UNDER 47.5",
+      "selection": "Total Under 47.5",
       "confidence": "STRONG"
     },
     "confidence_tier": "LOCK",
-    "selection": "Indiana +4.0"
+    "selection": "Indiana 4.0"
   }
 ]
