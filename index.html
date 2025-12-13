@@ -251,19 +251,13 @@
             document.getElementById('noData').classList.add('hidden');
 
             items.forEach((pred, index) => {
-                // --- V12 MAPPING FIX ---
-                // Mapping the specific keys from your Python script to the UI variables
-                
                 const spreadSelection = pred.spread_pick || "N/A";
                 const spreadConf = pred.spread_confidence || "PASS";
                 
                 const totalSelection = pred.total_pick || "N/A";
                 const totalConf = pred.total_confidence || "PASS";
-
-                // Sport Detection Fix
-                const sport = "NFL"; // Since your script is currently NFL only
+                const sport = "NFL"; 
                 
-                // Determine Badge Class based on Spread Confidence
                 const tierClass = getTierClass(spreadConf);
 
                 const card = document.createElement('div');
@@ -302,7 +296,7 @@
             });
         }
 
-        // --- MODAL LOGIC ---
+        // --- MODAL LOGIC (UPDATED V15.13: READ BADGES FROM JSON) ---
         function openModal(index) {
             const item = allPredictions[index];
             if (!item) return;
@@ -315,22 +309,26 @@
             badge.innerText = spreadConf;
             badge.className = `confidence-badge ${getTierClass(spreadConf)}`;
             
-            // --- NEW BADGE LOGIC START ---
             let analysisText = item.analysis || "Analysis unavailable.";
             
-            // 1. Generate Badges HTML based on keywords in the text
+            // 1. Generate Badges HTML based on BOOLEAN FLAGS in JSON
+            // Safety check for old JSON files without badges object
+            const safeBadges = item.badges || { is_trap: false, is_sharp: false, is_weather: false };
+            
             let badgesHTML = '<div style="margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap;">';
-            const textLower = analysisText.toLowerCase();
 
-            if (textLower.includes("sharp") || textLower.includes("smart money") || textLower.includes("steam")) {
+            // Only show badge if the FLAG is true
+            if (safeBadges.is_sharp) {
                 badgesHTML += '<span style="background:#ffd700; color:black; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold; border:1px solid #e6c200;">⚡ SHARP SIGNAL</span>';
             }
-            if (textLower.includes("trap") || textLower.includes("fade") || textLower.includes("public")) {
+            if (safeBadges.is_trap) {
                 badgesHTML += '<span style="background:#ef4444; color:white; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">🚨 TRAP ALERT</span>';
             }
-            if (textLower.includes("wind") || textLower.includes("snow") || textLower.includes("rain") || textLower.includes("weather")) {
+            if (safeBadges.is_weather) {
                 badgesHTML += '<span style="background:#60a5fa; color:white; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">🌧️ WEATHER IMPACT</span>';
             }
+            
+            // Confidence Badge Logic remains
             if (item.spread_confidence === "Strong" || item.spread_confidence === "Lock") {
                 badgesHTML += '<span style="background:#10b981; color:white; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">💎 HIGH VALUE</span>';
             }
@@ -338,8 +336,7 @@
 
             // 2. Inject Badges + Text into the Modal Body
             const modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = badgesHTML + analysisText; // Use innerHTML to render badges
-            // --- NEW BADGE LOGIC END ---
+            modalBody.innerHTML = badgesHTML + analysisText; 
 
             document.getElementById('analysisModal').classList.add('active');
         }
@@ -355,9 +352,6 @@
             
             const filtered = allPredictions.filter(p => {
                 const spreadConf = (p.spread_confidence || 'PASS').toUpperCase();
-                
-                // Since currently all data is NFL, we skip league filter strictness for now
-                // but keep the logic structure for future.
                 const matchesLeague = true; 
                 const matchesSearch = p.game.toLowerCase().includes(search);
                 const matchesConfidence = currentConfidence === "ALL" || spreadConf.includes(currentConfidence);
@@ -381,7 +375,6 @@
             if (!dateStr) return "Today";
             try { 
                 const date = new Date(dateStr);
-                // Check if date is valid
                 if (isNaN(date.getTime())) return "Today";
                 return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); 
             } 
