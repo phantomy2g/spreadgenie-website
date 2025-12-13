@@ -315,8 +315,32 @@
             badge.innerText = spreadConf;
             badge.className = `confidence-badge ${getTierClass(spreadConf)}`;
             
+            // --- NEW BADGE LOGIC START ---
             let analysisText = item.analysis || "Analysis unavailable.";
-            document.getElementById('modalBody').innerText = analysisText;
+            
+            // 1. Generate Badges HTML based on keywords in the text
+            let badgesHTML = '<div style="margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap;">';
+            const textLower = analysisText.toLowerCase();
+
+            if (textLower.includes("sharp") || textLower.includes("smart money") || textLower.includes("steam")) {
+                badgesHTML += '<span style="background:#ffd700; color:black; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold; border:1px solid #e6c200;">⚡ SHARP SIGNAL</span>';
+            }
+            if (textLower.includes("trap") || textLower.includes("fade") || textLower.includes("public")) {
+                badgesHTML += '<span style="background:#ef4444; color:white; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">🚨 TRAP ALERT</span>';
+            }
+            if (textLower.includes("wind") || textLower.includes("snow") || textLower.includes("rain") || textLower.includes("weather")) {
+                badgesHTML += '<span style="background:#60a5fa; color:white; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">🌧️ WEATHER IMPACT</span>';
+            }
+            if (item.spread_confidence === "Strong" || item.spread_confidence === "Lock") {
+                badgesHTML += '<span style="background:#10b981; color:white; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold;">💎 HIGH VALUE</span>';
+            }
+            badgesHTML += '</div>';
+
+            // 2. Inject Badges + Text into the Modal Body
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = badgesHTML + analysisText; // Use innerHTML to render badges
+            // --- NEW BADGE LOGIC END ---
+
             document.getElementById('analysisModal').classList.add('active');
         }
 
